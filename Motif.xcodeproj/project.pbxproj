@@ -70,14 +70,46 @@
 		27990BF22037B375005F9A86 /* Motif */ = {
 			isa = PBXGroup;
 			children = (
+				279CCA1A203E5B0700D72BD6 /* Controllers */,
+				279CCA19203E5AF800D72BD6 /* Helpers */,
+				279CCA18203E5AF100D72BD6 /* Storyboards */,
+				279CCA17203E5AE600D72BD6 /* Models */,
 				27990BF32037B375005F9A86 /* AppDelegate.swift */,
-				27990BF52037B375005F9A86 /* ViewController.swift */,
-				27990BF72037B375005F9A86 /* Main.storyboard */,
 				27990BFA2037B375005F9A86 /* Assets.xcassets */,
 				27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */,
 				27990BFF2037B375005F9A86 /* Info.plist */,
 			);
 			path = Motif;
+			sourceTree = "<group>";
+		};
+		279CCA17203E5AE600D72BD6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		279CCA18203E5AF100D72BD6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				27990BF72037B375005F9A86 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		279CCA19203E5AF800D72BD6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		279CCA1A203E5B0700D72BD6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				27990BF52037B375005F9A86 /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		AF892E3B5F662FA8730D042C /* Frameworks */ = {
