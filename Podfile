@@ -6,6 +6,5 @@ target 'Motif' do
   use_frameworks!
 
   # Pods for Motif
-  pod 'MusicKit'
-
+  pod 'Firebase/Core'
 end
