@@ -12,6 +12,7 @@
 		27990BF92037B375005F9A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BF72037B375005F9A86 /* Main.storyboard */; };
 		27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27990BFA2037B375005F9A86 /* Assets.xcassets */; };
 		27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */; };
+		966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		27990BFA2037B375005F9A86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27990BFD2037B375005F9A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27990BFF2037B375005F9A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.debug.xcconfig"; sourceTree = "<group>"; };
+		EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.release.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220F7971D8BD0EC19FBDD7F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */,
+				EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		27990BE72037B375005F9A86 = {
 			isa = PBXGroup;
 			children = (
 				27990BF22037B375005F9A86 /* Motif */,
 				27990BF12037B375005F9A86 /* Products */,
+				220F7971D8BD0EC19FBDD7F4 /* Pods */,
+				AF892E3B5F662FA8730D042C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = Motif;
 			sourceTree = "<group>";
 		};
+		AF892E3B5F662FA8730D042C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27990C022037B375005F9A86 /* Build configuration list for PBXNativeTarget "Motif" */;
 			buildPhases = (
+				6441963643EFCA7F01DF2ADF /* [CP] Check Pods Manifest.lock */,
 				27990BEC2037B375005F9A86 /* Sources */,
 				27990BED2037B375005F9A86 /* Frameworks */,
 				27990BEE2037B375005F9A86 /* Resources */,
+				E897CB55A45EC36FF8CEABB1 /* [CP] Embed Pods Frameworks */,
+				E436183A7CF86E703AAD4086 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6441963643EFCA7F01DF2ADF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Motif-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E436183A7CF86E703AAD4086 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Motif/Pods-Motif-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E897CB55A45EC36FF8CEABB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Motif/Pods-Motif-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MusicKit/MusicKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MusicKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Motif/Pods-Motif-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27990BEC2037B375005F9A86 /* Sources */ = {
@@ -272,6 +353,7 @@
 		};
 		27990C032037B375005F9A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +369,7 @@
 		};
 		27990C042037B375005F9A86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
