@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA720408CBB00BD37F4 /* SignUpViewController.swift */; };
+		27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA920408CC400BD37F4 /* LoginViewController.swift */; };
 		27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF32037B375005F9A86 /* AppDelegate.swift */; };
 		27990BF62037B375005F9A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF52037B375005F9A86 /* ViewController.swift */; };
 		27990BF92037B375005F9A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BF72037B375005F9A86 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27136CA720408CBB00BD37F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		27136CA920408CC400BD37F4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		27990BF02037B375005F9A86 /* Motif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motif.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27990BF32037B375005F9A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27990BF52037B375005F9A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 			children = (
 				27990BF52037B375005F9A86 /* ViewController.swift */,
 				279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */,
+				27136CA720408CBB00BD37F4 /* SignUpViewController.swift */,
+				27136CA920408CC400BD37F4 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -243,11 +249,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Motif/Pods-Motif-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +272,8 @@
 			files = (
 				27990BF62037B375005F9A86 /* ViewController.swift in Sources */,
 				27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */,
+				27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */,
+				27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */,
 				279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
