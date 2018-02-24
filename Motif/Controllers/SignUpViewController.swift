@@ -8,6 +8,7 @@
 
 import TransitionButton
 import UIKit
+import Firebase
 
 class SignUpViewController: UIViewController {
     
@@ -45,23 +46,34 @@ class SignUpViewController: UIViewController {
        
     }
     @IBAction func registerAction(_ sender: TransitionButton) {
+        guard let name = nameField.text,
+            let password = passwordField.text,
+            let email = emailField.text else {
+            abort()
+        }
+        
         registerButton.startAnimation() // 2: Then start the animation when the user tap the button
         let qualityOfServiceClass = DispatchQoS.QoSClass.background
         let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
         backgroundQueue.async(execute: {
             
-            sleep(3) // 3: Do your networking task or background work here.
             
-            DispatchQueue.main.async(execute: { () -> Void in
-                // 4: Stop the animation, here you have three options for the `animationStyle` property:
-                // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
-                // .shake: when you want to reflect to the user that the task did not complete successfly
-                // .normal
-                self.registerButton.stopAnimation(animationStyle: .expand, completion: {
-                    let secondVC = UIViewController()
-                    self.present(secondVC, animated: true, completion: nil)
+            Auth.auth().createUser(withEmail: email, password: password) { (user,error) in
+                
+                if error != nil {
+                    print(error!)
+                    abort()
+                }
+                
+                
+                DispatchQueue.main.async(execute: { () -> Void in
+                    // 4: Stop the animation, here you have three options for the `animationStyle` property:
+                    // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
+                    // .shake: when you want to reflect to the user that the task did not complete successfly
+                    // .normal
+                    self.registerButton.stopAnimation()
                 })
-            })
+            }
         })
     }
 }

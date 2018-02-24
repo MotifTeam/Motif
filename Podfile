@@ -7,5 +7,6 @@ target 'Motif' do
 
   # Pods for Motif
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   pod 'TransitionButton'
 end
