@@ -17,6 +17,10 @@
 		279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA1B203E5B8E00D72BD6 /* Login.storyboard */; };
 		279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */; };
 		279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */; };
+		27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FF435720506CCD006BBE64 /* Recording.storyboard */; };
+		27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435920506D2B006BBE64 /* MicViewController.swift */; };
+		27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */; };
+		27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435D20507345006BBE64 /* CircleBackgroundView.swift */; };
 		966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +37,10 @@
 		279CCA1B203E5B8E00D72BD6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSplashViewController.swift; sourceTree = "<group>"; };
 		279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		27FF435720506CCD006BBE64 /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
+		27FF435920506D2B006BBE64 /* MicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicViewController.swift; sourceTree = "<group>"; };
+		27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientLayer.swift; sourceTree = "<group>"; };
+		27FF435D20507345006BBE64 /* CircleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBackgroundView.swift; sourceTree = "<group>"; };
 		A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.debug.xcconfig"; sourceTree = "<group>"; };
 		EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.release.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +113,7 @@
 			children = (
 				27990BF72037B375005F9A86 /* Main.storyboard */,
 				279CCA1B203E5B8E00D72BD6 /* Login.storyboard */,
+				27FF435720506CCD006BBE64 /* Recording.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -112,6 +121,8 @@
 		279CCA19203E5AF800D72BD6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */,
+				27FF435D20507345006BBE64 /* CircleBackgroundView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -123,6 +134,7 @@
 				279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */,
 				27136CA720408CBB00BD37F4 /* SignUpViewController.swift */,
 				27136CA920408CC400BD37F4 /* LoginViewController.swift */,
+				27FF435920506D2B006BBE64 /* MicViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +211,7 @@
 			files = (
 				279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */,
 				27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */,
+				27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */,
 				279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */,
 				27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */,
 				27990BF92037B375005F9A86 /* Main.storyboard in Resources */,
@@ -274,8 +287,11 @@
 			files = (
 				27990BF62037B375005F9A86 /* ViewController.swift in Sources */,
 				27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */,
+				27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */,
+				27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */,
 				27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */,
 				27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */,
+				27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */,
 				279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
