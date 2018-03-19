@@ -55,17 +55,15 @@ class MicViewController: UIViewController {
 
     @objc func updateTimer() {
         
-//        audioRecorder.updateMeters()
-//
-//        //print to the console if we are beyond a threshold value. Here I've used -7
-//        if audioRecorder.averagePower(forChannel: 1) > -160 {
-//
-//            print(" level I'm hearin' you in dat mic ")
-//            print(audioRecorder.averagePower(forChannel: 0))
-//        }
-        
-        print(audioRecorder.averagePower(forChannel: 0))
-        
+        audioRecorder.updateMeters()
+
+        //print to the console if we are beyond a threshold value. Here I've used -7
+        if audioRecorder.averagePower(forChannel: 1) > -160 {
+
+            print(" level I'm hearin' you in dat mic ")
+            print(audioRecorder.averagePower(forChannel: 0))
+        }
+                
         // Calculate total time since timer started in seconds
         time = Date().timeIntervalSinceReferenceDate - startTime
         
