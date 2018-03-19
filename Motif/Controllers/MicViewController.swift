@@ -54,6 +54,18 @@ class MicViewController: UIViewController {
     }
 
     @objc func updateTimer() {
+        
+//        audioRecorder.updateMeters()
+//
+//        //print to the console if we are beyond a threshold value. Here I've used -7
+//        if audioRecorder.averagePower(forChannel: 1) > -160 {
+//
+//            print(" level I'm hearin' you in dat mic ")
+//            print(audioRecorder.averagePower(forChannel: 0))
+//        }
+        
+        print(audioRecorder.averagePower(forChannel: 0))
+        
         // Calculate total time since timer started in seconds
         time = Date().timeIntervalSinceReferenceDate - startTime
         
@@ -98,9 +110,13 @@ class MicViewController: UIViewController {
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
         
+        
         do {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.delegate = self
+            audioRecorder.prepareToRecord()
+            audioRecorder.isMeteringEnabled = true
+
             audioRecorder.record()
             startTime = Date().timeIntervalSinceReferenceDate
             musicTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
