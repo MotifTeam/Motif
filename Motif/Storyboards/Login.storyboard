@@ -13,7 +13,7 @@
         <!--Login Splash View Controller-->
         <scene sceneID="BbF-YE-HBf">
             <objects>
-                <viewController id="276-64-Pfl" customClass="LoginSplashViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginSplash" id="276-64-Pfl" customClass="LoginSplashViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9YV-Hl-AaX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -253,7 +253,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3vr-IV-lWH"/>
-        <segue reference="Eyx-Vk-deY"/>
+        <segue reference="pUg-jh-U6s"/>
+        <segue reference="3SZ-oK-QN3"/>
     </inferredMetricsTieBreakers>
 </document>

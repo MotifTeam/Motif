@@ -52,6 +52,8 @@ class SignUpViewController: UIViewController {
             abort()
         }
         
+        print(name)
+        
         registerButton.startAnimation() // 2: Then start the animation when the user tap the button
         let qualityOfServiceClass = DispatchQoS.QoSClass.background
         let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
