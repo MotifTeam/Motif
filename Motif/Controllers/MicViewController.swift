@@ -15,7 +15,8 @@ class MicViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var circleButtonView: CircleBackgroundView!
     @IBOutlet var backgroundView: RadialGradientView!
-    
+    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var inputWave: AKNodeOutputPlot!
     
     let mic = AKMicrophone()
@@ -33,6 +34,9 @@ class MicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        trashButton.isHidden = true
+        checkButton.isHidden = true
+        
         AKAudioFile.cleanTempDirectory()
         AKSettings.bufferLength = .medium
         
@@ -46,7 +50,7 @@ class MicViewController: UIViewController {
         inputWave.shouldFill = true
         inputWave.shouldMirror = true
         inputWave.color = .red
-        inputWave.gain = 8
+        inputWave.gain = 6
         
         micMixer = AKMixer(mic)
         micBooster = AKBooster(micMixer)
@@ -100,6 +104,9 @@ class MicViewController: UIViewController {
             stop()
         }
     }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent // .default
+    }
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -109,7 +116,8 @@ class MicViewController: UIViewController {
     func start() {
         // let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
         inputWave.node = mic
-
+        inputWave.color = .red
+        
         inputWave.resetHistoryBuffers()
         mic.start()
         startTime = Date().timeIntervalSinceReferenceDate
@@ -122,6 +130,8 @@ class MicViewController: UIViewController {
         }
         
         UIView.animate(withDuration: 0.25, animations: {
+            self.trashButton.isHidden = true
+            self.checkButton.isHidden = true
             let color1 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.7)
             let color2 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.0)
             self.backgroundView.colors = [color1, color2]
@@ -133,14 +143,50 @@ class MicViewController: UIViewController {
         
         
     }
+    @IBAction func trashRecording() {
+        let refreshAlert = UIAlertController(title: "Delete?", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action: UIAlertAction!) in
+            print("Thing is deleted")
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Cancelled")
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func keepRecording() {
+        let alert = UIAlertController(title: "Keep Recording", message: "Label recording", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "My Song Name"
+        }
+        
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0]
+            print("Text field: \(String(describing: textField?.text))")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Cancelled")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
     
     func stop() {
         mic.stop()
         musicTimer.invalidate()
         inputWave.node = nil
         recorder.stop()
-        
+       
+        inputWave.color = .blue
         UIView.animate(withDuration: 0.25, animations: {
+            self.trashButton.isHidden = false
+            self.checkButton.isHidden = false
             let color1 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.7)
             let color2 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.0)
             self.backgroundView.colors = [color1, color2]

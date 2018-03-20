@@ -78,30 +78,66 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9h-in-61X" customClass="AKNodeOutputPlot" customModule="AudioKitUI">
-                                <rect key="frame" x="0.0" y="579" width="375" height="64"/>
+                                <rect key="frame" x="0.0" y="539" width="375" height="64"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="8aM-mI-zpy"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbS-ZX-RCL">
+                                <rect key="frame" x="303" y="443" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="2GK-VR-Uu1"/>
+                                    <constraint firstAttribute="height" constant="48" id="6XU-vz-cEB"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="check"/>
+                                <connections>
+                                    <action selector="keepRecording" destination="6b0-4y-vvJ" eventType="touchUpInside" id="qyE-pN-VVb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55S-UZ-7A7">
+                                <rect key="frame" x="107" y="68" width="162" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZ2-a8-YtS">
+                                <rect key="frame" x="24" y="443" width="38" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="Q3L-ww-LkY"/>
+                                    <constraint firstAttribute="height" constant="48" id="RY9-cK-pFh"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="trash"/>
+                                <connections>
+                                    <action selector="trashRecording" destination="6b0-4y-vvJ" eventType="touchUpInside" id="hzo-eB-2L3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="q9h-in-61X" firstAttribute="trailing" secondItem="DZD-J1-unv" secondAttribute="trailing" id="1en-j0-TYD"/>
                             <constraint firstItem="5Jm-Lz-y1N" firstAttribute="centerY" secondItem="DZD-J1-unv" secondAttribute="centerY" id="3rH-WG-TOd"/>
-                            <constraint firstItem="DZD-J1-unv" firstAttribute="bottom" secondItem="q9h-in-61X" secondAttribute="bottom" constant="24" id="3tP-Bp-gGV"/>
+                            <constraint firstItem="DZD-J1-unv" firstAttribute="bottom" secondItem="q9h-in-61X" secondAttribute="bottom" constant="64" id="3tP-Bp-gGV"/>
+                            <constraint firstItem="q9h-in-61X" firstAttribute="top" secondItem="MZ2-a8-YtS" secondAttribute="bottom" constant="48" id="Adl-70-esF"/>
+                            <constraint firstItem="55S-UZ-7A7" firstAttribute="centerX" secondItem="DZD-J1-unv" secondAttribute="centerX" id="Epa-fF-xaq"/>
                             <constraint firstItem="5Jm-Lz-y1N" firstAttribute="centerX" secondItem="DZD-J1-unv" secondAttribute="centerX" id="FIV-1t-8PD"/>
+                            <constraint firstItem="DZD-J1-unv" firstAttribute="trailing" secondItem="xbS-ZX-RCL" secondAttribute="trailing" constant="24" id="HXL-qM-yfB"/>
                             <constraint firstItem="d6V-i0-z7x" firstAttribute="centerX" secondItem="DZD-J1-unv" secondAttribute="centerX" id="R0K-5j-QNQ"/>
+                            <constraint firstItem="55S-UZ-7A7" firstAttribute="top" secondItem="DZD-J1-unv" secondAttribute="top" constant="48" id="YpR-l6-yJp"/>
                             <constraint firstItem="q9h-in-61X" firstAttribute="leading" secondItem="DZH-hc-x1S" secondAttribute="leading" id="d5y-23-Fo1"/>
                             <constraint firstItem="d6V-i0-z7x" firstAttribute="top" secondItem="DZD-J1-unv" secondAttribute="top" constant="93" id="ebH-Zn-Yrs"/>
+                            <constraint firstItem="MZ2-a8-YtS" firstAttribute="leading" secondItem="DZD-J1-unv" secondAttribute="leading" constant="24" id="rYm-kb-cii"/>
+                            <constraint firstItem="q9h-in-61X" firstAttribute="top" secondItem="xbS-ZX-RCL" secondAttribute="bottom" constant="48" id="rvg-62-8IP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DZD-J1-unv"/>
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="DZH-hc-x1S" id="oJe-Xr-adM"/>
+                        <outlet property="checkButton" destination="xbS-ZX-RCL" id="yMe-L6-psb"/>
                         <outlet property="circleButtonView" destination="5Jm-Lz-y1N" id="uaS-Jx-Dd4"/>
                         <outlet property="inputWave" destination="q9h-in-61X" id="PVB-qb-O3m"/>
                         <outlet property="timerLabel" destination="d6V-i0-z7x" id="67v-Rj-BnG"/>
+                        <outlet property="trashButton" destination="MZ2-a8-YtS" id="HdE-hS-L6c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3j-Rg-0Wd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -109,4 +145,8 @@
             <point key="canvasLocation" x="1120.8" y="127.28635682158921"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="check" width="136" height="136"/>
+        <image name="trash" width="104" height="128"/>
+    </resources>
 </document>
