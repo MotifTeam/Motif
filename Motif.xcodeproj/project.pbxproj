@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27043A2D20615B2D0076FB53 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27043A2C20615B2D0076FB53 /* TempViewController.swift */; };
 		27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA720408CBB00BD37F4 /* SignUpViewController.swift */; };
 		27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA920408CC400BD37F4 /* LoginViewController.swift */; };
 		27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF32037B375005F9A86 /* AppDelegate.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27043A2C20615B2D0076FB53 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		27136CA720408CBB00BD37F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		27136CA920408CC400BD37F4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		27990BF02037B375005F9A86 /* Motif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motif.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 				27136CA920408CC400BD37F4 /* LoginViewController.swift */,
 				27FF435920506D2B006BBE64 /* MicViewController.swift */,
 				27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */,
+				27043A2C20615B2D0076FB53 /* TempViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */,
 				27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */,
 				27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */,
+				27043A2D20615B2D0076FB53 /* TempViewController.swift in Sources */,
 				27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */,
 				27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */,
 				279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */,
