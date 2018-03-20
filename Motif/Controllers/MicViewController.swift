@@ -164,6 +164,10 @@ class MicViewController: UIViewController {
             textField.placeholder = "My Song Name"
         }
         
+        alert.addTextField { (textField) in
+            textField.placeholder = "tag1, tag2,..."
+        }
+        
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]

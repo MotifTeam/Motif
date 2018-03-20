@@ -9,15 +9,18 @@
 import UIKit
 import PianoView
 import MusicTheorySwift
+import AudioKit
 
 class PianoViewController: UIViewController {
     
     @IBOutlet var backgroundView: RadialGradientView!
     @IBOutlet weak var pianoView: PianoView!
     
+    var midi = AudioKit.midi
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        print(midi.inputNames)
 
         // Do any additional setup after loading the view.
     }

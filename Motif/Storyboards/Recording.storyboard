@@ -72,6 +72,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiT-PT-lah">
+                                <rect key="frame" x="328" y="20" width="31" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="microphone"/>
+                                <connections>
+                                    <segue destination="6b0-4y-vvJ" kind="presentation" modalTransitionStyle="flipHorizontal" id="W3s-16-Yco"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -88,7 +96,6 @@
                     <connections>
                         <outlet property="backgroundView" destination="uwu-dn-6pV" id="sRQ-cQ-KO7"/>
                         <outlet property="pianoView" destination="qCg-wT-qIV" id="wDF-Co-WDn"/>
-                        <segue destination="6b0-4y-vvJ" kind="show" identifier="micSegue" id="VzZ-qI-s4n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hh1-3f-TEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -118,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6WL-RB-3BC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="119"/>
+            <point key="canvasLocation" x="81" y="127"/>
         </scene>
         <!--Mic View Controller-->
         <scene sceneID="pnm-2Y-Ysw">
@@ -189,6 +196,14 @@
                                     <action selector="trashRecording" destination="6b0-4y-vvJ" eventType="touchUpInside" id="hzo-eB-2L3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ax3-s9-oeh">
+                                <rect key="frame" x="322" y="20" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="piano"/>
+                                <connections>
+                                    <segue destination="if8-Dl-EGZ" kind="presentation" modalTransitionStyle="flipHorizontal" id="VAt-0q-X7B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -215,7 +230,6 @@
                         <outlet property="inputWave" destination="q9h-in-61X" id="PVB-qb-O3m"/>
                         <outlet property="timerLabel" destination="d6V-i0-z7x" id="67v-Rj-BnG"/>
                         <outlet property="trashButton" destination="MZ2-a8-YtS" id="HdE-hS-L6c"/>
-                        <segue destination="if8-Dl-EGZ" kind="show" identifier="pianoSegue" id="HIt-aY-6zV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x3j-Rg-0Wd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,9 +239,12 @@
     </scenes>
     <resources>
         <image name="check" width="136" height="136"/>
+        <image name="microphone" width="256" height="256"/>
+        <image name="piano" width="256" height="256"/>
         <image name="trash" width="104" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IBU-Bn-vXv"/>
+        <segue reference="VAt-0q-X7B"/>
+        <segue reference="W3s-16-Yco"/>
     </inferredMetricsTieBreakers>
 </document>
