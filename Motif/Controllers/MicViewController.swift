@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import AVFoundation
+import AudioKit
+import AudioKitUI
 
 class MicViewController: UIViewController {
 
@@ -15,10 +16,16 @@ class MicViewController: UIViewController {
     @IBOutlet weak var circleButtonView: CircleBackgroundView!
     @IBOutlet var backgroundView: RadialGradientView!
     
+    @IBOutlet weak var inputWave: AKNodeOutputPlot!
+    
+    let mic = AKMicrophone()
+    
+    var micMixer: AKMixer!
+    var micBooster: AKBooster!
+    var recorder: AKNodeRecorder!
+    
     var isRecording = false
     var musicTimer: Timer!
-    var recordingSession: AVAudioSession!
-    var audioRecorder: AVAudioRecorder!
     var time: Double = 0
     var startTime: Double = 0
     var endTime: Double = 0
@@ -26,25 +33,35 @@ class MicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recordingSession = AVAudioSession.sharedInstance()
+        AKAudioFile.cleanTempDirectory()
+        AKSettings.bufferLength = .medium
         
         do {
-            try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try recordingSession.setActive(true)
-            recordingSession.requestRecordPermission() { allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        // self.loadRecordingUI()
-                        print("we can record")
-                    } else {
-                        // failed to record!
-                    }
-                }
-            }
+            try AKSettings.setSession(category: .record)
         } catch {
-            // failed to record!
+            AKLog("Could not set session category.")
         }
+        mic.stop()
+        inputWave.plotType = .rolling
+        inputWave.shouldFill = true
+        inputWave.shouldMirror = true
+        inputWave.color = .red
+        inputWave.gain = 8
+        
+        micMixer = AKMixer(mic)
+        micBooster = AKBooster(micMixer)
+        
+        micBooster.gain = 0
+        recorder = try? AKNodeRecorder(node: micMixer)
+        
+        do {
+            try AudioKit.start()
+        } catch {
+            AKLog("AudioKit did not start!")
+        }
+
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         let color1 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.7)
@@ -55,15 +72,6 @@ class MicViewController: UIViewController {
 
     @objc func updateTimer() {
         
-        audioRecorder.updateMeters()
-
-        //print to the console if we are beyond a threshold value. Here I've used -7
-        if audioRecorder.averagePower(forChannel: 1) > -160 {
-
-            print(" level I'm hearin' you in dat mic ")
-            print(audioRecorder.averagePower(forChannel: 0))
-        }
-                
         // Calculate total time since timer started in seconds
         time = Date().timeIntervalSinceReferenceDate - startTime
         
@@ -99,44 +107,39 @@ class MicViewController: UIViewController {
     }
     
     func start() {
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-        
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-        
+        // let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        inputWave.node = mic
+
+        inputWave.resetHistoryBuffers()
+        mic.start()
+        startTime = Date().timeIntervalSinceReferenceDate
+        musicTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
         do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.prepareToRecord()
-            audioRecorder.isMeteringEnabled = true
-
-            audioRecorder.record()
-            startTime = Date().timeIntervalSinceReferenceDate
-            musicTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-            
-            UIView.animate(withDuration: 0.25, animations: {
-                let color1 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.7)
-                let color2 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.0)
-                self.backgroundView.colors = [color1, color2]
-                self.circleButtonView.backgroundColor = .red
-                self.circleButtonView.layer.cornerRadius = 10
-                self.circleButtonView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-            })
-            
+            try recorder.record()
         } catch {
-            finishRecording(success: false)
+            print("Errored recording.")
         }
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            let color1 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.7)
+            let color2 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.0)
+            self.backgroundView.colors = [color1, color2]
+            self.circleButtonView.backgroundColor = .red
+            self.circleButtonView.layer.cornerRadius = 10
+            self.circleButtonView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        })
+            
+        
         
     }
     
     func stop() {
+        mic.stop()
         musicTimer.invalidate()
-        finishRecording(success: true)
+        inputWave.node = nil
+        recorder.stop()
+        
         UIView.animate(withDuration: 0.25, animations: {
             let color1 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.7)
             let color2 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.0)
@@ -145,24 +148,5 @@ class MicViewController: UIViewController {
             self.circleButtonView.layer.cornerRadius = self.circleButtonView.bounds.size.width / 2
             self.circleButtonView.transform = CGAffineTransform.identity
         })
-    }
-}
-
-extension MicViewController: AVAudioRecorderDelegate {
-    func finishRecording(success: Bool) {
-        audioRecorder.stop()
-        audioRecorder = nil
-        
-        if success {
-            print("success")
-        } else {
-            print("failed")
-        }
-    }
-    
-    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        if !flag {
-            finishRecording(success: false)
-        }
     }
 }

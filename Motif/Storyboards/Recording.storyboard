@@ -77,12 +77,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9h-in-61X" customClass="AKNodeOutputPlot" customModule="AudioKitUI">
+                                <rect key="frame" x="0.0" y="579" width="375" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="8aM-mI-zpy"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="q9h-in-61X" firstAttribute="trailing" secondItem="DZD-J1-unv" secondAttribute="trailing" id="1en-j0-TYD"/>
                             <constraint firstItem="5Jm-Lz-y1N" firstAttribute="centerY" secondItem="DZD-J1-unv" secondAttribute="centerY" id="3rH-WG-TOd"/>
+                            <constraint firstItem="DZD-J1-unv" firstAttribute="bottom" secondItem="q9h-in-61X" secondAttribute="bottom" constant="24" id="3tP-Bp-gGV"/>
                             <constraint firstItem="5Jm-Lz-y1N" firstAttribute="centerX" secondItem="DZD-J1-unv" secondAttribute="centerX" id="FIV-1t-8PD"/>
                             <constraint firstItem="d6V-i0-z7x" firstAttribute="centerX" secondItem="DZD-J1-unv" secondAttribute="centerX" id="R0K-5j-QNQ"/>
+                            <constraint firstItem="q9h-in-61X" firstAttribute="leading" secondItem="DZH-hc-x1S" secondAttribute="leading" id="d5y-23-Fo1"/>
                             <constraint firstItem="d6V-i0-z7x" firstAttribute="top" secondItem="DZD-J1-unv" secondAttribute="top" constant="93" id="ebH-Zn-Yrs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DZD-J1-unv"/>
@@ -90,6 +100,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="DZH-hc-x1S" id="oJe-Xr-adM"/>
                         <outlet property="circleButtonView" destination="5Jm-Lz-y1N" id="uaS-Jx-Dd4"/>
+                        <outlet property="inputWave" destination="q9h-in-61X" id="PVB-qb-O3m"/>
                         <outlet property="timerLabel" destination="d6V-i0-z7x" id="67v-Rj-BnG"/>
                     </connections>
                 </viewController>
