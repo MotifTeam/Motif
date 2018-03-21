@@ -59,21 +59,29 @@ class SignUpViewController: UIViewController {
         let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
         backgroundQueue.async(execute: {
             
-            
+            var success = true
             Auth.auth().createUser(withEmail: email, password: password) { (user,error) in
                 
                 if error != nil {
                     print(error!)
-                    abort()
+                    success=false
                 }
                 
                 
                 DispatchQueue.main.async(execute: { () -> Void in
-                    // 4: Stop the animation, here you have three options for the `animationStyle` property:
-                    // .expand: useful when the task has been compeletd successfully and you want to expand the button and transit to another view controller in the completion callback
-                    // .shake: when you want to reflect to the user that the task did not complete successfly
-                    // .normal
-                    self.registerButton.stopAnimation()
+                    if success {
+                        self.registerButton.stopAnimation(animationStyle: .expand,
+                                                       completion: {
+                                                        guard let vc = UIStoryboard(name: "Recording",
+                                                                                    bundle: nil)
+                                                            .instantiateViewController(withIdentifier: "landingBoard") as? TempViewController else {
+                                                                return
+                                                        }
+                                                        self.present(vc, animated: true, completion: nil)
+                        })
+                    } else {
+                        self.registerButton.stopAnimation(animationStyle: .shake, completion: nil)
+                    }
                 })
             }
         })
