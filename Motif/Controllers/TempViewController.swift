@@ -28,5 +28,19 @@ class TempViewController: UIViewController {
         }
 
     }
-
+    
+    @IBAction func unwindToTemp(segue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func logout() {
+        try! Auth.auth().signOut()
+        
+        guard let vc = UIStoryboard(name: "Login",
+                                    bundle: nil)
+            .instantiateViewController(withIdentifier: "loginSplash") as? LoginSplashViewController else {
+                return
+        }
+        self.present(vc, animated: true, completion: nil)
+        
+    }
 }

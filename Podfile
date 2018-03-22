@@ -9,7 +9,7 @@ target 'Motif' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'TransitionButton'
-  pod 'AudioKit', '~> 4.0'
+  pod 'AudioKit', '4.0.3'
   pod 'PianoView'
 end
 
