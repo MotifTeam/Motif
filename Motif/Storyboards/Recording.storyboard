@@ -60,6 +60,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Enl-Ji-8C1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFF-SR-0kX">
                                 <rect key="frame" x="112.5" y="113" width="150" height="86"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
@@ -73,7 +78,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiT-PT-lah">
-                                <rect key="frame" x="328" y="20" width="31" height="24"/>
+                                <rect key="frame" x="20" y="20" width="31" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="microphone"/>
                                 <connections>
@@ -96,6 +101,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="uwu-dn-6pV" id="sRQ-cQ-KO7"/>
                         <outlet property="pianoView" destination="qCg-wT-qIV" id="wDF-Co-WDn"/>
+                        <outlet property="placeholderView" destination="Enl-Ji-8C1" id="ZLu-fD-uad"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hh1-3f-TEk" userLabel="First Responder" sceneMemberID="firstResponder"/>

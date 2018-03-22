@@ -17,13 +17,13 @@
 		27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */; };
 		279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA1B203E5B8E00D72BD6 /* Login.storyboard */; };
 		279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */; };
-		279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */; };
 		27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */; };
 		27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FF435720506CCD006BBE64 /* Recording.storyboard */; };
 		27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435920506D2B006BBE64 /* MicViewController.swift */; };
 		27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */; };
 		27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435D20507345006BBE64 /* CircleBackgroundView.swift */; };
 		966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */; };
+		9FAB6C032062FC6D00E06FF5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FAB6C022062FC6D00E06FF5 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,12 +39,12 @@
 		27990BFF2037B375005F9A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279CCA1B203E5B8E00D72BD6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSplashViewController.swift; sourceTree = "<group>"; };
-		279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
 		27FF435720506CCD006BBE64 /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
 		27FF435920506D2B006BBE64 /* MicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicViewController.swift; sourceTree = "<group>"; };
 		27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientLayer.swift; sourceTree = "<group>"; };
 		27FF435D20507345006BBE64 /* CircleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBackgroundView.swift; sourceTree = "<group>"; };
+		9FAB6C022062FC6D00E06FF5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.debug.xcconfig"; sourceTree = "<group>"; };
 		EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.release.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 				27990BFA2037B375005F9A86 /* Assets.xcassets */,
 				27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */,
 				27990BFF2037B375005F9A86 /* Info.plist */,
-				279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */,
+				9FAB6C022062FC6D00E06FF5 /* GoogleService-Info.plist */,
 			);
 			path = Motif;
 			sourceTree = "<group>";
@@ -218,9 +218,9 @@
 				279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */,
 				27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */,
 				27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */,
-				279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */,
 				27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */,
 				27990BF92037B375005F9A86 /* Main.storyboard in Resources */,
+				9FAB6C032062FC6D00E06FF5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,11 +444,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZJWRB6PG2B;
+				DEVELOPMENT_TEAM = B7BR378UWH;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -461,11 +461,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZJWRB6PG2B;
+				DEVELOPMENT_TEAM = B7BR378UWH;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
