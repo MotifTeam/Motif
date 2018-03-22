@@ -16,11 +16,11 @@ class PianoViewController: UIViewController {
     @IBOutlet var backgroundView: RadialGradientView!
     @IBOutlet weak var pianoView: PianoView!
     
-    var midi = AudioKit.midi
+//    var midi = AudioKit.midi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(midi.inputNames)
+//        print(midi.inputNames)
 
         // Do any additional setup after loading the view.
     }
@@ -35,24 +35,46 @@ class PianoViewController: UIViewController {
         return .lightContent // .default
     }
     
-    func updateKeys(x: CGFloat) {
-        let keyWidth = Int(pianoView.frame.width) / pianoView.keyCount
-        let keyChoice = Int(Int(x)/keyWidth)
-        var notes = NoteType.all.map({ Note(type: $0, octave: 0) })
-        notes.append(contentsOf: NoteType.all.map({ Note(type: $0, octave: 1) }))
-        let selectedNote = notes[keyChoice]
-        pianoView?.deselectAll()
-        pianoView?.selectNote(note: selectedNote)
+    func updateKeys(x: CGFloat, enabled: Bool) {
         
-        
+        if enabled {
+            let keyWidth = Int(pianoView.frame.width) / (pianoView.keyCount - 7)
+            let keyChoice = Int(Int(x)/keyWidth)
+            
+            let types: [NoteType] = [.c, .d, .e, .f, .g, .a, .b]
+            
+            var notes = types.map({
+                Note(type: $0, octave: 0)
+            })
+            notes.append(contentsOf: types.map({
+                Note(type: $0, octave: 1)
+                
+            }))
+            
+            let selectedNote = notes[keyChoice]
+            
+            pianoView?.selectNote(note: selectedNote)
+            
+        } else {
+            let keyWidth = Int(pianoView.frame.width) / pianoView.keyCount
+            let keyChoice = Int(Int(x)/keyWidth)
+            var notes = NoteType.all.map({ Note(type: $0, octave: 0) })
+            notes.append(contentsOf: NoteType.all.map({ Note(type: $0, octave: 1) }))
+            let selectedNote = notes[keyChoice]
+            
+            pianoView?.selectNote(note: selectedNote)
+            
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        pianoView?.deselectAll()
         for item in touches {
             if item.location(in: pianoView).x > 0 && item.location(in: pianoView).y > 0 {
                 let x = item.location(in: pianoView).x
-                updateKeys(x: x)
+                let enabled = item.location(in: pianoView).y > pianoView.frame.height/2
+                updateKeys(x: x, enabled: enabled)
             }
         }
 //        let notes = NoteType.all.map({ Note(type: $0, octave: 0) })

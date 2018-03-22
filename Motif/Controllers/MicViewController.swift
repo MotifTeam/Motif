@@ -31,6 +31,10 @@ class MicViewController: UIViewController {
     var startTime: Double = 0
     var endTime: Double = 0
     
+    private let audioSession = AVAudioSession.sharedInstance()
+    private var input: AVAudioSessionPortDescription!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,27 +49,50 @@ class MicViewController: UIViewController {
         } catch {
             AKLog("Could not set session category.")
         }
-        mic.stop()
+        internalMicSelection()
         inputWave.plotType = .rolling
         inputWave.shouldFill = true
         inputWave.shouldMirror = true
         inputWave.color = .red
         inputWave.gain = 6
-        
+
         micMixer = AKMixer(mic)
         micBooster = AKBooster(micMixer)
         
+
         micBooster.gain = 0
         recorder = try? AKNodeRecorder(node: micMixer)
+        AudioKit.output = micMixer
         
         do {
             try AudioKit.start()
         } catch {
             AKLog("AudioKit did not start!")
         }
-
+        
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        AudioKit.stop()
+    }
+    
+    func internalMicSelection() {
+        
+        // Inputs available
+        let avInputs = self.audioSession.availableInputs
+        for port in avInputs! {
+            // Select the internal mic
+            if port.portType == AVAudioSessionPortBuiltInMic{
+                self.input = port as AVAudioSessionPortDescription
+                print("BuiltIn Mic selected")
+            }
+        }
+        // Set the internal mic as input
+        
+        try! AVAudioSession.sharedInstance().setPreferredInput(input)
+        
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         let color1 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.7)
@@ -75,6 +102,7 @@ class MicViewController: UIViewController {
     }
 
     @objc func updateTimer() {
+        
         
         // Calculate total time since timer started in seconds
         time = Date().timeIntervalSinceReferenceDate - startTime
@@ -115,11 +143,14 @@ class MicViewController: UIViewController {
     
     func start() {
         // let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-        inputWave.node = mic
+        timerLabel.text = "0:00"
         inputWave.color = .red
         
         inputWave.resetHistoryBuffers()
         mic.start()
+        inputWave.node = mic
+
+
         startTime = Date().timeIntervalSinceReferenceDate
         musicTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
@@ -139,10 +170,8 @@ class MicViewController: UIViewController {
             self.circleButtonView.layer.cornerRadius = 10
             self.circleButtonView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         })
-            
-        
-        
     }
+    
     @IBAction func trashRecording() {
         let refreshAlert = UIAlertController(title: "Delete?", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -186,7 +215,7 @@ class MicViewController: UIViewController {
         musicTimer.invalidate()
         inputWave.node = nil
         recorder.stop()
-       
+        
         inputWave.color = .blue
         UIView.animate(withDuration: 0.25, animations: {
             self.trashButton.isHidden = false
