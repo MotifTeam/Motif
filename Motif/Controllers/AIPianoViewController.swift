@@ -79,12 +79,6 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        let color1 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.7)
-        let color2 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.0)
-        //backgroundView.colors = [color1, color2]
-    }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent // .default
     }
