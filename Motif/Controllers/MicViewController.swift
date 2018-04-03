@@ -73,7 +73,7 @@ class MicViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        AudioKit.stop()
+        try? AudioKit.stop()
     }
     
     func internalMicSelection() {
