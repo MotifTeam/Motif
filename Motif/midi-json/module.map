@@ -1,0 +1,5 @@
+
+module midijson [system] {
+    header "midi-json/midi-json.h"
+    export *
+}
