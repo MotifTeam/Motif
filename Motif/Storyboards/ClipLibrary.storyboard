@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,53 +14,101 @@
         <!--Clip Library View Controller-->
         <scene sceneID="vXn-uu-5Yo">
             <objects>
-                <viewController id="poe-dL-vXC" customClass="ClipLibraryViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClipLibrary" id="poe-dL-vXC" customClass="ClipLibraryViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h61-Jv-333">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mw8-qC-GBY">
-                                <rect key="frame" x="0.0" y="20" width="375" height="572"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l2z-0i-CNL">
+                                <rect key="frame" x="0.0" y="130" width="375" height="470"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ClipViewCell" rowHeight="80" id="Zmu-cz-xvF" customClass="ClipTableViewCell" customModule="Motif" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zmu-cz-xvF" id="bIN-9d-yV7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Clip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6SH-2h-j23">
-                                                    <rect key="frame" x="15" y="11" width="102" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAa-4m-JOp">
-                                                    <rect key="frame" x="283" y="11" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Play"/>
-                                                    <connections>
-                                                        <action selector="playClip:" destination="Zmu-cz-xvF" eventType="touchUpInside" id="h4E-lu-10Z"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="clipName" destination="6SH-2h-j23" id="tf5-F8-coN"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O8f-xb-YFP">
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mw8-qC-GBY">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="470"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ClipViewCell" rowHeight="80" id="Zmu-cz-xvF" customClass="ClipTableViewCell" customModule="Motif" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zmu-cz-xvF" id="bIN-9d-yV7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Clip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6SH-2h-j23">
+                                                            <rect key="frame" x="15" y="11" width="102" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="102" id="Vlz-39-lyI"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAa-4m-JOp">
+                                                            <rect key="frame" x="283" y="11" width="30" height="30"/>
+                                                            <state key="normal" title="Play"/>
+                                                            <connections>
+                                                                <action selector="playClip:" destination="Zmu-cz-xvF" eventType="touchUpInside" id="h4E-lu-10Z"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="6SH-2h-j23" firstAttribute="top" secondItem="AAa-4m-JOp" secondAttribute="top" id="DGB-Z6-x3E"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="AAa-4m-JOp" secondAttribute="trailing" constant="46" id="csc-rc-Aia"/>
+                                                        <constraint firstItem="6SH-2h-j23" firstAttribute="top" secondItem="bIN-9d-yV7" secondAttribute="topMargin" constant="-9" id="jhW-vJ-nYg"/>
+                                                        <constraint firstItem="6SH-2h-j23" firstAttribute="leading" secondItem="bIN-9d-yV7" secondAttribute="leadingMargin" constant="-1" id="z2v-7x-Sg8"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="clipName" destination="6SH-2h-j23" id="tf5-F8-coN"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiX-1R-tDj">
+                                <rect key="frame" x="298" y="20" width="61" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="RECORD"/>
+                                <connections>
+                                    <segue destination="CPJ-cH-ewO" kind="show" id="FyL-1Z-JJj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Clips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4e-bb-x6G">
+                                <rect key="frame" x="134" y="45" width="106" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHx-Rz-jaz">
+                                <rect key="frame" x="16" y="20" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O8f-xb-YFP">
                                 <rect key="frame" x="0.0" y="600" width="375" height="38"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G0a-5A-qgL">
+                                <rect key="frame" x="131" y="90" width="113" height="29"/>
+                                <segments>
+                                    <segment title="Clips"/>
+                                    <segment title="Social"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="G0a-5A-qgL" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="127" id="1Sm-lC-yvY"/>
+                            <constraint firstItem="G0a-5A-qgL" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" constant="90" id="6ze-VL-fJy"/>
+                            <constraint firstItem="O8f-xb-YFP" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" constant="600" id="8ec-aO-Q7k"/>
+                            <constraint firstItem="2N6-wU-6JH" firstAttribute="bottom" secondItem="O8f-xb-YFP" secondAttribute="bottom" constant="29" id="APY-Uc-KCj"/>
+                            <constraint firstItem="G0a-5A-qgL" firstAttribute="centerX" secondItem="O8f-xb-YFP" secondAttribute="centerX" id="cc9-kU-1A6"/>
+                            <constraint firstItem="G0a-5A-qgL" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" constant="8" symbolic="YES" id="fPW-vn-mtC"/>
+                            <constraint firstItem="G0a-5A-qgL" firstAttribute="centerX" secondItem="N4e-bb-x6G" secondAttribute="centerX" id="fYR-Ij-5oW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2N6-wU-6JH"/>
                     </view>
                     <connections>
@@ -70,6 +119,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvh-Jh-Kc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-50.399999999999999" y="-40.029985007496258"/>
+        </scene>
+        <!--RecView-->
+        <scene sceneID="8K6-eN-AO5">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Recording" referencedIdentifier="RecView" id="CPJ-cH-ewO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ha8-av-FvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="507" y="-350"/>
         </scene>
     </scenes>
 </document>
