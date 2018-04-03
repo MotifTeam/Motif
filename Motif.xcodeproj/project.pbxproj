@@ -17,7 +17,6 @@
 		27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */; };
 		279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA1B203E5B8E00D72BD6 /* Login.storyboard */; };
 		279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */; };
-		279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */; };
 		27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */; };
 		27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E663BF20634A70008F592D /* AIPianoViewController.swift */; };
 		27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FF435720506CCD006BBE64 /* Recording.storyboard */; };
@@ -25,7 +24,30 @@
 		27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */; };
 		27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435D20507345006BBE64 /* CircleBackgroundView.swift */; };
 		966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */; };
+		9F10C772207409E300F479E8 /* MIDIClipTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F10C771207409E300F479E8 /* MIDIClipTableViewController.swift */; };
+		9F60E65A2073556E0049D35E /* getopt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9C3FC020734D73008645D4 /* getopt.h */; };
+		9F60E65B207355700049D35E /* midio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9C3FC120734D73008645D4 /* midio.h */; };
+		9F60E65C207355710049D35E /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9C3FC620734D74008645D4 /* types.h */; };
+		9F60E65D207355730049D35E /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9C3FC420734D74008645D4 /* version.h */; };
+		9F60E660207384870049D35E /* midi-json.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9C3FBF20734D73008645D4 /* midi-json.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F60E6612073849B0049D35E /* Motif-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F9C3FB920734CE8008645D4 /* Motif-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F60E662207385450049D35E /* midi-json.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C3FC720734D74008645D4 /* midi-json.c */; };
+		9F9C3FC820734D74008645D4 /* getopt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C3FC220734D74008645D4 /* getopt.c */; };
+		9F9C3FCA20734D74008645D4 /* midio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C3FC520734D74008645D4 /* midio.c */; };
+		9FF3C29A206EB99E00DAA7F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FF3C299206EB99E00DAA7F6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9F60E664207385BA0049D35E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		27043A2C20615B2D0076FB53 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
@@ -40,13 +62,27 @@
 		27990BFF2037B375005F9A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279CCA1B203E5B8E00D72BD6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSplashViewController.swift; sourceTree = "<group>"; };
-		279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
 		27E663BF20634A70008F592D /* AIPianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPianoViewController.swift; sourceTree = "<group>"; };
 		27FF435720506CCD006BBE64 /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
 		27FF435920506D2B006BBE64 /* MicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicViewController.swift; sourceTree = "<group>"; };
 		27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientLayer.swift; sourceTree = "<group>"; };
 		27FF435D20507345006BBE64 /* CircleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBackgroundView.swift; sourceTree = "<group>"; };
+		9F10C771207409E300F479E8 /* MIDIClipTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIClipTableViewController.swift; sourceTree = "<group>"; };
+		9F60E6572073500C0049D35E /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		9F9C3FB920734CE8008645D4 /* Motif-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Motif-Bridging-Header.h"; sourceTree = "<group>"; };
+		9F9C3FBE20734D73008645D4 /* midifile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midifile.h; sourceTree = "<group>"; };
+		9F9C3FBF20734D73008645D4 /* midi-json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "midi-json.h"; sourceTree = "<group>"; };
+		9F9C3FC020734D73008645D4 /* getopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getopt.h; sourceTree = "<group>"; };
+		9F9C3FC120734D73008645D4 /* midio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midio.h; sourceTree = "<group>"; };
+		9F9C3FC220734D74008645D4 /* getopt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getopt.c; sourceTree = "<group>"; };
+		9F9C3FC320734D74008645D4 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		9F9C3FC420734D74008645D4 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		9F9C3FC520734D74008645D4 /* midio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midio.c; sourceTree = "<group>"; };
+		9F9C3FC620734D74008645D4 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		9F9C3FC720734D74008645D4 /* midi-json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "midi-json.c"; sourceTree = "<group>"; };
+		9FF3C298206EB7F000DAA7F6 /* gs_soundfont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_soundfont.sf2; sourceTree = "<group>"; };
+		9FF3C299206EB99E00DAA7F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.debug.xcconfig"; sourceTree = "<group>"; };
 		EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.release.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +130,8 @@
 		27990BF22037B375005F9A86 /* Motif */ = {
 			isa = PBXGroup;
 			children = (
+				9F9C3FBD20734D17008645D4 /* midi-json */,
+				9FF3C298206EB7F000DAA7F6 /* gs_soundfont.sf2 */,
 				279CCA1A203E5B0700D72BD6 /* Controllers */,
 				279CCA19203E5AF800D72BD6 /* Helpers */,
 				279CCA18203E5AF100D72BD6 /* Storyboards */,
@@ -101,8 +139,9 @@
 				27990BF32037B375005F9A86 /* AppDelegate.swift */,
 				27990BFA2037B375005F9A86 /* Assets.xcassets */,
 				27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */,
+				9FF3C299206EB99E00DAA7F6 /* GoogleService-Info.plist */,
 				27990BFF2037B375005F9A86 /* Info.plist */,
-				279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */,
+				9F9C3FB920734CE8008645D4 /* Motif-Bridging-Header.h */,
 			);
 			path = Motif;
 			sourceTree = "<group>";
@@ -144,8 +183,27 @@
 				27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */,
 				27043A2C20615B2D0076FB53 /* TempViewController.swift */,
 				27E663BF20634A70008F592D /* AIPianoViewController.swift */,
+				9F10C771207409E300F479E8 /* MIDIClipTableViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9F9C3FBD20734D17008645D4 /* midi-json */ = {
+			isa = PBXGroup;
+			children = (
+				9F9C3FC220734D74008645D4 /* getopt.c */,
+				9F9C3FC020734D73008645D4 /* getopt.h */,
+				9F9C3FC320734D74008645D4 /* Makefile */,
+				9F60E6572073500C0049D35E /* module.map */,
+				9F9C3FC720734D74008645D4 /* midi-json.c */,
+				9F9C3FBF20734D73008645D4 /* midi-json.h */,
+				9F9C3FBE20734D73008645D4 /* midifile.h */,
+				9F9C3FC520734D74008645D4 /* midio.c */,
+				9F9C3FC120734D73008645D4 /* midio.h */,
+				9F9C3FC620734D74008645D4 /* types.h */,
+				9F9C3FC420734D74008645D4 /* version.h */,
+			);
+			path = "midi-json";
 			sourceTree = "<group>";
 		};
 		AF892E3B5F662FA8730D042C /* Frameworks */ = {
@@ -158,11 +216,29 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		9F60E65520734F610049D35E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F60E660207384870049D35E /* midi-json.h in Headers */,
+				9F60E6612073849B0049D35E /* Motif-Bridging-Header.h in Headers */,
+				9F60E65A2073556E0049D35E /* getopt.h in Headers */,
+				9F60E65B207355700049D35E /* midio.h in Headers */,
+				9F60E65D207355730049D35E /* version.h in Headers */,
+				9F60E65C207355710049D35E /* types.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		27990BEF2037B375005F9A86 /* Motif */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27990C022037B375005F9A86 /* Build configuration list for PBXNativeTarget "Motif" */;
 			buildPhases = (
+				9F60E664207385BA0049D35E /* CopyFiles */,
+				9F60E65520734F610049D35E /* Headers */,
 				6441963643EFCA7F01DF2ADF /* [CP] Check Pods Manifest.lock */,
 				27990BEC2037B375005F9A86 /* Sources */,
 				27990BED2037B375005F9A86 /* Frameworks */,
@@ -191,6 +267,7 @@
 				TargetAttributes = {
 					27990BEF2037B375005F9A86 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -221,9 +298,9 @@
 				279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */,
 				27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */,
 				27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */,
-				279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */,
 				27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */,
 				27990BF92037B375005F9A86 /* Main.storyboard in Resources */,
+				9FF3C29A206EB99E00DAA7F6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,22 +349,36 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Motif/Pods-Motif-frameworks.sh",
 				"${PODS_ROOT}/AudioKit/iOS/AudioKit.framework",
 				"${PODS_ROOT}/AudioKit/iOS/AudioKitUI.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/MusicTheorySwift/MusicTheorySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PianoView/PianoView.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioKitUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MusicTheorySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PianoView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +393,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F9C3FC820734D74008645D4 /* getopt.c in Sources */,
+				9F9C3FCA20734D74008645D4 /* midio.c in Sources */,
+				9F60E662207385450049D35E /* midi-json.c in Sources */,
 				27990BF62037B375005F9A86 /* ViewController.swift in Sources */,
 				27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */,
 				27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */,
@@ -309,6 +403,7 @@
 				27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */,
 				27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */,
 				27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */,
+				9F10C772207409E300F479E8 /* MIDIClipTableViewController.swift in Sources */,
 				27043A2D20615B2D0076FB53 /* TempViewController.swift in Sources */,
 				27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */,
 				27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */,
@@ -391,6 +486,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/midi-json/";
+				SWIFT_OBJC_BRIDGING_HEADER = "midi-json/midi-json.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -441,6 +538,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/midi-json/";
+				SWIFT_OBJC_BRIDGING_HEADER = "midi-json/midi-json.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -451,13 +550,18 @@
 			baseConfigurationReference = B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZJWRB6PG2B;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B7BR378UWH;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
+				MODULEMAP_FILE = "midi-json/module.map";
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Motif-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -468,13 +572,17 @@
 			baseConfigurationReference = EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZJWRB6PG2B;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = B7BR378UWH;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
+				MODULEMAP_FILE = "midi-json/module.map";
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Motif-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
