@@ -12,6 +12,7 @@
 		27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA920408CC400BD37F4 /* LoginViewController.swift */; };
 		2716C88720753F88003AEBB0 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88620753F88003AEBB0 /* Setting.storyboard */; };
 		2716C88920753FBA003AEBB0 /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88820753FBA003AEBB0 /* Follow.storyboard */; };
+		2716C88D20756046003AEBB0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2716C88C20756046003AEBB0 /* SettingsController.swift */; };
 		2760A8372073F87200A701BA /* ClipLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A8362073F87200A701BA /* ClipLibraryViewController.swift */; };
 		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
 		2760A8402074510900A701BA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83F2074510900A701BA /* AudioManager.swift */; };
@@ -49,6 +50,7 @@
 		27136CA920408CC400BD37F4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2716C88620753F88003AEBB0 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		2716C88820753FBA003AEBB0 /* Follow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Follow.storyboard; sourceTree = "<group>"; };
+		2716C88C20756046003AEBB0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		2760A8362073F87200A701BA /* ClipLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipLibraryViewController.swift; sourceTree = "<group>"; };
 		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
 		2760A83F2074510900A701BA /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				27136CA720408CBB00BD37F4 /* SignUpViewController.swift */,
 				27043A2C20615B2D0076FB53 /* TempViewController.swift */,
 				27990BF52037B375005F9A86 /* ViewController.swift */,
+				2716C88C20756046003AEBB0 /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2716C88D20756046003AEBB0 /* SettingsController.swift in Sources */,
 				27990BF62037B375005F9A86 /* ViewController.swift in Sources */,
 				27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */,
 				27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */,

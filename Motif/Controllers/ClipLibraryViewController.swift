@@ -147,5 +147,8 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func logOut() {
         
     }
+    
+    @IBAction func unwindtoClip(segue: UIStoryboardSegue) {
+    }
 
 }
