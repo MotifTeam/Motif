@@ -70,7 +70,6 @@
 		9FCFDAC020747C7800126965 /* midifile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midifile.h; sourceTree = "<group>"; };
 		9FCFDAC120747C7800126965 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		9FCFDAC220747C7800126965 /* midi-json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "midi-json.c"; sourceTree = "<group>"; };
-		9FCFDAC420747C7800126965 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		9FCFDAC520747C7800126965 /* getopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getopt.h; sourceTree = "<group>"; };
 		9FCFDAC620747C7800126965 /* Motif-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Motif-Bridging-Header.h"; sourceTree = "<group>"; };
 		9FCFDAC720747C7800126965 /* midio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midio.c; sourceTree = "<group>"; };
@@ -190,7 +189,6 @@
 				9FCFDAC020747C7800126965 /* midifile.h */,
 				9FCFDAC120747C7800126965 /* types.h */,
 				9FCFDAC220747C7800126965 /* midi-json.c */,
-				9FCFDAC420747C7800126965 /* module.map */,
 				9FCFDAC520747C7800126965 /* getopt.h */,
 				9FCFDAC620747C7800126965 /* Motif-Bridging-Header.h */,
 				9FCFDAC720747C7800126965 /* midio.c */,
