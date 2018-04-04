@@ -1,7 +1,7 @@
 PODS:
-  - AudioKit (4.0.3):
-    - AudioKit/UI (= 4.0.3)
-  - AudioKit/UI (4.0.3)
+  - AudioKit (4.2):
+    - AudioKit/UI (= 4.2)
+  - AudioKit/UI (4.2)
   - Firebase/Auth (4.11.0):
     - Firebase/Core
     - FirebaseAuth (= 4.5.0)
@@ -40,17 +40,17 @@ PODS:
   - nanopb/encode (0.3.8)
   - PianoView (0.0.1):
     - MusicTheorySwift
-  - TransitionButton (0.3.0)
+  - TransitionButton (0.4.0)
 
 DEPENDENCIES:
-  - AudioKit (= 4.0.3)
+  - AudioKit
   - Firebase/Auth
   - Firebase/Core
   - PianoView
   - TransitionButton
 
 SPEC CHECKSUMS:
-  AudioKit: 914e5e8fcbf35099ff2398775342446a2d81476d
+  AudioKit: 8ab680a9f4af9c856caa74cc88247440e9709ace
   Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
   FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
   FirebaseAuth: 147bf340a0706b44ca1753d6b41ebafd9687cfe6
@@ -61,8 +61,8 @@ SPEC CHECKSUMS:
   MusicTheorySwift: 9e7f1bf66904190f82b34b9d36e09e296dde438b
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PianoView: f234ac44b5cdd043a0e140cbbf84a95e4660865b
-  TransitionButton: 0bf7e5ffe80030f9d10d57983a04acf2f511998a
+  TransitionButton: d271030914c84a00b54b4d983446944d2875e7ba
 
-PODFILE CHECKSUM: 8f251c0bc7428a4f898bd3a28691dc3363a3c76b
+PODFILE CHECKSUM: 74487f9e13f39f5b7e2d495184aa0353925a75bd
 
 COCOAPODS: 1.4.0
