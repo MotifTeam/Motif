@@ -1,7 +1,7 @@
 PODS:
-  - AudioKit (4.0.3):
-    - AudioKit/UI (= 4.0.3)
-  - AudioKit/UI (4.0.3)
+  - AudioKit (4.2):
+    - AudioKit/UI (= 4.2)
+  - AudioKit/UI (4.2)
   - BoringSSL (10.0):
     - BoringSSL/Implementation (= 10.0)
     - BoringSSL/Interface (= 10.0)
@@ -87,7 +87,7 @@ DEPENDENCIES:
   - TransitionButton
 
 SPEC CHECKSUMS:
-  AudioKit: 914e5e8fcbf35099ff2398775342446a2d81476d
+  AudioKit: 8ab680a9f4af9c856caa74cc88247440e9709ace
   BoringSSL: 32764dbaf5f5888cf51fbaa172a010126b41bcd4
   Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
   FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
@@ -108,6 +108,6 @@ SPEC CHECKSUMS:
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   TransitionButton: d271030914c84a00b54b4d983446944d2875e7ba
 
-PODFILE CHECKSUM: e2087d2e1cc12ff159b42811a0c00e8bfa822316
+PODFILE CHECKSUM: 5e0b5650f3a20eba53dc9c4d00fafff05d6d4ff9
 
 COCOAPODS: 1.4.0

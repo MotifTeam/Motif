@@ -16,7 +16,7 @@ import AudioKitUI
 
 public var clip_names: [String] = ["rain-3"]
 
-let textCellIdentifier = "ClipViewCell"
+let textCellIdentifier = "songCell"
 
 class ClipTableViewCell: UITableViewCell {
     

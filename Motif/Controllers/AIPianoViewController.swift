@@ -102,10 +102,11 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
                 let bytes = body.dropFirst().dropLast().split(separator: ",").map {UInt8($0)!}
                 let clip = MIDIClip(midiData: Data(bytes:bytes), creator: "user", timestamp: Date())
                 self.sessionClips.append(clip)
-                self.clipsCollection.addDocument(data:[
+                let newClipRef = self.clipsCollection.document()
+                newClipRef.setData([
                     "creator": clip.creator,
                     "midiData": clip.midiData,
-                    "time": clip.timestamp]) { err in
+                    "time": clip.timestamp]) {err in
                         if let err = err {
                             print("Error updating document: \(err)")
                         } else {
@@ -140,11 +141,10 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showClips" {
-            let controller = segue.destination as! MIDIClipTableViewController
-            controller.clips = self.sessionClips
+
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let settings = FirestoreSettings()
@@ -183,7 +183,7 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         
     }
     
-
+    
     func createAVMIDIPlayerFromMIDIFIleDLS() {
         
         let midiString = ""
@@ -202,7 +202,7 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         
         self.midiPlayer?.prepareToPlay()
     }
-
+    
     
     func createMIDIPreviewImage(from data: Data, size: CGSize, color: UIColor) -> UIImage {
         print(data.base64EncodedData())
@@ -230,7 +230,7 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
             }
             
         }
-       
+        
         
         //try print(try! FileHandle(forReadingFrom: outputFileUrl.contentURL).readDataToEndOfFile())
         let decoded = try? JSONDecoder().decode([MIDIEvent].self, from: Data(contentsOf:outputFileUrl.contentURL))

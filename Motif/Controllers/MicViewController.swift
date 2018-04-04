@@ -117,13 +117,8 @@ class MicViewController: UIViewController {
         
     }
     
-<<<<<<< HEAD
-    override func viewDidDisappear(_ animated: Bool) {
-        try? AudioKit.stop()
-=======
     override func viewDidAppear(_ animated: Bool) {
         setupPlot()
->>>>>>> 58d6dc5cedd589d9594051ee6f89f7be3968796d
     }
     
     func saveSong(name: String, location: URL) {
