@@ -35,6 +35,7 @@ class MicViewController: UIViewController {
         let refreshAlert = UIAlertController(title: "Delete?", message: "All data will be lost.", preferredStyle: UIAlertControllerStyle.alert)
         
         refreshAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action: UIAlertAction!) in
+            self.resetUI()
             print("Thing is deleted")
         }))
         
@@ -66,7 +67,7 @@ class MicViewController: UIViewController {
                         if let error = exportError {
                             print("Export Failed \(error)")
                         } else {
-                            saveSong(name: "Motif-\(songName).m4a", location: file?.directoryPath)
+                            self.saveSong(name: "Motif-\(songName).m4a", location: (file?.directoryPath)!)
                             print("Export succeeded")
                         }
                 }
@@ -77,6 +78,7 @@ class MicViewController: UIViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            
             print("Cancelled")
         }))
         
@@ -170,13 +172,14 @@ class MicViewController: UIViewController {
         // Set up plot for recording
         plot.color = .red
         plot.resetHistoryBuffers()
+        plot.resume()
 
 
         startTime = Date().timeIntervalSinceReferenceDate
         musicTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
         AudioManagerInstance.startRecording()
-        plot.node = AudioManagerInstance.getMic()
+        //plot.node = AudioManagerInstance.getMic()
         
         setUpRecordingUI()
         
@@ -189,6 +192,7 @@ class MicViewController: UIViewController {
         
         // Stop tracking
         plot.color = .blue
+        plot.pause()
         
         // Keep file in memory for additional processing
         trackInProgress = AudioManagerInstance.stopRecording()
@@ -197,13 +201,14 @@ class MicViewController: UIViewController {
     }
     
     func setupPlot() {
-        plot = AKNodeOutputPlot(nil, frame: inputWave.bounds)
+        plot = AKNodeOutputPlot( AudioManagerInstance.getMic(), frame: inputWave.bounds)
         plot.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         plot.plotType = .rolling
         plot.shouldFill = true
         plot.shouldMirror = true
         plot.color = .blue
         plot.gain = 6
+        plot.pause()
         inputWave.addSubview(plot)
     }
    
@@ -211,6 +216,7 @@ class MicViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.trashButton.isHidden = false
             self.checkButton.isHidden = false
+           
             let color1 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.7)
             let color2 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.0)
             self.backgroundView.colors = [color1, color2]
@@ -224,12 +230,24 @@ class MicViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.trashButton.isHidden = true
             self.checkButton.isHidden = true
+            self.inputWave.isHidden = false
             let color1 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.7)
             let color2 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.0)
             self.backgroundView.colors = [color1, color2]
             self.circleButtonView.backgroundColor = .red
             self.circleButtonView.layer.cornerRadius = 10
             self.circleButtonView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        })
+    }
+    
+    func resetUI() {
+       
+        UIView.animate(withDuration: 0.25, animations: {
+            self.trashButton.isHidden = true
+            self.checkButton.isHidden = true
+            self.inputWave.isHidden = true
+            self.timerLabel.text = "0:00"
+            self.plot.clear()
         })
     }
 }

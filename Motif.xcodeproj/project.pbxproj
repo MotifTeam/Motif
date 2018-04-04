@@ -12,7 +12,6 @@
 		27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA920408CC400BD37F4 /* LoginViewController.swift */; };
 		2760A8372073F87200A701BA /* ClipLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A8362073F87200A701BA /* ClipLibraryViewController.swift */; };
 		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
-		2760A83E2074134A00A701BA /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83D2074134A00A701BA /* Song.swift */; };
 		2760A8402074510900A701BA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83F2074510900A701BA /* AudioManager.swift */; };
 		2760A84320745A5000A701BA /* Song.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2760A84120745A5000A701BA /* Song.xcdatamodeld */; };
 		27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF32037B375005F9A86 /* AppDelegate.swift */; };
@@ -38,7 +37,6 @@
 		27136CA920408CC400BD37F4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2760A8362073F87200A701BA /* ClipLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipLibraryViewController.swift; sourceTree = "<group>"; };
 		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
-		2760A83D2074134A00A701BA /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		2760A83F2074510900A701BA /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		2760A84220745A5000A701BA /* Song.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Song.xcdatamodel; sourceTree = "<group>"; };
 		27990BF02037B375005F9A86 /* Motif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motif.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				2760A84120745A5000A701BA /* Song.xcdatamodeld */,
-				2760A83D2074134A00A701BA /* Song.swift */,
 				2760A83F2074510900A701BA /* AudioManager.swift */,
 			);
 			path = Models;
@@ -327,7 +324,6 @@
 				27043A2D20615B2D0076FB53 /* TempViewController.swift in Sources */,
 				27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */,
 				27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */,
-				2760A83E2074134A00A701BA /* Song.swift in Sources */,
 				279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
