@@ -118,19 +118,29 @@
                                     <constraint firstAttribute="width" constant="180" id="PJX-mD-zHU"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-k1-AvN">
+                                <rect key="frame" x="10" y="0.0" width="404" height="736"/>
+                                <connections>
+                                    <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="0Pg-FZ-McZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2N6-wU-6JH" firstAttribute="trailing" secondItem="l2z-0i-CNL" secondAttribute="trailing" id="7ri-Rp-G3U"/>
+                            <constraint firstItem="9fl-k1-AvN" firstAttribute="bottom" secondItem="2N6-wU-6JH" secondAttribute="bottom" id="9zC-32-Vcy"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="baseline" secondItem="MiX-1R-tDj" secondAttribute="baseline" id="G33-yh-jd0"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="centerX" secondItem="l2z-0i-CNL" secondAttribute="centerX" id="GfQ-a0-GR5"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="KI8-9R-Phg"/>
+                            <constraint firstItem="9fl-k1-AvN" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="R90-Ow-BHU"/>
                             <constraint firstItem="MiX-1R-tDj" firstAttribute="leading" secondItem="N4e-bb-x6G" secondAttribute="trailing" constant="58" id="WSc-ka-qCg"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="25" id="XbA-u2-KQz"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="nst-79-Omp"/>
+                            <constraint firstItem="9fl-k1-AvN" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="p07-Pw-JdB"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" id="r2y-IT-RZs"/>
                             <constraint firstItem="l2z-0i-CNL" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" constant="20" id="rG7-gY-OOh"/>
+                            <constraint firstItem="9fl-k1-AvN" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="10" id="sn8-s2-bvL"/>
                             <constraint firstItem="2N6-wU-6JH" firstAttribute="bottom" secondItem="l2z-0i-CNL" secondAttribute="bottom" constant="15" id="t0a-0K-F21"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="centerX" secondItem="h61-Jv-333" secondAttribute="centerX" id="tKc-9j-e7E"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="h61-Jv-333" secondAttribute="leadingMargin" id="w9I-ZR-z67"/>
@@ -139,6 +149,7 @@
                         <viewLayoutGuide key="safeArea" id="2N6-wU-6JH"/>
                     </view>
                     <connections>
+                        <outlet property="goback" destination="9fl-k1-AvN" id="gaa-hm-Pua"/>
                         <outlet property="leadingConstraint" destination="pEo-pW-WEl" id="Lv3-Ee-12h"/>
                         <outlet property="playbackControllerView" destination="O8f-xb-YFP" id="M3g-gR-6RL"/>
                         <outlet property="tableView" destination="PbF-UM-qlS" id="DJq-VA-lEy"/>

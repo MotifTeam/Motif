@@ -77,6 +77,7 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var goback: UIButton!
     var toggle = true
     var player: AKAudioPlayer?
     
@@ -100,6 +101,7 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        goback.isEnabled = false
         // Do any additional setup after loading the view.
         
         
@@ -132,10 +134,14 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
         UIView.animate(withDuration: 0.75) {
             if self.toggle {
                 self.leadingConstraint.constant = 0
+                self.goback.isEnabled = true
             } else {
-                self.leadingConstraint.constant = -140
+                self.leadingConstraint.constant = -180
+                self.goback.isEnabled = false
             }
         }
+        
+        toggle = !toggle
     }
     
     /*
