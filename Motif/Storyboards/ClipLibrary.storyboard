@@ -14,7 +14,6 @@
         <!--Clip Library View Controller-->
         <scene sceneID="vXn-uu-5Yo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kvh-Jh-Kc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ClipLibrary" id="poe-dL-vXC" customClass="ClipLibraryViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h61-Jv-333">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -39,9 +38,12 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHx-Rz-jaz">
                                 <rect key="frame" x="20" y="20" width="81" height="30"/>
-                                <state key="normal" title="Logout">
+                                <state key="normal" title="Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="hNX-k8-vbw"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l2z-0i-CNL">
                                 <rect key="frame" x="1" y="102" width="413" height="619"/>
@@ -52,6 +54,7 @@
                                             <segment title="Audio"/>
                                             <segment title="MIDI"/>
                                         </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbF-UM-qlS">
                                         <rect key="frame" x="0.0" y="30" width="413" height="470"/>
@@ -108,36 +111,48 @@
                                     <constraint firstItem="PbF-UM-qlS" firstAttribute="top" secondItem="l2z-0i-CNL" secondAttribute="top" constant="30" id="cBI-vx-cYk"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZT-M5-qMc">
+                                <rect key="frame" x="-180" y="0.0" width="180" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="PJX-mD-zHU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2N6-wU-6JH" firstAttribute="trailing" secondItem="l2z-0i-CNL" secondAttribute="trailing" id="7ri-Rp-G3U"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="baseline" secondItem="MiX-1R-tDj" secondAttribute="baseline" id="G33-yh-jd0"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="centerX" secondItem="l2z-0i-CNL" secondAttribute="centerX" id="GfQ-a0-GR5"/>
+                            <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="KI8-9R-Phg"/>
                             <constraint firstItem="MiX-1R-tDj" firstAttribute="leading" secondItem="N4e-bb-x6G" secondAttribute="trailing" constant="58" id="WSc-ka-qCg"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="25" id="XbA-u2-KQz"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="nst-79-Omp"/>
+                            <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" id="r2y-IT-RZs"/>
                             <constraint firstItem="l2z-0i-CNL" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" constant="20" id="rG7-gY-OOh"/>
                             <constraint firstItem="2N6-wU-6JH" firstAttribute="bottom" secondItem="l2z-0i-CNL" secondAttribute="bottom" constant="15" id="t0a-0K-F21"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="centerX" secondItem="h61-Jv-333" secondAttribute="centerX" id="tKc-9j-e7E"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="h61-Jv-333" secondAttribute="leadingMargin" id="w9I-ZR-z67"/>
+                            <constraint firstItem="2N6-wU-6JH" firstAttribute="bottom" secondItem="8ZT-M5-qMc" secondAttribute="bottom" id="xcT-SC-mbG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2N6-wU-6JH"/>
                     </view>
                     <connections>
+                        <outlet property="leadingConstraint" destination="pEo-pW-WEl" id="Lv3-Ee-12h"/>
                         <outlet property="playbackControllerView" destination="O8f-xb-YFP" id="M3g-gR-6RL"/>
                         <outlet property="tableView" destination="PbF-UM-qlS" id="DJq-VA-lEy"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kvh-Jh-Kc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-50.724637681159422" y="-40.760869565217398"/>
         </scene>
         <!--RecView-->
         <scene sceneID="8K6-eN-AO5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ha8-av-FvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Recording" referencedIdentifier="RecView" id="CPJ-cH-ewO" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ha8-av-FvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="507" y="-350"/>
         </scene>

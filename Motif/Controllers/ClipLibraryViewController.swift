@@ -75,6 +75,9 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet weak var playbackControllerView: UIView!
     
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
+    var toggle = true
     var player: AKAudioPlayer?
     
     func updateSlider() {
@@ -125,6 +128,15 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    @IBAction func toggleSlider() {
+        UIView.animate(withDuration: 0.75) {
+            if self.toggle {
+                self.leadingConstraint.constant = 0
+            } else {
+                self.leadingConstraint.constant = -140
+            }
+        }
+    }
     
     /*
     // MARK: - Navigation

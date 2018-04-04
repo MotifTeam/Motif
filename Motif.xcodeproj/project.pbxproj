@@ -14,6 +14,7 @@
 		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
 		2760A8402074510900A701BA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83F2074510900A701BA /* AudioManager.swift */; };
 		2760A84320745A5000A701BA /* Song.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2760A84120745A5000A701BA /* Song.xcdatamodeld */; };
+		2760A84620749B2300A701BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2760A84520749B2300A701BA /* GoogleService-Info.plist */; };
 		27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF32037B375005F9A86 /* AppDelegate.swift */; };
 		27990BF62037B375005F9A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF52037B375005F9A86 /* ViewController.swift */; };
 		27990BF92037B375005F9A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BF72037B375005F9A86 /* Main.storyboard */; };
@@ -28,7 +29,6 @@
 		27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */; };
 		27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435D20507345006BBE64 /* CircleBackgroundView.swift */; };
 		966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */; };
-		9FCFDABA20747BDE00126965 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FCFDAB920747BDE00126965 /* GoogleService-Info.plist */; };
 		9FCFDACA20747C7800126965 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDABE20747C7800126965 /* version.h */; };
 		9FCFDACB20747C7800126965 /* midio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDABF20747C7800126965 /* midio.h */; };
 		9FCFDACC20747C7800126965 /* midifile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDAC020747C7800126965 /* midifile.h */; };
@@ -49,6 +49,7 @@
 		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
 		2760A83F2074510900A701BA /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		2760A84220745A5000A701BA /* Song.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Song.xcdatamodel; sourceTree = "<group>"; };
+		2760A84520749B2300A701BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27990BF02037B375005F9A86 /* Motif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motif.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27990BF32037B375005F9A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27990BF52037B375005F9A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		27FF435920506D2B006BBE64 /* MicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicViewController.swift; sourceTree = "<group>"; };
 		27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientLayer.swift; sourceTree = "<group>"; };
 		27FF435D20507345006BBE64 /* CircleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBackgroundView.swift; sourceTree = "<group>"; };
-		9FCFDAB920747BDE00126965 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		9FCFDABE20747C7800126965 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		9FCFDABF20747C7800126965 /* midio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midio.h; sourceTree = "<group>"; };
 		9FCFDAC020747C7800126965 /* midifile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midifile.h; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				27990BFA2037B375005F9A86 /* Assets.xcassets */,
 				27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */,
 				27990BFF2037B375005F9A86 /* Info.plist */,
-				9FCFDAB920747BDE00126965 /* GoogleService-Info.plist */,
+				2760A84520749B2300A701BA /* GoogleService-Info.plist */,
 			);
 			path = Motif;
 			sourceTree = "<group>";
@@ -287,8 +287,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */,
+				2760A84620749B2300A701BA /* GoogleService-Info.plist in Resources */,
 				27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */,
-				9FCFDABA20747BDE00126965 /* GoogleService-Info.plist in Resources */,
 				27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */,
 				2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */,
 				27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */,
@@ -541,11 +541,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B7BR378UWH;
+				DEVELOPMENT_TEAM = ZJWRB6PG2B;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif2;
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Helpers/midi-json/midi-json.h";
 				SWIFT_VERSION = 4.0;
@@ -559,11 +559,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B7BR378UWH;
+				DEVELOPMENT_TEAM = ZJWRB6PG2B;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif2;
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Helpers/midi-json/midi-json.h";
 				SWIFT_VERSION = 4.0;
