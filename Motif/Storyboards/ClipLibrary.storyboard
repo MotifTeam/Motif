@@ -33,14 +33,17 @@
                                     <constraint firstAttribute="height" constant="37" id="YQi-2G-0Zg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHx-Rz-jaz">
                                 <rect key="frame" x="20" y="20" width="81" height="30"/>
-                                <state key="normal" title="Logout">
+                                <state key="normal" title="Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="hNX-k8-vbw"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PUN-ue-h7L">
                                 <rect key="frame" x="0.0" y="100" width="414" height="636"/>
@@ -78,6 +81,57 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZT-M5-qMc">
+                                <rect key="frame" x="-180" y="0.0" width="180" height="736"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2p-Q3-aVL">
+                                        <rect key="frame" x="40" y="233" width="100" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="nRI-Oa-SH3" kind="show" id="BUt-Lw-WGd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPv-lW-eMZ">
+                                        <rect key="frame" x="51" y="146" width="78" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="Follow">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="I7c-1p-tKH" kind="show" id="bob-ex-UzG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-Za-LU6">
+                                        <rect key="frame" x="48" y="313" width="85" height="46"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <state key="normal" title="Logout">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOut" destination="poe-dL-vXC" eventType="touchUpInside" id="QuI-Vj-8ZR"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="OPv-lW-eMZ" firstAttribute="top" secondItem="8ZT-M5-qMc" secondAttribute="top" constant="146" id="Bss-va-cIp"/>
+                                    <constraint firstItem="9ae-Za-LU6" firstAttribute="top" secondItem="C2p-Q3-aVL" secondAttribute="bottom" constant="34" id="Hm6-hy-5AS"/>
+                                    <constraint firstItem="OPv-lW-eMZ" firstAttribute="centerX" secondItem="C2p-Q3-aVL" secondAttribute="centerX" id="O6O-Tj-UFn"/>
+                                    <constraint firstAttribute="width" constant="180" id="PJX-mD-zHU"/>
+                                    <constraint firstItem="C2p-Q3-aVL" firstAttribute="centerX" secondItem="9ae-Za-LU6" secondAttribute="centerX" id="Vbi-su-wGt"/>
+                                    <constraint firstItem="C2p-Q3-aVL" firstAttribute="top" secondItem="OPv-lW-eMZ" secondAttribute="bottom" constant="41" id="gcc-du-gYN"/>
+                                    <constraint firstItem="OPv-lW-eMZ" firstAttribute="centerX" secondItem="8ZT-M5-qMc" secondAttribute="centerX" id="wFu-p9-GAg"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-k1-AvN">
+                                <rect key="frame" x="10" y="0.0" width="404" height="736"/>
+                                <connections>
+                                    <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="0Pg-FZ-McZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -88,10 +142,9 @@
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="bottom" secondItem="2N6-wU-6JH" secondAttribute="bottom" id="hBL-ga-lfB"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" constant="18" id="hof-7p-JfR"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="nst-79-Omp"/>
+                            <constraint firstItem="9fl-k1-AvN" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="p07-Pw-JdB"/>
+                            <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" id="r2y-IT-RZs"/>
-                            <constraint firstItem="N4e-bb-x6G" firstAttribute="centerX" secondItem="h61-Jv-333" secondAttribute="centerX" id="tKc-9j-e7E"/>
-                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="h61-Jv-333" secondAttribute="leadingMargin" id="w9I-ZR-z67"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="yst-r4-Bxe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2N6-wU-6JH"/>
                     </view>
@@ -104,6 +157,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvh-Jh-Kc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-635" y="-351"/>
+        </scene>
+        <!--Setting-->
+        <scene sceneID="5SR-ST-e2e">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Setting" id="nRI-Oa-SH3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUM-fU-aJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-162" y="374"/>
+        </scene>
+        <!--Follow-->
+        <scene sceneID="1XW-XL-k0o">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Follow" id="I7c-1p-tKH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rol-fu-78x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-463" y="533"/>
         </scene>
         <!--RecView-->
         <scene sceneID="8K6-eN-AO5">
