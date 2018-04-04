@@ -10,6 +10,10 @@
 		27043A2D20615B2D0076FB53 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27043A2C20615B2D0076FB53 /* TempViewController.swift */; };
 		27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA720408CBB00BD37F4 /* SignUpViewController.swift */; };
 		27136CAA20408CC400BD37F4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27136CA920408CC400BD37F4 /* LoginViewController.swift */; };
+		2760A8372073F87200A701BA /* ClipLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A8362073F87200A701BA /* ClipLibraryViewController.swift */; };
+		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
+		2760A8402074510900A701BA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83F2074510900A701BA /* AudioManager.swift */; };
+		2760A84320745A5000A701BA /* Song.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2760A84120745A5000A701BA /* Song.xcdatamodeld */; };
 		27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF32037B375005F9A86 /* AppDelegate.swift */; };
 		27990BF62037B375005F9A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF52037B375005F9A86 /* ViewController.swift */; };
 		27990BF92037B375005F9A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BF72037B375005F9A86 /* Main.storyboard */; };
@@ -17,6 +21,7 @@
 		27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */; };
 		279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA1B203E5B8E00D72BD6 /* Login.storyboard */; };
 		279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */; };
+		279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */; };
 		27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */; };
 		27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E663BF20634A70008F592D /* AIPianoViewController.swift */; };
 		27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FF435720506CCD006BBE64 /* Recording.storyboard */; };
@@ -53,6 +58,10 @@
 		27043A2C20615B2D0076FB53 /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		27136CA720408CBB00BD37F4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		27136CA920408CC400BD37F4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2760A8362073F87200A701BA /* ClipLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipLibraryViewController.swift; sourceTree = "<group>"; };
+		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
+		2760A83F2074510900A701BA /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		2760A84220745A5000A701BA /* Song.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Song.xcdatamodel; sourceTree = "<group>"; };
 		27990BF02037B375005F9A86 /* Motif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motif.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27990BF32037B375005F9A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27990BF52037B375005F9A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +71,7 @@
 		27990BFF2037B375005F9A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		279CCA1B203E5B8E00D72BD6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSplashViewController.swift; sourceTree = "<group>"; };
+		279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
 		27E663BF20634A70008F592D /* AIPianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPianoViewController.swift; sourceTree = "<group>"; };
 		27FF435720506CCD006BBE64 /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
@@ -109,6 +119,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2760A83C2074134100A701BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2760A84120745A5000A701BA /* Song.xcdatamodeld */,
+				2760A83F2074510900A701BA /* AudioManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		27990BE72037B375005F9A86 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +149,7 @@
 		27990BF22037B375005F9A86 /* Motif */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				9F9C3FBD20734D17008645D4 /* midi-json */,
 				9FF3C298206EB7F000DAA7F6 /* gs_soundfont.sf2 */,
 				279CCA1A203E5B0700D72BD6 /* Controllers */,
@@ -142,20 +162,25 @@
 				9FF3C299206EB99E00DAA7F6 /* GoogleService-Info.plist */,
 				27990BFF2037B375005F9A86 /* Info.plist */,
 				9F9C3FB920734CE8008645D4 /* Motif-Bridging-Header.h */,
+=======
+				2760A83C2074134100A701BA /* Models */,
+				279CCA1A203E5B0700D72BD6 /* Controllers */,
+				279CCA19203E5AF800D72BD6 /* Helpers */,
+				279CCA18203E5AF100D72BD6 /* Storyboards */,
+				27990BF32037B375005F9A86 /* AppDelegate.swift */,
+				27990BFA2037B375005F9A86 /* Assets.xcassets */,
+				27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */,
+				27990BFF2037B375005F9A86 /* Info.plist */,
+				279CCA21203E6C7700D72BD6 /* GoogleService-Info.plist */,
+>>>>>>> 58d6dc5cedd589d9594051ee6f89f7be3968796d
 			);
 			path = Motif;
-			sourceTree = "<group>";
-		};
-		279CCA17203E5AE600D72BD6 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		279CCA18203E5AF100D72BD6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				2760A8382073F8A700A701BA /* ClipLibrary.storyboard */,
 				27990BF72037B375005F9A86 /* Main.storyboard */,
 				279CCA1B203E5B8E00D72BD6 /* Login.storyboard */,
 				27FF435720506CCD006BBE64 /* Recording.storyboard */,
@@ -298,9 +323,10 @@
 				279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */,
 				27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */,
 				27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */,
+				279CCA22203E6C7700D72BD6 /* GoogleService-Info.plist in Resources */,
+				2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */,
 				27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */,
 				27990BF92037B375005F9A86 /* Main.storyboard in Resources */,
-				9FF3C29A206EB99E00DAA7F6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +473,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -454,6 +481,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -506,6 +534,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -513,6 +542,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -550,6 +580,7 @@
 			baseConfigurationReference = B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+<<<<<<< HEAD
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -562,6 +593,15 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Motif-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+=======
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZJWRB6PG2B;
+				INFOPLIST_FILE = Motif/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+>>>>>>> 58d6dc5cedd589d9594051ee6f89f7be3968796d
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -572,17 +612,15 @@
 			baseConfigurationReference = EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
+        CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = B7BR378UWH;
+				DEVELOPMENT_TEAM = ZJWRB6PG2B;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MODULEMAP_FILE = "midi-json/module.map";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif3;
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Motif-Bridging-Header.h";
+        SWIFT_OBJC_BRIDGING_HEADER = "Motif/Motif-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -610,6 +648,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2760A84120745A5000A701BA /* Song.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2760A84220745A5000A701BA /* Song.xcdatamodel */,
+			);
+			currentVersion = 2760A84220745A5000A701BA /* Song.xcdatamodel */;
+			path = Song.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 27990BE82037B375005F9A86 /* Project object */;
 }

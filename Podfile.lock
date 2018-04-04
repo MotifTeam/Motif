@@ -79,7 +79,7 @@ PODS:
   - TransitionButton (0.4.0)
 
 DEPENDENCIES:
-  - AudioKit (= 4.0.3)
+  - AudioKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore

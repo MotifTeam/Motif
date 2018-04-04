@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wcx-5C-pCR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wcx-5C-pCR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -221,27 +222,71 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Y4v-Af-SQX">
-                                <rect key="frame" x="98.5" y="87" width="178" height="29"/>
+                                <rect key="frame" x="37.5" y="87" width="300" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="178" id="VJH-jE-IeT"/>
+                                    <constraint firstAttribute="width" constant="300" id="VJH-jE-IeT"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Clips"/>
                                     <segment title="Social"/>
                                 </segments>
                             </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P0x-1P-F81">
+                                <rect key="frame" x="16" y="147" width="343" height="520"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="songCell" rowHeight="70" id="b5i-tC-Ozb">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b5i-tC-Ozb" id="fgW-Kh-uuf">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6c-II-svK">
+                                                    <rect key="frame" x="15" y="11" width="86.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ney-fA-ReP">
+                                                    <rect key="frame" x="15" y="41" width="31.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="D6c-II-svK" firstAttribute="top" secondItem="fgW-Kh-uuf" secondAttribute="topMargin" id="07Y-YA-1Zm"/>
+                                                <constraint firstItem="D6c-II-svK" firstAttribute="leading" secondItem="fgW-Kh-uuf" secondAttribute="leadingMargin" id="j0M-u2-Sbo"/>
+                                                <constraint firstItem="ney-fA-ReP" firstAttribute="leading" secondItem="fgW-Kh-uuf" secondAttribute="leadingMargin" id="n5n-zH-1bA"/>
+                                                <constraint firstItem="ney-fA-ReP" firstAttribute="bottom" secondItem="fgW-Kh-uuf" secondAttribute="bottomMargin" id="rcJ-WH-5sf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="0.50425406678082196" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="P0x-1P-F81" firstAttribute="leading" secondItem="IWk-GU-Wde" secondAttribute="leading" constant="16" id="CJ8-io-vly"/>
+                            <constraint firstItem="IWk-GU-Wde" firstAttribute="bottom" secondItem="P0x-1P-F81" secondAttribute="bottom" id="EGI-6V-3xa"/>
                             <constraint firstItem="ZlB-FK-9I0" firstAttribute="top" secondItem="IWk-GU-Wde" secondAttribute="top" id="G3B-xN-LU7"/>
                             <constraint firstItem="Y4v-Af-SQX" firstAttribute="top" secondItem="Zvp-HO-v2p" secondAttribute="bottom" constant="8" id="NJE-5e-peX"/>
+                            <constraint firstItem="IWk-GU-Wde" firstAttribute="trailing" secondItem="P0x-1P-F81" secondAttribute="trailing" constant="16" id="SVe-kO-7ic"/>
                             <constraint firstItem="Zvp-HO-v2p" firstAttribute="centerX" secondItem="IWk-GU-Wde" secondAttribute="centerX" id="Sc7-0b-e7t"/>
                             <constraint firstItem="IWk-GU-Wde" firstAttribute="trailing" secondItem="ZlB-FK-9I0" secondAttribute="trailing" constant="16" id="WfJ-5A-JGN"/>
+                            <constraint firstItem="P0x-1P-F81" firstAttribute="top" secondItem="Y4v-Af-SQX" secondAttribute="bottom" constant="32" id="mNs-Om-EEL"/>
                             <constraint firstItem="Zvp-HO-v2p" firstAttribute="top" secondItem="IWk-GU-Wde" secondAttribute="top" constant="8" id="ul1-WM-hNh"/>
                             <constraint firstItem="Y4v-Af-SQX" firstAttribute="centerX" secondItem="IWk-GU-Wde" secondAttribute="centerX" id="vjx-UO-E3I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IWk-GU-Wde"/>
                     </view>
+                    <connections>
+                        <outlet property="switchTable" destination="Y4v-Af-SQX" id="rRS-Gs-RIB"/>
+                        <outlet property="tableView" destination="P0x-1P-F81" id="oaM-Iq-0Cb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6WL-RB-3BC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -328,9 +373,9 @@
                                     <segue destination="JwZ-Mp-hCX" kind="show" id="V3d-oe-WF0"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9h-in-61X" customClass="AKNodeOutputPlot" customModule="AudioKitUI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q9h-in-61X" customClass="EZAudioPlot">
                                 <rect key="frame" x="0.0" y="539" width="375" height="64"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="8aM-mI-zpy"/>
                                 </constraints>
