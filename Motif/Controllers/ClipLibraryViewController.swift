@@ -122,8 +122,6 @@ class ClipLibraryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         goback.isEnabled = false
         // Do any additional setup after loading the view.
         // [START setup]
@@ -174,6 +172,7 @@ class ClipLibraryViewController: UIViewController {
 
     @IBAction func unwindtoClip(segue: UIStoryboardSegue) {
     }
+}
 
 class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -224,7 +223,6 @@ class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return clips.count
     }
 
