@@ -10,12 +10,14 @@ import UIKit
 //import PianoView
 //import MusicTheorySwift
 //import AudioKit
+import CoreData
+import Firebase
 import WebKit
 import AVFoundation
 
+
 struct MIDIClip {
     let midiData: Data
-    let midiJson: String?
     let creator: String
     let timestamp: Date
 }
@@ -80,10 +82,13 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
     @IBOutlet weak var placeholderView: UIView!
     var midiPlayer: AVMIDIPlayer?
     
+    var db: Firestore!
+    
     let eventNames = ["user", "ai"]
     var eventFunctions : Dictionary<String, (String)->Void> = Dictionary<String, (String)->Void>()
     
     var sessionClips: [MIDIClip] = []
+    var clipsCollection: CollectionReference!
     
     override func loadView() {
         super.loadView()
@@ -95,15 +100,25 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         eventFunctions["user"] = {(body) in
             if body.starts(with: "[77,84,") {
                 let bytes = body.dropFirst().dropLast().split(separator: ",").map {UInt8($0)!}
-                let clip = MIDIClip(midiData: Data(bytes:bytes), midiJson: nil, creator: "user", timestamp: Date())
+                let clip = MIDIClip(midiData: Data(bytes:bytes), creator: "user", timestamp: Date())
                 self.sessionClips.append(clip)
+                self.clipsCollection.addDocument(data:[
+                    "creator": clip.creator,
+                    "midiData": clip.midiData,
+                    "time": clip.timestamp]) { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                }
                 
             }
         }
         
         eventFunctions["ai"] = {(body) in
             if body.starts(with: "TVRoZ") {
-                let clip = MIDIClip(midiData: Data(base64Encoded: body)!, midiJson: nil, creator: "ai", timestamp: Date())
+                let clip = MIDIClip(midiData: Data(base64Encoded: body)!, creator: "ai", timestamp: Date())
                 self.sessionClips.append(clip)
                 
                 
@@ -132,7 +147,11 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let settings = FirestoreSettings()
+        Firestore.firestore().settings = settings
+        db = Firestore.firestore()
+        let uid = Auth.auth().currentUser?.uid ?? "0"
+        clipsCollection = db.collection("users").document(uid).collection("clips")
         
         let myURL = URL(string: "https://experiments.withgoogle.com/ai/ai-duet/view/")
         let myRequest = URLRequest(url: myURL!)
