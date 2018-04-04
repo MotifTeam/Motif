@@ -48,8 +48,9 @@ struct MIDIClip {
         }
         
         
-        //try print(try! FileHandle(forReadingFrom: outputFileUrl.contentURL).readDataToEndOfFile())
+        try print(try! FileHandle(forReadingFrom: outputFileUrl.contentURL).readDataToEndOfFile())
         let decoded = try? JSONDecoder().decode([MIDIEvent].self, from: Data(contentsOf:outputFileUrl.contentURL))
+        
         var notesOn: [Int8:Int64] = [:]
         var notesPlayed: [NoteInterval] = []
         if decoded != nil {
@@ -67,14 +68,23 @@ struct MIDIClip {
                 }
             }
             print(notesPlayed)
-            let maxNote = notesPlayed.map {$0.noteNumber}.max()
-            let minNote = notesPlayed.map {$0.noteNumber}.min()
+            var maxNote = Int8(71)
+            if let maxPlayed = (notesPlayed.map {$0.noteNumber}.max()) {
+                maxNote = max(maxPlayed, maxNote)
+            }
+            var minNote = Int8(48)
+            if let minPlayed = (notesPlayed.map {$0.noteNumber}.min()) {
+                minNote = min(minPlayed, minNote)
+            }
+            
             let endTime = notesPlayed.map {$0.endTime}.max()
-            let noteHeight = size.height / (CGFloat(maxNote!)-CGFloat(minNote!)+1)
+            let noteHeight = size.height / (CGFloat(maxNote)-CGFloat(minNote)+1)
             color.setFill()
             for note in notesPlayed {
+                
                 let x = (CGFloat(note.startTime)/CGFloat(endTime!)) * size.width
-                let y = (CGFloat(maxNote!)-CGFloat(note.noteNumber)) * CGFloat(noteHeight)
+                let y = (CGFloat(maxNote)-CGFloat(note.noteNumber)) * CGFloat(noteHeight)
+                
                 let width = size.width * CGFloat(note.endTime - note.startTime) / CGFloat(endTime!)
                 let noteRect = CGRect(x:x, y:y, width:width, height:noteHeight)
                 UIRectFill(noteRect)

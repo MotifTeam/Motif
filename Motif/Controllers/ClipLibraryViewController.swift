@@ -122,7 +122,7 @@ class ClipLibraryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        goback.isEnabled = false
+        //goback.isEnabled = false
         // Do any additional setup after loading the view.
         // [START setup]
 
@@ -218,7 +218,12 @@ class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "midiCell", for: indexPath) as! MIDIClipViewCell
         let index = indexPath.row
-        cell.previewImageView.image =  clips[index].createMIDIPreviewImage(size: cell.frame.size, color: .blue)
+        DispatchQueue.global().async {
+            let image = self.clips[index].createMIDIPreviewImage(size: cell.frame.size, color: .blue)
+            DispatchQueue.main.async {
+                cell.previewImageView.image = image
+            }
+        }
         return cell
     }
 
