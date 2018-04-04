@@ -280,12 +280,15 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="69.666666666666671"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="playClip:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="JHA-8C-W9o"/>
-                                                        <action selector="rowTapped:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="7y8-QO-TTU"/>
+                                                        <action selector="playClip:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="tWH-0y-9O7"/>
                                                     </connections>
                                                 </button>
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="apP-py-MLZ">
+                                                    <rect key="frame" x="0.0" y="19" width="414" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axX-hZ-tgp">
-                                                    <rect key="frame" x="11" y="29" width="42" height="21"/>
+                                                    <rect key="frame" x="11" y="29" width="119" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -311,7 +314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3n-JI-Il2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="389"/>
+            <point key="canvasLocation" x="-200.00000000000003" y="388.85869565217394"/>
         </scene>
     </scenes>
 </document>

@@ -10,6 +10,7 @@ import UIKit
 import AudioKit
 import AudioKitUI
 import Firebase
+import AVFoundation
 
 //class ClipTableViewCell: UITableViewCell, AKLiveViewController {
     //if let sound_clip = NSDataAsset(name:"rain-3")
@@ -67,11 +68,25 @@ class ClipTableViewCell: UITableViewCell {
 }
 
 class MIDIClipViewCell: UITableViewCell {
+    var clip: MIDIClip?
     @IBOutlet weak var previewImageView: UIImageView!
-
     @IBOutlet weak var time: UILabel!
-    @IBAction func rowTapped(_ sender: Any) {
+    
+    
+    @IBAction func playClip(_ sender: Any) {
         print("hi")
+    }
+    
+    func populate(_ clip: MIDIClip) {
+        self.clip = clip
+        time.text = clip.timestamp.description
+        DispatchQueue.global().async {
+            let image = clip.createMIDIPreviewImage(size: self.previewImageView.frame.size, color: .blue)
+            DispatchQueue.main.async {
+                self.previewImageView.image = image
+            }
+        
+        }
     }
 }
 
@@ -216,13 +231,8 @@ class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableVi
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "midiCell", for: indexPath) as! MIDIClipViewCell
-        let index = indexPath.row
-        DispatchQueue.global().async {
-            let image = self.clips[index].createMIDIPreviewImage(size: cell.frame.size, color: .blue)
-            DispatchQueue.main.async {
-                cell.previewImageView.image = image
-            }
-        }
+        let row = indexPath.row
+        cell.populate(clips[row])
         return cell
     }
 
