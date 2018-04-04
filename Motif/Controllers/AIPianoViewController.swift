@@ -20,6 +20,72 @@ struct MIDIClip {
     let midiData: Data
     let creator: String
     let timestamp: Date
+    
+    func createMIDIPreviewImage(size: CGSize, color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        let tempFileURL = TemporaryFileURL(extension: "mid")
+        do {
+            try midiData.write(to: tempFileURL.contentURL, options: [.atomic])
+        }
+        catch {
+            print("DIDN'T WRITE TO MIDI")
+            print(error)
+        }
+        let outputFileUrl = TemporaryFileURL(extension: "txt")
+        print(tempFileURL.contentURL.path)
+        tempFileURL.contentURL.withUnsafeFileSystemRepresentation { (midiPath) in
+            outputFileUrl.contentURL.withUnsafeFileSystemRepresentation{ (outPath) in
+                let args = ["midi-json"]
+                print(args)
+                print(midiData.base64EncodedString())
+                var cargs = args.map { strdup($0) }
+                let result = midiJSONMainWrapper(Int32(cargs.count), &cargs, midiPath, outPath)
+                for ptr in cargs { free(ptr) }
+                print(result)
+                try? print(try String(contentsOfFile: outputFileUrl.contentURL.path, encoding: String.Encoding.ascii))
+            }
+            
+        }
+        
+        
+        //try print(try! FileHandle(forReadingFrom: outputFileUrl.contentURL).readDataToEndOfFile())
+        let decoded = try? JSONDecoder().decode([MIDIEvent].self, from: Data(contentsOf:outputFileUrl.contentURL))
+        var notesOn: [Int8:Int64] = [:]
+        var notesPlayed: [NoteInterval] = []
+        if decoded != nil {
+            for event in decoded! {
+                print (event)
+                if let noteNum = event.note {
+                    if let startTime = notesOn[noteNum] {
+                        let note = NoteInterval(noteNumber: noteNum, startTime: startTime, endTime: event.time!)
+                        notesPlayed.append(note)
+                        notesOn[noteNum] = nil
+                    }
+                    else {
+                        notesOn[noteNum] = event.time!
+                    }
+                }
+            }
+            print(notesPlayed)
+            let maxNote = notesPlayed.map {$0.noteNumber}.max()
+            let minNote = notesPlayed.map {$0.noteNumber}.min()
+            let endTime = notesPlayed.map {$0.endTime}.max()
+            let noteHeight = size.height / (CGFloat(maxNote!)-CGFloat(minNote!)+1)
+            color.setFill()
+            for note in notesPlayed {
+                let x = (CGFloat(note.startTime)/CGFloat(endTime!)) * size.width
+                let y = (CGFloat(maxNote!)-CGFloat(note.noteNumber)) * CGFloat(noteHeight)
+                let width = size.width * CGFloat(note.endTime - note.startTime) / CGFloat(endTime!)
+                let noteRect = CGRect(x:x, y:y, width:width, height:noteHeight)
+                UIRectFill(noteRect)
+                
+            }
+        }
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
 
 public final class TemporaryFileURL {
@@ -58,6 +124,7 @@ struct MIDIEvent {
         case note
         case vel
     }
+    
 }
 
 extension MIDIEvent: Decodable {
@@ -204,72 +271,7 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
     }
     
     
-    func createMIDIPreviewImage(from data: Data, size: CGSize, color: UIColor) -> UIImage {
-        print(data.base64EncodedData())
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        let tempFileURL = TemporaryFileURL(extension: "mid")
-        do {
-            try data.write(to: tempFileURL.contentURL, options: [.atomic])
-        }
-        catch {
-            print("DIDN'T WRITE TO MIDI")
-            print(error)
-        }
-        let outputFileUrl = TemporaryFileURL(extension: "txt")
-        print(tempFileURL.contentURL.path)
-        tempFileURL.contentURL.withUnsafeFileSystemRepresentation { (midiPath) in
-            outputFileUrl.contentURL.withUnsafeFileSystemRepresentation{ (outPath) in
-                let args = ["midi-json"]
-                print(args)
-                print(data.base64EncodedString())
-                var cargs = args.map { strdup($0) }
-                let result = midiJSONMainWrapper(Int32(cargs.count), &cargs, midiPath, outPath)
-                for ptr in cargs { free(ptr) }
-                print(result)
-                try? print(try String(contentsOfFile: outputFileUrl.contentURL.path, encoding: String.Encoding.ascii))
-            }
-            
-        }
-        
-        
-        //try print(try! FileHandle(forReadingFrom: outputFileUrl.contentURL).readDataToEndOfFile())
-        let decoded = try? JSONDecoder().decode([MIDIEvent].self, from: Data(contentsOf:outputFileUrl.contentURL))
-        var notesOn: [Int8:Int64] = [:]
-        var notesPlayed: [NoteInterval] = []
-        if decoded != nil {
-            for event in decoded! {
-                print (event)
-                if let noteNum = event.note {
-                    if let startTime = notesOn[noteNum] {
-                        let note = NoteInterval(noteNumber: noteNum, startTime: startTime, endTime: event.time!)
-                        notesPlayed.append(note)
-                        notesOn[noteNum] = nil
-                    }
-                    else {
-                        notesOn[noteNum] = event.time!
-                    }
-                }
-            }
-            print(notesPlayed)
-            let maxNote = notesPlayed.map {$0.noteNumber}.max()
-            let minNote = notesPlayed.map {$0.noteNumber}.min()
-            let endTime = notesPlayed.map {$0.endTime}.max()
-            let noteHeight = size.height / (CGFloat(maxNote!)-CGFloat(minNote!)+1)
-            color.setFill()
-            for note in notesPlayed {
-                let x = (CGFloat(note.startTime)/CGFloat(endTime!)) * size.width
-                let y = (CGFloat(maxNote!)-CGFloat(note.noteNumber)) * CGFloat(noteHeight)
-                let width = size.width * CGFloat(note.endTime - note.startTime) / CGFloat(endTime!)
-                let noteRect = CGRect(x:x, y:y, width:width, height:noteHeight)
-                UIRectFill(noteRect)
-                
-            }
-        }
-        
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
-    }
+    
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if let contentBody = message.body as? String{

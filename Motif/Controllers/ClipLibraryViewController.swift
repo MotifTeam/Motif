@@ -9,6 +9,7 @@
 import UIKit
 import AudioKit
 import AudioKitUI
+import Firebase
 
 //class ClipTableViewCell: UITableViewCell, AKLiveViewController {
     //if let sound_clip = NSDataAsset(name:"rain-3")
@@ -62,20 +63,41 @@ class ClipTableViewCell: UITableViewCell {
         } catch let error as NSError {
             print("There's an error: \(error)")
         }
-        
     }
+}
+
+class MIDIClipViewCell: UITableViewCell {
+    @IBOutlet weak var previewImageView: UIImageView!
     
-    
+    @IBOutlet weak var time: UILabel!
+    @IBAction func rowTapped(_ sender: Any) {
+        print("hi")
+    }
 }
 
 
-class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var tableView: UITableView!
+class ClipLibraryViewController: UIViewController {
+    @IBOutlet weak var midiTableContainer: UIView!
+    @IBOutlet weak var audioTableContainer: UIView!
     
+    
+    @IBAction func switchTable(_ sender: Any) {
+        let segmentControl = sender as! UISegmentedControl
+        let index = segmentControl.selectedSegmentIndex
+        print(index)
+        if index == 1 {
+            audioTableContainer.alpha = 0
+            midiTableContainer.alpha = 1
+        }
+        else {
+            audioTableContainer.alpha = 1
+            midiTableContainer.alpha = 0
+        }
+    }
     @IBOutlet weak var playbackControllerView: UIView!
     
     var player: AKAudioPlayer?
+    var db: Firestore!
     
     func updateSlider() {
         if (player != nil) {
@@ -93,12 +115,12 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         // Do any additional setup after loading the view.
-        
+        // [START setup]
+       
         
     }
 
@@ -126,14 +148,70 @@ class ClipLibraryViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+    
     }
-    */
+ 
 
+}
+
+class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var clips: [MIDIClip] = []
+    
+    var db: Firestore!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        let settings = FirestoreSettings()
+        
+        Firestore.firestore().settings = settings
+        // [END setup]
+        db = Firestore.firestore()
+        
+        let uid = Auth.auth().currentUser?.uid ?? "0"
+        db.collection("users").document(uid).collection("clips").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    self.clips.append(MIDIClip(midiData: document.data()["midiData"] as! Data, creator: document.data()["creator"] as! String, timestamp: Date()))
+                    print(self.clips.count)
+                }
+                self.tableView.reloadData()
+            }
+            
+        }
+        tableView.reloadData()
+        print(clips)
+        
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "midiCell", for: indexPath) as! MIDIClipViewCell
+        let index = indexPath.row
+        cell.previewImageView.image =  clips[index].createMIDIPreviewImage(size: cell.frame.size, color: .blue)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return clips.count
+    }
+    
 }
