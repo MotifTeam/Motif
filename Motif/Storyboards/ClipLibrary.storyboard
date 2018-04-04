@@ -19,15 +19,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiX-1R-tDj">
-                                <rect key="frame" x="318" y="20" width="61" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiX-1R-tDj">
+                                <rect key="frame" x="294" y="20" width="61" height="30"/>
                                 <state key="normal" title="RECORD"/>
                                 <connections>
                                     <segue destination="CPJ-cH-ewO" kind="show" id="FyL-1Z-JJj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Clips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4e-bb-x6G">
-                                <rect key="frame" x="154" y="45" width="106" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4e-bb-x6G">
+                                <rect key="frame" x="130" y="45" width="106" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="106" id="AUL-r3-5Cs"/>
                                     <constraint firstAttribute="height" constant="37" id="YQi-2G-0Zg"/>
@@ -36,8 +36,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHx-Rz-jaz">
-                                <rect key="frame" x="20" y="20" width="81" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHx-Rz-jaz">
+                                <rect key="frame" x="20" y="20" width="57" height="30"/>
                                 <state key="normal" title="Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -136,11 +136,16 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" id="APe-4C-0U7"/>
+                            <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="bHx-Rz-jaz" secondAttribute="bottom" constant="50" id="Ata-Qw-8ed"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="baseline" secondItem="MiX-1R-tDj" secondAttribute="baseline" id="G33-yh-jd0"/>
+                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="20" id="LPb-gd-40d"/>
+                            <constraint firstItem="PUN-ue-h7L" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="ON7-1X-L3Y"/>
+                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" id="VbS-GA-svo"/>
                             <constraint firstItem="MiX-1R-tDj" firstAttribute="leading" secondItem="N4e-bb-x6G" secondAttribute="trailing" constant="58" id="WSc-ka-qCg"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="25" id="XbA-u2-KQz"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="bottom" secondItem="2N6-wU-6JH" secondAttribute="bottom" id="hBL-ga-lfB"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" constant="18" id="hof-7p-JfR"/>
+                            <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="ihM-pR-2MW"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="nst-79-Omp"/>
                             <constraint firstItem="9fl-k1-AvN" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="p07-Pw-JdB"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
@@ -172,7 +177,7 @@
                 <viewControllerPlaceholder storyboardName="Follow" id="I7c-1p-tKH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rol-fu-78x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-463" y="533"/>
+            <point key="canvasLocation" x="-658" y="540"/>
         </scene>
         <!--RecView-->
         <scene sceneID="8K6-eN-AO5">
@@ -306,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J3n-JI-Il2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="318"/>
+            <point key="canvasLocation" x="-199" y="389"/>
         </scene>
     </scenes>
 </document>
