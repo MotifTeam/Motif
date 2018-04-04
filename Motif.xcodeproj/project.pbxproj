@@ -14,6 +14,7 @@
 		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
 		2760A83E2074134A00A701BA /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83D2074134A00A701BA /* Song.swift */; };
 		2760A8402074510900A701BA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83F2074510900A701BA /* AudioManager.swift */; };
+		2760A84320745A5000A701BA /* Song.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2760A84120745A5000A701BA /* Song.xcdatamodeld */; };
 		27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF32037B375005F9A86 /* AppDelegate.swift */; };
 		27990BF62037B375005F9A86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27990BF52037B375005F9A86 /* ViewController.swift */; };
 		27990BF92037B375005F9A86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27990BF72037B375005F9A86 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
 		2760A83D2074134A00A701BA /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		2760A83F2074510900A701BA /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		2760A84220745A5000A701BA /* Song.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Song.xcdatamodel; sourceTree = "<group>"; };
 		27990BF02037B375005F9A86 /* Motif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Motif.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27990BF32037B375005F9A86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27990BF52037B375005F9A86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		2760A83C2074134100A701BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2760A84120745A5000A701BA /* Song.xcdatamodeld */,
 				2760A83D2074134A00A701BA /* Song.swift */,
 				2760A83F2074510900A701BA /* AudioManager.swift */,
 			);
@@ -314,6 +317,7 @@
 				27990BF62037B375005F9A86 /* ViewController.swift in Sources */,
 				27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */,
 				27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */,
+				2760A84320745A5000A701BA /* Song.xcdatamodeld in Sources */,
 				27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */,
 				27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */,
 				27136CA820408CBB00BD37F4 /* SignUpViewController.swift in Sources */,
@@ -518,6 +522,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2760A84120745A5000A701BA /* Song.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2760A84220745A5000A701BA /* Song.xcdatamodel */,
+			);
+			currentVersion = 2760A84220745A5000A701BA /* Song.xcdatamodel */;
+			path = Song.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 27990BE82037B375005F9A86 /* Project object */;
 }

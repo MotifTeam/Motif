@@ -9,6 +9,7 @@
 import UIKit
 import AudioKit
 import AudioKitUI
+import CoreData
 
 class MicViewController: UIViewController {
 
@@ -62,10 +63,10 @@ class MicViewController: UIViewController {
                 track.exportAsynchronously(name: "Motif-\(songName).m4a",
                     baseDir: .documents,
                     exportFormat: .m4a) {file, exportError in
-                        
                         if let error = exportError {
                             print("Export Failed \(error)")
                         } else {
+                            saveSong(name: "Motif-\(songName).m4a", location: file?.directoryPath)
                             print("Export succeeded")
                         }
                 }
@@ -116,6 +117,28 @@ class MicViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         setupPlot()
+    }
+    
+    func saveSong(name: String, location: URL) {
+            
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let song = NSEntityDescription.insertNewObject(forEntityName: "Song",
+                                                       into: context)
+        song.setValue(name, forKey: "name")
+        song.setValue(location, forKey: "url")
+        
+        
+        do {
+            try context.save()
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
     }
 
     @objc func updateTimer() {

@@ -11,5 +11,5 @@ import Foundation
 struct Song {
     var name: String
     var length: Double
-    
+    var url: URL
 }
