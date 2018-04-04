@@ -123,10 +123,9 @@ class ClipLibraryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //goback.isEnabled = false
+
         // Do any additional setup after loading the view.
         // [START setup]
-
-
     }
 
     override func didReceiveMemoryWarning() {
