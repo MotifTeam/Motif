@@ -16,140 +16,6 @@ import WebKit
 import AVFoundation
 
 
-struct MIDIClip {
-    let midiData: Data
-    let creator: String
-    let timestamp: Date
-    
-    func createMIDIPreviewImage(size: CGSize, color: UIColor) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        let tempFileURL = TemporaryFileURL(extension: "mid")
-        do {
-            try midiData.write(to: tempFileURL.contentURL, options: [.atomic])
-        }
-        catch {
-            print("DIDN'T WRITE TO MIDI")
-            print(error)
-        }
-        let outputFileUrl = TemporaryFileURL(extension: "txt")
-        print(tempFileURL.contentURL.path)
-        tempFileURL.contentURL.withUnsafeFileSystemRepresentation { (midiPath) in
-            outputFileUrl.contentURL.withUnsafeFileSystemRepresentation{ (outPath) in
-                let args = ["midi-json"]
-                print(args)
-                print(midiData.base64EncodedString())
-                var cargs = args.map { strdup($0) }
-                let result = midiJSONMainWrapper(Int32(cargs.count), &cargs, midiPath, outPath)
-                for ptr in cargs { free(ptr) }
-                print(result)
-                try? print(try String(contentsOfFile: outputFileUrl.contentURL.path, encoding: String.Encoding.ascii))
-            }
-            
-        }
-        
-        
-        try print(try! FileHandle(forReadingFrom: outputFileUrl.contentURL).readDataToEndOfFile())
-        let decoded = try? JSONDecoder().decode([MIDIEvent].self, from: Data(contentsOf:outputFileUrl.contentURL))
-        
-        var notesOn: [Int8:Int64] = [:]
-        var notesPlayed: [NoteInterval] = []
-        if decoded != nil {
-            for event in decoded! {
-                print (event)
-                if let noteNum = event.note {
-                    if let startTime = notesOn[noteNum] {
-                        let note = NoteInterval(noteNumber: noteNum, startTime: startTime, endTime: event.time!)
-                        notesPlayed.append(note)
-                        notesOn[noteNum] = nil
-                    }
-                    else {
-                        notesOn[noteNum] = event.time!
-                    }
-                }
-            }
-            print(notesPlayed)
-            var maxNote = Int8(71)
-            if let maxPlayed = (notesPlayed.map {$0.noteNumber}.max()) {
-                maxNote = max(maxPlayed, maxNote)
-            }
-            var minNote = Int8(48)
-            if let minPlayed = (notesPlayed.map {$0.noteNumber}.min()) {
-                minNote = min(minPlayed, minNote)
-            }
-            
-            let endTime = notesPlayed.map {$0.endTime}.max()
-            let noteHeight = size.height / (CGFloat(maxNote)-CGFloat(minNote)+1)
-            color.setFill()
-            for note in notesPlayed {
-                
-                let x = (CGFloat(note.startTime)/CGFloat(endTime!)) * size.width
-                let y = (CGFloat(maxNote)-CGFloat(note.noteNumber)) * CGFloat(noteHeight)
-                
-                let width = size.width * CGFloat(note.endTime - note.startTime) / CGFloat(endTime!)
-                let noteRect = CGRect(x:x, y:y, width:width, height:noteHeight)
-                UIRectFill(noteRect)
-                
-            }
-        }
-        
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
-    }
-}
-
-public final class TemporaryFileURL {
-    public let contentURL: URL
-    public init(extension ext: String) {
-        contentURL = URL(fileURLWithPath: NSTemporaryDirectory())
-            .appendingPathComponent(UUID().uuidString)
-            .appendingPathExtension(ext)
-    }
-    deinit {
-        DispatchQueue.global(qos: .utility).async { [contentURL = self.contentURL] in
-            try? FileManager.default.removeItem(at: contentURL)
-        }
-    }
-}
-
-struct NoteInterval {
-    let noteNumber: Int8
-    let startTime: Int64
-    let endTime: Int64
-}
-
-struct MIDIEvent {
-    let trackNum: Int8
-    let time: Int64?
-    let type: String?
-    let number: Int?
-    let note: Int8?
-    let vel: Int8?
-    
-    enum CodingKeys: String, CodingKey {
-        case trackNum = "track_no"
-        case time = "abs_time"
-        case type
-        case number
-        case note
-        case vel
-    }
-    
-}
-
-extension MIDIEvent: Decodable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.trackNum = try container.decodeIfPresent(Int8.self, forKey: .trackNum) ?? 0
-        self.time = try container.decodeIfPresent(Int64.self, forKey: .time) ?? nil
-        self.type = try container.decodeIfPresent(String.self, forKey: .type) ?? nil
-        self.number = try container.decodeIfPresent(Int.self, forKey: .number) ?? nil
-        self.note = try container.decodeIfPresent(Int8.self, forKey: .note) ?? nil
-        self.vel = try container.decodeIfPresent(Int8.self, forKey: .vel) ?? nil
-    }
-}
-
-
 class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
     
     var aiImageView: UIImageView!
@@ -167,6 +33,22 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
     var sessionClips: [MIDIClip] = []
     var clipsCollection: CollectionReference!
     
+    func addClip(from data: Data, creator: String) {
+        let clip = MIDIClip(midiData: data, creator: creator, timestamp: Date())
+        self.sessionClips.append(clip)
+        let newClipRef = self.clipsCollection.document()
+        newClipRef.setData([
+            "creator": clip.creator,
+            "midiData": clip.midiData,
+            "time": clip.timestamp]) {err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+        }
+    }
+    
     override func loadView() {
         super.loadView()
         let webConfiguration = WKWebViewConfiguration()
@@ -174,32 +56,17 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         webConfiguration.userContentController = controller
         aiImageView = UIImageView(frame: CGRect(x:50, y:50, width: 200, height: 50))
         userImageView = UIImageView(frame: CGRect(x:50, y:100, width: 200, height: 50))
+        
         eventFunctions["user"] = {(body) in
             if body.starts(with: "[77,84,") {
                 let bytes = body.dropFirst().dropLast().split(separator: ",").map {UInt8($0)!}
-                let clip = MIDIClip(midiData: Data(bytes:bytes), creator: "user", timestamp: Date())
-                self.sessionClips.append(clip)
-                let newClipRef = self.clipsCollection.document()
-                newClipRef.setData([
-                    "creator": clip.creator,
-                    "midiData": clip.midiData,
-                    "time": clip.timestamp]) {err in
-                        if let err = err {
-                            print("Error updating document: \(err)")
-                        } else {
-                            print("Document successfully updated")
-                        }
-                }
-                
+                self.addClip(from: Data(bytes:bytes), creator: "user")
             }
         }
         
         eventFunctions["ai"] = {(body) in
             if body.starts(with: "TVRoZ") {
-                let clip = MIDIClip(midiData: Data(base64Encoded: body)!, creator: "ai", timestamp: Date())
-                self.sessionClips.append(clip)
-                
-                
+                self.addClip(from: Data(base64Encoded: body)!, creator: "ai")
             }
         }
         
@@ -259,28 +126,6 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         button.setImage(UIImage(named: "microphone"), for: .normal)
         
     }
-    
-    
-    func createAVMIDIPlayerFromMIDIFIleDLS() {
-        
-        let midiString = ""
-        var midiFileURL: URL!
-        
-        guard let bankURL = Bundle.main.url(forResource: "gs_soundfont", withExtension: "sf2" ) else {
-            fatalError("\"gs_soundfont.sf2\" file not found.")
-        }
-        
-        do {
-            try self.midiPlayer = AVMIDIPlayer(contentsOf: midiFileURL, soundBankURL: bankURL)
-            print("created midi player with sound bank url \(bankURL)")
-        } catch let error as NSError {
-            print("Error \(error.localizedDescription)")
-        }
-        
-        self.midiPlayer?.prepareToPlay()
-    }
-    
-    
     
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {

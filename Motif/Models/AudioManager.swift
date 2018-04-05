@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 import AudioKit
 
 
@@ -22,6 +23,9 @@ class AudioManager{
     private var recorder: AKNodeRecorder!
     private var player: AKAudioPlayer!
     private var moogLadder: AKMoogLadder!
+    
+    var midiPlayer: AVMIDIPlayer?
+    var midiPlayers: [Int:AVMIDIPlayer] = [:]
     
     init() {
         AudioKit.disconnectAllInputs()
@@ -81,4 +85,23 @@ class AudioManager{
         return microphone
     }
     
+    func playMIDIData(data: Data) {
+        if let player = midiPlayers[data.hashValue] {
+            player.currentPosition = 0
+            player.play(nil)
+            
+        } else {
+            do {
+                let player = try AVMIDIPlayer(data: data, soundBankURL: soundFontURL)
+                player.prepareToPlay()
+                midiPlayers[data.hashValue] = player
+                player.play(nil)
+                
+            } catch {
+                print("Error creating midiplayer: \(error.localizedDescription)")
+            }
+        }
+        
+        
+    }
 }

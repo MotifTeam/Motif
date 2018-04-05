@@ -15,6 +15,9 @@ import AVFoundation
 //class ClipTableViewCell: UITableViewCell, AKLiveViewController {
     //if let sound_clip = NSDataAsset(name:"rain-3")
 //}
+let soundFontURL = Bundle.main.url(forResource: "gs_soundfont", withExtension: "sf2")!
+let cellImageCache = NSCache<NSData, UIImage>()
+
 
 public var clip_names: [String] = ["rain-3"]
 
@@ -68,24 +71,33 @@ class ClipTableViewCell: UITableViewCell {
 }
 
 class MIDIClipViewCell: UITableViewCell {
+    var parentVC: MIDIClipViewController!
     var clip: MIDIClip?
+    var player: AVMIDIPlayer?
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var time: UILabel!
     
-    
     @IBAction func playClip(_ sender: Any) {
-        print("hi")
+        AudioManager.sharedInstance.playMIDIData(data: clip!.midiData)
     }
     
     func populate(_ clip: MIDIClip) {
         self.clip = clip
         time.text = clip.timestamp.description
+        let imageSize = previewImageView.frame.size
         DispatchQueue.global().async {
-            let image = clip.createMIDIPreviewImage(size: self.previewImageView.frame.size, color: .blue)
+            let color: UIColor = clip.creator == "ai" ? .orange : .blue
+            var image: UIImage = UIImage()
+            if let cachedImage = cellImageCache.object(forKey: clip.midiData as NSData) {
+                image = cachedImage
+            }
+            else {
+                image = clip.createMIDIPreviewImage(size: imageSize, color: color)
+                cellImageCache.setObject(image, forKey: clip.midiData as NSData)
+            }
             DispatchQueue.main.async {
                 self.previewImageView.image = image
             }
-        
         }
     }
 }
@@ -115,7 +127,7 @@ class ClipLibraryViewController: UIViewController {
 
     @IBOutlet weak var goback: UIButton!
     var toggle = true
-    var player: AKAudioPlayer?
+    weak var player: AKAudioPlayer?
     var db: Firestore!
 
     func updateSlider() {
@@ -191,6 +203,9 @@ class ClipLibraryViewController: UIViewController {
 class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var midiPlayer: AVMIDIPlayer?
+    var clipPlaying: MIDIClip?
 
     var clips: [MIDIClip] = []
 
@@ -208,21 +223,21 @@ class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableVi
         db = Firestore.firestore()
 
         let uid = Auth.auth().currentUser?.uid ?? "0"
-        db.collection("users").document(uid).collection("clips").getDocuments() { (querySnapshot, err) in
+        db.collection("users").document(uid).collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
-                    self.clips.append(MIDIClip(midiData: document.data()["midiData"] as! Data, creator: document.data()["creator"] as! String, timestamp: Date()))
-                    print(self.clips.count)
+                    self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date))
+                    //print(self.clips.count)
                 }
                 self.tableView.reloadData()
             }
 
         }
         tableView.reloadData()
-        print(clips)
+        //print(clips)
 
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -232,6 +247,7 @@ class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "midiCell", for: indexPath) as! MIDIClipViewCell
         let row = indexPath.row
+        cell.parentVC = self
         cell.populate(clips[row])
         return cell
     }
