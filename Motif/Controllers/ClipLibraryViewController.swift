@@ -8,9 +8,10 @@
 
 import UIKit
 import AudioKit
+import AVFoundation
 import AudioKitUI
 import Firebase
-import AVFoundation
+import CoreData
 
 //class ClipTableViewCell: UITableViewCell, AKLiveViewController {
     //if let sound_clip = NSDataAsset(name:"rain-3")
@@ -23,52 +24,6 @@ public var clip_names: [String] = ["rain-3"]
 
 let textCellIdentifier = "songCell"
 
-class ClipTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var clipName: UILabel!
-
-    var clipLibaryViewController: ClipLibraryViewController!
-    var playingPositionSlider: AKSlider?
-
-    var akFile: AKAudioFile!
-    var player: AKAudioPlayer!
-
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        akFile = try! AKAudioFile(readFileName: "rain-03.wav", baseDir: .resources)
-        player = try! AKAudioPlayer(file: akFile)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-
-    @IBAction func playClip(_ sender: Any) {
-        print("Play button was pressed")
-        //let path = Bundle.main.path(forResource: clipName.text, ofType: "wav")
-        //let url = NSURL.fileURL(withPath: path!)
-
-        // var akFile: AKAudioFile
-        do {
-            let akFile = try AKAudioFile(readFileName: "rain-03.wav", baseDir: .resources)
-            print("File created")
-            print("File.sampleRate: \(akFile.duration)")
-
-            let player = try AKAudioPlayer(file: akFile) {
-                print("completion callback has been triggered!")
-            }
-            clipLibaryViewController.player = player
-            clipLibaryViewController.updateSlider()
-            AudioKit.output = player
-            try AudioKit.start()
-            player.play()
-
-        } catch let error as NSError {
-            print("There's an error: \(error)")
-        }
-    }
-}
 
 class MIDIClipViewCell: UITableViewCell {
     var parentVC: MIDIClipViewController!
@@ -207,6 +162,139 @@ class ClipLibraryViewController: UIViewController {
     @IBAction func unwindtoClip(segue: UIStoryboardSegue) {
     }
 }
+
+class ClipTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var clipName: UILabel!
+    var url: URL!
+    
+    var clipLibaryViewController: ClipLibraryViewController!
+    var playingPositionSlider: AKSlider?
+    
+    var akFile: AKAudioFile!
+    //var player: AVAudioPlayer!
+    //var documentsDirectory: URL!
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    var player: AVAudioPlayer!
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        //akFile = try! AKAudioFile(readFileName: url, baseDir: .documents)
+        //let player = try AVAudioPlayer(contentsOf: url)
+        //var player = try! AVAudioPlayer(contentsOf: url)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    
+    @IBAction func playClip(_ sender: Any) {
+        print("Play button was pressed")
+        //documentsDirectory.appendingPathComponent(clipName.text as! String)
+        print(documentsDirectory.appendingPathComponent(clipName.text as! String))
+        let song = documentsDirectory.appendingPathComponent(clipName.text as! String)
+        //print(url.appendingPathComponent())
+        //let path = Bundle.main.path(forResource: clipName.text, ofType: "wav")
+        //let url = NSURL.fileURL(withPath: path!)
+        
+        // var akFile: AKAudioFile
+        
+        do {
+            let akFile = try AKAudioFile(forReading: url)
+            //let akFile = try AKAudioFile(readFileName: url, baseDir: .documents)
+            print("File created")
+            //print("File.sampleRate: \(akFile.duration)")
+            
+            let player = try AKAudioPlayer(file: akFile)
+            //player.prepareToPlay()
+            //player.volume = 1.0
+            
+            //guard let player = audioPlayer else { return }
+            
+            //clipLibaryViewController.player = audioPlayer
+            //clipLibaryViewController.updateSlider()
+            AudioKit.output = player
+            try AudioKit.start()
+            player.play()
+            
+        } catch let error as NSError {
+            print("There's an error: \(error)")
+        }
+    }
+}
+
+
+class AudioClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.reloadData()
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let note_list = retrieveAudioClips()
+        return note_list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath as IndexPath) as! ClipTableViewCell
+        
+        let row = indexPath.row
+        
+        let fetched_results = retrieveAudioClips()
+        let curr_clip = fetched_results[row]
+        
+        if let clip_name = curr_clip.value(forKey:"name") {
+            cell.clipName?.text = String(describing:clip_name)
+        }
+        if let clip_url = curr_clip.value(forKey:"url") {
+            cell.url = clip_url as! URL
+        }
+        
+        //cell.textLabel?.text = teams[row]
+        
+        return cell
+    }
+    
+    func retrieveAudioClips() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Song")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        // Examples of filtering using predicates
+        // let predicate = NSPredicate(format: "age = 35")
+        // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
+        // request.predicate = predicate
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+        return(fetchedResults)!
+    }
+    
+    
+}
+
 
 class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 

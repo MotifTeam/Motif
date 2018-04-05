@@ -61,13 +61,13 @@ class MicViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             if let songName = textField?.text, let track = self.trackInProgress {
-                track.exportAsynchronously(name: "Motif-\(songName).m4a",
+                track.exportAsynchronously(name: "Motif-\(songName).m4a", // changed ext
                     baseDir: .documents,
-                    exportFormat: .m4a) {file, exportError in
+                    exportFormat: .m4a) {file, exportError in // changed ext
                         if let error = exportError {
                             print("Export Failed \(error)")
                         } else {
-                            self.saveSong(name: "Motif-\(songName).m4a", location: (file?.directoryPath)!)
+                            self.saveSong(name: "Motif-\(songName).m4a", location: (file?.directoryPath)!) // changed ext
                             print("Export succeeded")
                         }
                 }

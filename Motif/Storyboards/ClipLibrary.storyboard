@@ -72,6 +72,9 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="400" verticalCompressionResistancePriority="700" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-o8-cOM" userLabel="AudioTableViewContainer">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <connections>
+                                                    <segue destination="FxL-It-dNq" kind="embed" id="elt-Ca-LuD"/>
+                                                </connections>
                                             </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -192,12 +195,12 @@
             </objects>
             <point key="canvasLocation" x="42" y="-351"/>
         </scene>
-        <!--View Controller-->
+        <!--Audio Clip Controller-->
         <scene sceneID="w0x-2C-g2A">
             <objects>
-                <viewController id="FxL-It-dNq" sceneMemberID="viewController">
+                <viewController id="FxL-It-dNq" userLabel="Audio Clip Controller" customClass="AudioClipViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gCf-nY-RWV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbF-UM-qlS">
@@ -214,7 +217,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zw-TA-6LK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="playClip:" destination="07M-Y2-9EW" eventType="touchUpInside" id="lk7-pK-Gf3"/>
@@ -226,18 +229,10 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aP-0x-r5I">
-                                                    <rect key="frame" x="20" y="41" width="32" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="3aP-0x-r5I" firstAttribute="leading" secondItem="WRA-sw-j0i" secondAttribute="leadingMargin" id="BDZ-6b-qKj"/>
                                                 <constraint firstItem="g3N-qg-4pg" firstAttribute="leading" secondItem="WRA-sw-j0i" secondAttribute="leadingMargin" id="q43-TE-SDG"/>
                                                 <constraint firstItem="g3N-qg-4pg" firstAttribute="top" secondItem="WRA-sw-j0i" secondAttribute="topMargin" id="wY4-3q-yaP"/>
-                                                <constraint firstItem="3aP-0x-r5I" firstAttribute="bottom" secondItem="WRA-sw-j0i" secondAttribute="bottomMargin" id="zoQ-Dq-tys"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="0.50425406679999996" colorSpace="calibratedRGB"/>
@@ -251,10 +246,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WYh-9N-yoK"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="PbF-UM-qlS" id="UnJ-eF-buB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nk0-2k-aie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1070" y="318"/>
+            <point key="canvasLocation" x="-1086.9565217391305" y="388.85869565217394"/>
         </scene>
         <!--Clip View Controller-->
         <scene sceneID="bH7-L0-Pg3">
@@ -285,7 +283,11 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="69.666666666666671"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
+<<<<<<< HEAD
                                                         <action selector="playClip:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="tWH-0y-9O7"/>
+=======
+                                                        <action selector="rowTapped:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="7y8-QO-TTU"/>
+>>>>>>> clip_library
                                                     </connections>
                                                 </button>
                                                 <slider opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="apP-py-MLZ">
