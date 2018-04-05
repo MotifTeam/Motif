@@ -54,6 +54,7 @@
                                             <segment title="Audio"/>
                                             <segment title="MIDI"/>
                                         </segments>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="switchTable:" destination="poe-dL-vXC" eventType="valueChanged" id="CF3-Ds-NTi"/>
                                         </connections>
@@ -81,10 +82,10 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ZT-M5-qMc">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZT-M5-qMc">
                                 <rect key="frame" x="-180" y="0.0" width="180" height="736"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2p-Q3-aVL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2p-Q3-aVL">
                                         <rect key="frame" x="40" y="233" width="100" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <state key="normal" title="Settings">
@@ -94,7 +95,7 @@
                                             <segue destination="nRI-Oa-SH3" kind="show" id="BUt-Lw-WGd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPv-lW-eMZ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPv-lW-eMZ">
                                         <rect key="frame" x="51" y="146" width="78" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <state key="normal" title="Follow">
@@ -104,7 +105,7 @@
                                             <segue destination="I7c-1p-tKH" kind="show" id="bob-ex-UzG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-Za-LU6">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ae-Za-LU6">
                                         <rect key="frame" x="48" y="313" width="85" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <state key="normal" title="Logout">
@@ -126,8 +127,9 @@
                                     <constraint firstItem="OPv-lW-eMZ" firstAttribute="centerX" secondItem="8ZT-M5-qMc" secondAttribute="centerX" id="wFu-p9-GAg"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-k1-AvN">
-                                <rect key="frame" x="384" y="0.0" width="30" height="736"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-k1-AvN">
+                                <rect key="frame" x="184" y="0.0" width="230" height="650"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="0Pg-FZ-McZ"/>
                                 </connections>
@@ -135,19 +137,20 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="8ZT-M5-qMc" secondAttribute="bottom" id="68b-7Z-0BW"/>
+                            <constraint firstItem="2N6-wU-6JH" firstAttribute="trailing" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="337" id="771-uC-mwV"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" id="APe-4C-0U7"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="bHx-Rz-jaz" secondAttribute="bottom" constant="50" id="Ata-Qw-8ed"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="baseline" secondItem="MiX-1R-tDj" secondAttribute="baseline" id="G33-yh-jd0"/>
-                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="20" id="LPb-gd-40d"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="ON7-1X-L3Y"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" id="VbS-GA-svo"/>
                             <constraint firstItem="MiX-1R-tDj" firstAttribute="leading" secondItem="N4e-bb-x6G" secondAttribute="trailing" constant="58" id="WSc-ka-qCg"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="25" id="XbA-u2-KQz"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="bottom" secondItem="2N6-wU-6JH" secondAttribute="bottom" id="hBL-ga-lfB"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" constant="18" id="hof-7p-JfR"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="ihM-pR-2MW"/>
+                            <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="l6R-ds-kpW"/>
                             <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="nst-79-Omp"/>
-                            <constraint firstItem="9fl-k1-AvN" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="p07-Pw-JdB"/>
+                            <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="omx-Yf-Qy4"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" id="r2y-IT-RZs"/>
                         </constraints>
@@ -155,13 +158,15 @@
                     </view>
                     <connections>
                         <outlet property="audioTableContainer" destination="FpC-o8-cOM" id="wRM-l1-kpy"/>
+                        <outlet property="goback" destination="9fl-k1-AvN" id="zHF-mo-P8Z"/>
+                        <outlet property="leadingConstraint" destination="pEo-pW-WEl" id="K5N-U9-Jah"/>
                         <outlet property="midiTableContainer" destination="hY0-zP-XhV" id="67e-L5-7Rl"/>
                         <outlet property="playbackControllerView" destination="O8f-xb-YFP" id="M3g-gR-6RL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvh-Jh-Kc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-635" y="-351"/>
+            <point key="canvasLocation" x="-636.23188405797111" y="-351.35869565217394"/>
         </scene>
         <!--Setting-->
         <scene sceneID="5SR-ST-e2e">

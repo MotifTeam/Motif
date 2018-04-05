@@ -13,6 +13,7 @@
 		2716C88720753F88003AEBB0 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88620753F88003AEBB0 /* Setting.storyboard */; };
 		2716C88920753FBA003AEBB0 /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88820753FBA003AEBB0 /* Follow.storyboard */; };
 		2716C88D20756046003AEBB0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2716C88C20756046003AEBB0 /* SettingsController.swift */; };
+		2716C88F2075D035003AEBB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88E2075D035003AEBB0 /* GoogleService-Info.plist */; };
 		2760A8372073F87200A701BA /* ClipLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A8362073F87200A701BA /* ClipLibraryViewController.swift */; };
 		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
 		2760A8402074510900A701BA /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A83F2074510900A701BA /* AudioManager.swift */; };
@@ -31,8 +32,6 @@
 		27FF435C20506ED2006BBE64 /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */; };
 		27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435D20507345006BBE64 /* CircleBackgroundView.swift */; };
 		966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */; };
-		9F72F6C320758A3400EA01E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F72F6C220758A3300EA01E3 /* GoogleService-Info.plist */; };
-		9F72F6C520759C0D00EA01E3 /* gs_soundfont.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 9F72F6C42075914600EA01E3 /* gs_soundfont.sf2 */; };
 		9F72F6C72075A20400EA01E3 /* MIDIClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72F6C62075A20400EA01E3 /* MIDIClip.swift */; };
 		9FCFDACA20747C7800126965 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDABE20747C7800126965 /* version.h */; };
 		9FCFDACB20747C7800126965 /* midio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDABF20747C7800126965 /* midio.h */; };
@@ -53,6 +52,8 @@
 		2716C88620753F88003AEBB0 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		2716C88820753FBA003AEBB0 /* Follow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Follow.storyboard; sourceTree = "<group>"; };
 		2716C88C20756046003AEBB0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		2716C88E2075D035003AEBB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2716C8902075D03C003AEBB0 /* gs_soundfont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_soundfont.sf2; sourceTree = SOURCE_ROOT; };
 		2760A8362073F87200A701BA /* ClipLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipLibraryViewController.swift; sourceTree = "<group>"; };
 		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
 		2760A83F2074510900A701BA /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -72,8 +73,6 @@
 		27FF435920506D2B006BBE64 /* MicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicViewController.swift; sourceTree = "<group>"; };
 		27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialGradientLayer.swift; sourceTree = "<group>"; };
 		27FF435D20507345006BBE64 /* CircleBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleBackgroundView.swift; sourceTree = "<group>"; };
-		9F72F6C220758A3300EA01E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		9F72F6C42075914600EA01E3 /* gs_soundfont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = gs_soundfont.sf2; path = /Users/andrewmartin/Documents/Spring2018/iOS/Motif/gs_soundfont.sf2; sourceTree = "<absolute>"; };
 		9F72F6C62075A20400EA01E3 /* MIDIClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIClip.swift; sourceTree = "<group>"; };
 		9FCFDABE20747C7800126965 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		9FCFDABF20747C7800126965 /* midio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = midio.h; sourceTree = "<group>"; };
@@ -142,7 +141,7 @@
 		27990BF22037B375005F9A86 /* Motif */ = {
 			isa = PBXGroup;
 			children = (
-				9F72F6C42075914600EA01E3 /* gs_soundfont.sf2 */,
+				2716C8902075D03C003AEBB0 /* gs_soundfont.sf2 */,
 				2760A83C2074134100A701BA /* Models */,
 				279CCA1A203E5B0700D72BD6 /* Controllers */,
 				279CCA19203E5AF800D72BD6 /* Helpers */,
@@ -150,7 +149,7 @@
 				27990BF32037B375005F9A86 /* AppDelegate.swift */,
 				27990BFA2037B375005F9A86 /* Assets.xcassets */,
 				27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */,
-				9F72F6C220758A3300EA01E3 /* GoogleService-Info.plist */,
+				2716C88E2075D035003AEBB0 /* GoogleService-Info.plist */,
 				27990BFF2037B375005F9A86 /* Info.plist */,
 			);
 			path = Motif;
@@ -301,14 +300,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F72F6C520759C0D00EA01E3 /* gs_soundfont.sf2 in Resources */,
 				279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */,
 				27990BFE2037B375005F9A86 /* LaunchScreen.storyboard in Resources */,
-				9F72F6C320758A3400EA01E3 /* GoogleService-Info.plist in Resources */,
 				27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */,
 				2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */,
 				27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */,
 				27990BF92037B375005F9A86 /* Main.storyboard in Resources */,
+				2716C88F2075D035003AEBB0 /* GoogleService-Info.plist in Resources */,
 				2716C88720753F88003AEBB0 /* Setting.storyboard in Resources */,
 				2716C88920753FBA003AEBB0 /* Follow.storyboard in Resources */,
 			);

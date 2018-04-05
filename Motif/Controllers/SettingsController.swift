@@ -38,4 +38,13 @@ class SettingsController: UITableViewController {
         
     }
 
+    @IBAction func exitView() {
+        print("triggerd")
+        guard let vc = UIStoryboard(name: "ClipLibrary",
+                                    bundle: nil)
+            .instantiateViewController(withIdentifier: "ClipLibrary") as? ClipLibraryViewController else {
+                return
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
 }

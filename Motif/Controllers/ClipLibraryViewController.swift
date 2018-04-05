@@ -124,7 +124,7 @@ class ClipLibraryViewController: UIViewController {
     @IBOutlet weak var playbackControllerView: UIView!
 
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-
+    
     @IBOutlet weak var goback: UIButton!
     var toggle = true
     weak var player: AKAudioPlayer?
@@ -179,6 +179,7 @@ class ClipLibraryViewController: UIViewController {
     }
 
     @IBAction func toggleSlider() {
+        print("click")
         UIView.animate(withDuration: 0.75) {
             if self.toggle {
                 self.leadingConstraint.constant = 0
@@ -193,7 +194,14 @@ class ClipLibraryViewController: UIViewController {
     }
 
     @IBAction func logOut() {
-
+        try! Auth.auth().signOut()
+        
+        guard let vc = UIStoryboard(name: "Login",
+                                    bundle: nil)
+            .instantiateViewController(withIdentifier: "loginSplash") as? LoginSplashViewController else {
+                return
+        }
+        self.present(vc, animated: true, completion: nil)
     }
 
     @IBAction func unwindtoClip(segue: UIStoryboardSegue) {
