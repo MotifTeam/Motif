@@ -20,24 +20,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiX-1R-tDj">
-                                <rect key="frame" x="294" y="20" width="61" height="30"/>
-                                <state key="normal" title="RECORD"/>
+                                <rect key="frame" x="376" y="28" width="30" height="30"/>
+                                <state key="normal" title="REC">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="CPJ-cH-ewO" kind="show" id="FyL-1Z-JJj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4e-bb-x6G">
-                                <rect key="frame" x="130" y="45" width="106" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="106" id="AUL-r3-5Cs"/>
-                                    <constraint firstAttribute="height" constant="37" id="YQi-2G-0Zg"/>
-                                </constraints>
+                                <rect key="frame" x="164" y="36" width="86.333333333333314" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHx-Rz-jaz">
-                                <rect key="frame" x="20" y="20" width="57" height="30"/>
+                                <rect key="frame" x="8" y="28" width="57" height="30"/>
                                 <state key="normal" title="Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -45,13 +43,13 @@
                                     <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="hNX-k8-vbw"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PUN-ue-h7L">
-                                <rect key="frame" x="0.0" y="100" width="414" height="636"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PUN-ue-h7L">
+                                <rect key="frame" x="8" y="84" width="398" height="644"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="900" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G0a-5A-qgL">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="398" height="29"/>
                                         <segments>
-                                            <segment title="Audio"/>
+                                            <segment title="Audio" width="207"/>
                                             <segment title="MIDI"/>
                                         </segments>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -60,17 +58,17 @@
                                         </connections>
                                     </segmentedControl>
                                     <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Hk-Tf-7AU">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="518"/>
+                                        <rect key="frame" x="0.0" y="32" width="398" height="518"/>
                                         <subviews>
                                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hY0-zP-XhV" userLabel="MIDITableViewContainer">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="518"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <connections>
                                                     <segue destination="Q05-W2-6RX" kind="embed" identifier="midiTable" id="xJ8-43-iAm"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="400" verticalCompressionResistancePriority="700" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-o8-cOM" userLabel="AudioTableViewContainer">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="398" height="518"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <connections>
                                                     <segue destination="FxL-It-dNq" kind="embed" id="elt-Ca-LuD"/>
@@ -80,7 +78,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" verticalHuggingPriority="500" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O8f-xb-YFP">
-                                        <rect key="frame" x="0.0" y="546" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="554" width="398" height="90"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -130,38 +128,28 @@
                                     <constraint firstItem="OPv-lW-eMZ" firstAttribute="centerX" secondItem="8ZT-M5-qMc" secondAttribute="centerX" id="wFu-p9-GAg"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fl-k1-AvN">
-                                <rect key="frame" x="184" y="0.0" width="230" height="650"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <connections>
-                                    <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="0Pg-FZ-McZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="8ZT-M5-qMc" secondAttribute="bottom" id="68b-7Z-0BW"/>
-                            <constraint firstItem="2N6-wU-6JH" firstAttribute="trailing" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="337" id="771-uC-mwV"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" id="APe-4C-0U7"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="bHx-Rz-jaz" secondAttribute="bottom" constant="50" id="Ata-Qw-8ed"/>
-                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="baseline" secondItem="MiX-1R-tDj" secondAttribute="baseline" id="G33-yh-jd0"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="trailing" secondItem="2N6-wU-6JH" secondAttribute="trailing" id="ON7-1X-L3Y"/>
-                            <constraint firstItem="MiX-1R-tDj" firstAttribute="leading" secondItem="N4e-bb-x6G" secondAttribute="trailing" constant="58" id="WSc-ka-qCg"/>
-                            <constraint firstItem="N4e-bb-x6G" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="25" id="XbA-u2-KQz"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="bottom" secondItem="2N6-wU-6JH" secondAttribute="bottom" id="hBL-ga-lfB"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" constant="18" id="hof-7p-JfR"/>
-                            <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="ihM-pR-2MW"/>
+                            <constraint firstItem="N4e-bb-x6G" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="16" id="EtH-g4-s4N"/>
+                            <constraint firstAttribute="trailing" secondItem="PUN-ue-h7L" secondAttribute="trailing" constant="8" id="Msb-jA-E54"/>
+                            <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="N4e-bb-x6G" secondAttribute="bottom" id="PJn-YZ-Qyg"/>
+                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="8" id="Pfa-17-gBs"/>
+                            <constraint firstItem="2N6-wU-6JH" firstAttribute="trailing" secondItem="MiX-1R-tDj" secondAttribute="trailing" constant="8" id="SU0-i7-HmJ"/>
+                            <constraint firstItem="MiX-1R-tDj" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="8" id="ZVw-x7-kcS"/>
+                            <constraint firstAttribute="bottom" secondItem="PUN-ue-h7L" secondAttribute="bottom" constant="8" id="aWh-Tb-Kbe"/>
+                            <constraint firstItem="N4e-bb-x6G" firstAttribute="centerX" secondItem="2N6-wU-6JH" secondAttribute="centerX" id="cpg-j3-pia"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="l6R-ds-kpW"/>
-                            <constraint firstItem="N4e-bb-x6G" firstAttribute="leading" secondItem="bHx-Rz-jaz" secondAttribute="trailing" constant="53" id="nst-79-Omp"/>
+                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="8" id="l92-Nm-prI"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="omx-Yf-Qy4"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
-                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" id="r2y-IT-RZs"/>
+                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="8" id="pXu-hf-cse"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2N6-wU-6JH"/>
                     </view>
                     <connections>
                         <outlet property="audioTableContainer" destination="FpC-o8-cOM" id="wRM-l1-kpy"/>
-                        <outlet property="goback" destination="9fl-k1-AvN" id="zHF-mo-P8Z"/>
                         <outlet property="leadingConstraint" destination="pEo-pW-WEl" id="K5N-U9-Jah"/>
                         <outlet property="midiTableContainer" destination="hY0-zP-XhV" id="67e-L5-7Rl"/>
                         <outlet property="playbackControllerView" destination="O8f-xb-YFP" id="M3g-gR-6RL"/>
@@ -200,7 +188,7 @@
             <objects>
                 <viewController id="FxL-It-dNq" userLabel="Audio Clip Controller" customClass="AudioClipViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gCf-nY-RWV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
+                        <rect key="frame" x="0.0" y="0.0" width="398" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbF-UM-qlS">
@@ -259,7 +247,7 @@
             <objects>
                 <viewController id="Q05-W2-6RX" customClass="MIDIClipViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g4B-IV-1tu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
+                        <rect key="frame" x="0.0" y="0.0" width="398" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DnM-bi-cSv">
@@ -283,11 +271,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="69.666666666666671"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-<<<<<<< HEAD
-                                                        <action selector="playClip:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="tWH-0y-9O7"/>
-=======
                                                         <action selector="rowTapped:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="7y8-QO-TTU"/>
->>>>>>> clip_library
                                                     </connections>
                                                 </button>
                                                 <slider opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="apP-py-MLZ">

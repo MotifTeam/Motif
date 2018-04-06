@@ -13,9 +13,6 @@ import AudioKitUI
 import Firebase
 import CoreData
 
-//class ClipTableViewCell: UITableViewCell, AKLiveViewController {
-    //if let sound_clip = NSDataAsset(name:"rain-3")
-//}
 let soundFontURL = Bundle.main.url(forResource: "gs_soundfont", withExtension: "sf2")!
 let cellImageCache = NSCache<NSData, UIImage>()
 
@@ -24,44 +21,10 @@ public var clip_names: [String] = ["rain-3"]
 
 let textCellIdentifier = "songCell"
 
-
-class MIDIClipViewCell: UITableViewCell {
-    var parentVC: MIDIClipViewController!
-    var clip: MIDIClip?
-    var player: AVMIDIPlayer?
-    @IBOutlet weak var previewImageView: UIImageView!
-    @IBOutlet weak var time: UILabel!
-    
-    @IBAction func playClip(_ sender: Any) {
-        AudioManager.sharedInstance.playMIDIData(data: clip!.midiData)
-    }
-    
-    func populate(_ clip: MIDIClip) {
-        self.clip = clip
-        time.text = clip.timestamp.description
-        let imageSize = previewImageView.frame.size
-        DispatchQueue.global().async {
-            let color: UIColor = clip.creator == "ai" ? .orange : .blue
-            var image: UIImage = UIImage()
-            if let cachedImage = cellImageCache.object(forKey: clip.midiData as NSData) {
-                image = cachedImage
-            }
-            else {
-                image = clip.createMIDIPreviewImage(size: imageSize, color: color)
-                cellImageCache.setObject(image, forKey: clip.midiData as NSData)
-            }
-            DispatchQueue.main.async {
-                self.previewImageView.image = image
-            }
-        }
-    }
-}
-
-
 class ClipLibraryViewController: UIViewController {
+    
     @IBOutlet weak var midiTableContainer: UIView!
     @IBOutlet weak var audioTableContainer: UIView!
-
 
     @IBAction func switchTable(_ sender: Any) {
         let segmentControl = sender as! UISegmentedControl
@@ -92,7 +55,7 @@ class ClipLibraryViewController: UIViewController {
                                                  range: 0 ... player!.duration,
                                                  format: "%0.2f s") { _ in }
             playbackControllerView.addSubview(playingPositionSlider)
-            AKPlaygroundLoop(every: 1 / 60.0) {
+            _ = AKPlaygroundLoop(every: 1 / 60.0) {
                 if self.player!.duration > 0 {
                     playingPositionSlider.value = self.player!.playhead
                 }
@@ -104,15 +67,24 @@ class ClipLibraryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //goback.isEnabled = false
-
-        // Do any additional setup after loading the view.
-        // [START setup]
+        
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil {
+                print("user is logged in")
+            } else {
+                guard let vc = UIStoryboard(name: "Login",
+                                            bundle: nil)
+                    .instantiateViewController(withIdentifier: "loginSplash") as? LoginSplashViewController else {
+                        return
+                }
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.goback.isEnabled = false
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -161,195 +133,4 @@ class ClipLibraryViewController: UIViewController {
 
     @IBAction func unwindtoClip(segue: UIStoryboardSegue) {
     }
-}
-
-class ClipTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var clipName: UILabel!
-    var url: URL!
-    
-    var clipLibaryViewController: ClipLibraryViewController!
-    var playingPositionSlider: AKSlider?
-    
-    var akFile: AKAudioFile!
-    //var player: AVAudioPlayer!
-    //var documentsDirectory: URL!
-    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    var player: AVAudioPlayer!
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //akFile = try! AKAudioFile(readFileName: url, baseDir: .documents)
-        //let player = try AVAudioPlayer(contentsOf: url)
-        //var player = try! AVAudioPlayer(contentsOf: url)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    
-    @IBAction func playClip(_ sender: Any) {
-        print("Play button was pressed")
-        //documentsDirectory.appendingPathComponent(clipName.text as! String)
-        print(documentsDirectory.appendingPathComponent(clipName.text as! String))
-        let song = documentsDirectory.appendingPathComponent(clipName.text as! String)
-        //print(url.appendingPathComponent())
-        //let path = Bundle.main.path(forResource: clipName.text, ofType: "wav")
-        //let url = NSURL.fileURL(withPath: path!)
-        
-        // var akFile: AKAudioFile
-        
-        do {
-            let akFile = try AKAudioFile(forReading: url)
-            //let akFile = try AKAudioFile(readFileName: url, baseDir: .documents)
-            print("File created")
-            //print("File.sampleRate: \(akFile.duration)")
-            
-            let player = try AKAudioPlayer(file: akFile)
-            //player.prepareToPlay()
-            //player.volume = 1.0
-            
-            //guard let player = audioPlayer else { return }
-            
-            //clipLibaryViewController.player = audioPlayer
-            //clipLibaryViewController.updateSlider()
-            AudioKit.output = player
-            try AudioKit.start()
-            player.play()
-            
-        } catch let error as NSError {
-            print("There's an error: \(error)")
-        }
-    }
-}
-
-
-class AudioClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 140
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.reloadData()
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let note_list = retrieveAudioClips()
-        return note_list.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath as IndexPath) as! ClipTableViewCell
-        
-        let row = indexPath.row
-        
-        let fetched_results = retrieveAudioClips()
-        let curr_clip = fetched_results[row]
-        
-        if let clip_name = curr_clip.value(forKey:"name") {
-            cell.clipName?.text = String(describing:clip_name)
-        }
-        if let clip_url = curr_clip.value(forKey:"url") {
-            cell.url = clip_url as! URL
-        }
-        
-        //cell.textLabel?.text = teams[row]
-        
-        return cell
-    }
-    
-    func retrieveAudioClips() -> [NSManagedObject] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Song")
-        var fetchedResults:[NSManagedObject]? = nil
-        
-        // Examples of filtering using predicates
-        // let predicate = NSPredicate(format: "age = 35")
-        // let predicate = NSPredicate(format: "name CONTAINS[c] 'ake'")
-        // request.predicate = predicate
-        
-        do {
-            try fetchedResults = context.fetch(request) as? [NSManagedObject]
-        } catch {
-            // If an error occurs
-            let nserror = error as NSError
-            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            abort()
-        }
-        
-        return(fetchedResults)!
-    }
-    
-    
-}
-
-
-class MIDIClipViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    @IBOutlet weak var tableView: UITableView!
-    
-    var midiPlayer: AVMIDIPlayer?
-    var clipPlaying: MIDIClip?
-
-    var clips: [MIDIClip] = []
-
-    var db: Firestore!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-
-        let settings = FirestoreSettings()
-
-        Firestore.firestore().settings = settings
-        // [END setup]
-        db = Firestore.firestore()
-
-        let uid = Auth.auth().currentUser?.uid ?? "0"
-        db.collection("users").document(uid).collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date))
-                    //print(self.clips.count)
-                }
-                self.tableView.reloadData()
-            }
-
-        }
-        tableView.reloadData()
-        //print(clips)
-
-    }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "midiCell", for: indexPath) as! MIDIClipViewCell
-        let row = indexPath.row
-        cell.parentVC = self
-        cell.populate(clips[row])
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clips.count
-    }
-
 }
