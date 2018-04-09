@@ -29,7 +29,7 @@ class ClipLibraryViewController: UIViewController {
     
     let cellNib = UINib(nibName: "ClipTableViewCell", bundle: nil)
     let midiNib = UINib(nibName: "MIDIClipViewCell", bundle: nil)
-
+    let cellSpacingHeight: CGFloat = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,6 +161,10 @@ class ClipLibraryViewController: UIViewController {
 extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         if tableViewBool {
             return songs.count
         } else {
@@ -169,16 +173,14 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
+        let row = indexPath.section
         if tableViewBool {
             let cell = tableView.dequeueReusableCell(withIdentifier: "clipCell", for: indexPath as IndexPath) as! ClipTableViewCell
             
             let curr_clip = songs[row]
             
             if let clip_name = curr_clip.value(forKey:"name") {
-                cell.clipName?.text = String(describing:clip_name)
-                    .replace(target: "Motif-", withString: "")
-                    .replace(target: ".m4a", withString: "")
+                cell.fileName = String(describing:clip_name)
             }
             if let clip_url = curr_clip.value(forKey:"url") {
                 cell.url = clip_url as! URL
@@ -210,4 +212,16 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
+    // Make the background color show through
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+
 }

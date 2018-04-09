@@ -15,13 +15,22 @@ class ClipTableViewCell: UITableViewCell {
     
     @IBOutlet weak var clipName: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var url: URL!
+    var fileName: String! {
+        didSet {
+            clipName.text! = fileName
+                .replace(target: "Motif-", withString: "")
+                .replace(target: ".m4a", withString: "")
+        }
+    }
     var clipLibaryViewController: ClipLibraryViewController!
     var playingPositionSlider: AKSlider?
     var akFile: AKAudioFile!
     var player: AVAudioPlayer!
+    var playing = false
     
     let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
@@ -41,24 +50,32 @@ class ClipTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    
-    @IBAction func playClip(_ sender: Any) {
-        print("Play button was pressed")
-        print(documentsDirectory.appendingPathComponent(clipName.text as! String))
-        let song = documentsDirectory.appendingPathComponent(clipName.text as! String)
-
-        
-        do {
-            let akFile = try AKAudioFile(forReading: url)
-            print("File created")
-            
-            let player = try AKAudioPlayer(file: akFile)
-            AudioKit.output = player
-            try AudioKit.start()
-            player.play()
-            
-        } catch let error as NSError {
-            print("There's an error: \(error)")
+    @IBAction func playerAction() {
+        if playing {
+            UIView.animate(withDuration: 0.3) {
+                self.playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+                self.playing = !self.playing
+            }
+            pauseClip()
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+                self.playing = !self.playing
+            }
+            playClip()
         }
+    }
+    
+    func playClip() {
+        print("Play button was pressed")
+        if AudioManager.sharedInstance.getCurrentAudio() != url {
+            AudioManager.sharedInstance
+                .replaceAudioData(fileURL: self.url)
+        }
+        AudioManager.sharedInstance.playAudioData()
+    }
+    
+    func pauseClip() {
+        AudioManager.sharedInstance.pauseAudioData()
     }
 }

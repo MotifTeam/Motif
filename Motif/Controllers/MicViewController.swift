@@ -75,6 +75,8 @@ class MicViewController: UIViewController {
             } else {
                 print("Failed")
             }
+            
+            self.resetUI()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in

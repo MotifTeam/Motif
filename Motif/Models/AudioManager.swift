@@ -101,7 +101,27 @@ class AudioManager{
                 print("Error creating midiplayer: \(error.localizedDescription)")
             }
         }
-        
-        
+    }
+    
+    func replaceAudioData(fileURL: URL) {
+        do {
+            let akFile = try AKAudioFile(forReading: fileURL)
+            try player.replace(file: akFile)
+            player.play()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func getCurrentAudio() -> URL {
+        return player.audioFile.url
+    }
+    
+    func playAudioData() {
+        player.play()
+    }
+    
+    func pauseAudioData() {
+        player.pause()
     }
 }

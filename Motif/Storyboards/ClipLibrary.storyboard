@@ -34,10 +34,10 @@
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PUN-ue-h7L">
-                                <rect key="frame" x="8" y="116" width="398" height="620"/>
+                                <rect key="frame" x="12" y="116" width="390" height="620"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="900" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G0a-5A-qgL">
-                                        <rect key="frame" x="0.0" y="0.0" width="398" height="29"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="29"/>
                                         <segments>
                                             <segment title="Audio" width="207"/>
                                             <segment title="MIDI"/>
@@ -48,7 +48,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pzg-92-Wk0">
-                                        <rect key="frame" x="0.0" y="32" width="398" height="588"/>
+                                        <rect key="frame" x="0.0" y="32" width="390" height="588"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
@@ -109,13 +109,13 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="8ZT-M5-qMc" secondAttribute="bottom" id="68b-7Z-0BW"/>
-                            <constraint firstAttribute="trailing" secondItem="PUN-ue-h7L" secondAttribute="trailing" constant="8" id="Msb-jA-E54"/>
+                            <constraint firstAttribute="trailing" secondItem="PUN-ue-h7L" secondAttribute="trailing" constant="12" id="Msb-jA-E54"/>
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="8" id="Pfa-17-gBs"/>
                             <constraint firstItem="2N6-wU-6JH" firstAttribute="trailing" secondItem="MiX-1R-tDj" secondAttribute="trailing" constant="8" id="SU0-i7-HmJ"/>
                             <constraint firstItem="MiX-1R-tDj" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="8" id="ZVw-x7-kcS"/>
                             <constraint firstAttribute="bottom" secondItem="PUN-ue-h7L" secondAttribute="bottom" id="aWh-Tb-Kbe"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="l6R-ds-kpW"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="8" id="l92-Nm-prI"/>
+                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="12" id="l92-Nm-prI"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="96" id="lR2-ik-apu"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="omx-Yf-Qy4"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
