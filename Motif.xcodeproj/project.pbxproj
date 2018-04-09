@@ -18,7 +18,6 @@
 		2721C8BE2077CF9000F8CAF1 /* MIDIClipViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2721C8BC2077CF9000F8CAF1 /* MIDIClipViewCell.xib */; };
 		2721C8C12077D66A00F8CAF1 /* ClipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8BF2077D66A00F8CAF1 /* ClipTableViewCell.swift */; };
 		2721C8C22077D66A00F8CAF1 /* ClipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2721C8C02077D66A00F8CAF1 /* ClipTableViewCell.xib */; };
-		2721C8C42077DCA800F8CAF1 /* AudioClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8C32077DCA800F8CAF1 /* AudioClipViewController.swift */; };
 		2721C8C62077DD0900F8CAF1 /* MIDIClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8C52077DD0900F8CAF1 /* MIDIClipViewController.swift */; };
 		2760A8372073F87200A701BA /* ClipLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A8362073F87200A701BA /* ClipLibraryViewController.swift */; };
 		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
@@ -64,7 +63,6 @@
 		2721C8BC2077CF9000F8CAF1 /* MIDIClipViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MIDIClipViewCell.xib; sourceTree = "<group>"; };
 		2721C8BF2077D66A00F8CAF1 /* ClipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipTableViewCell.swift; sourceTree = "<group>"; };
 		2721C8C02077D66A00F8CAF1 /* ClipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClipTableViewCell.xib; sourceTree = "<group>"; };
-		2721C8C32077DCA800F8CAF1 /* AudioClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioClipViewController.swift; sourceTree = "<group>"; };
 		2721C8C52077DD0900F8CAF1 /* MIDIClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIClipViewController.swift; sourceTree = "<group>"; };
 		2760A8362073F87200A701BA /* ClipLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipLibraryViewController.swift; sourceTree = "<group>"; };
 		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 				27043A2C20615B2D0076FB53 /* TempViewController.swift */,
 				27990BF52037B375005F9A86 /* ViewController.swift */,
 				2716C88C20756046003AEBB0 /* SettingsController.swift */,
-				2721C8C32077DCA800F8CAF1 /* AudioClipViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -428,7 +425,6 @@
 				2716C88D20756046003AEBB0 /* SettingsController.swift in Sources */,
 				27990BF62037B375005F9A86 /* ViewController.swift in Sources */,
 				27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */,
-				2721C8C42077DCA800F8CAF1 /* AudioClipViewController.swift in Sources */,
 				2721C8BD2077CF9000F8CAF1 /* MIDIClipViewCell.swift in Sources */,
 				27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */,
 				2760A84320745A5000A701BA /* Song.xcdatamodeld in Sources */,

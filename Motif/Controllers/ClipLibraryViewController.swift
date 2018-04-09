@@ -16,58 +16,66 @@ import CoreData
 let soundFontURL = Bundle.main.url(forResource: "gs_soundfont", withExtension: "sf2")!
 let cellImageCache = NSCache<NSData, UIImage>()
 
-
-public var clip_names: [String] = ["rain-3"]
-
-let textCellIdentifier = "songCell"
-
 class ClipLibraryViewController: UIViewController {
-    
-    @IBOutlet weak var midiTableContainer: UIView!
-    @IBOutlet weak var audioTableContainer: UIView!
 
-    @IBAction func switchTable(_ sender: Any) {
-        let segmentControl = sender as! UISegmentedControl
-        let index = segmentControl.selectedSegmentIndex
-        print(index)
-        if index == 1 {
-            audioTableContainer.alpha = 0
-            midiTableContainer.alpha = 1
-        }
-        else {
-            audioTableContainer.alpha = 1
-            midiTableContainer.alpha = 0
-        }
-    }
-    @IBOutlet weak var playbackControllerView: UIView!
-
-    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var goback: UIButton!
-    var toggle = true
+    @IBOutlet weak var tableView: UITableView!
+    
     weak var player: AKAudioPlayer?
     var db: Firestore!
+    var tableViewBool = true
+    var songs = [NSManagedObject]()
+    var clips: [MIDIClip] = []
+    
+    let cellNib = UINib(nibName: "ClipTableViewCell", bundle: nil)
+    let midiNib = UINib(nibName: "MIDIClipViewCell", bundle: nil)
 
-    func updateSlider() {
-        if (player != nil) {
-            let playingPositionSlider = AKSlider(property: "Position",
-                                                 value: player!.playhead,
-                                                 range: 0 ... player!.duration,
-                                                 format: "%0.2f s") { _ in }
-            playbackControllerView.addSubview(playingPositionSlider)
-            _ = AKPlaygroundLoop(every: 1 / 60.0) {
-                if self.player!.duration > 0 {
-                    playingPositionSlider.value = self.player!.playhead
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        checkAuth()
+        setUpTable()
+    }
+    
+    private func setupDB() {
+        let settings = FirestoreSettings()
+        Firestore.firestore().settings = settings
+        db = Firestore.firestore()
+        updateMIDIClips()
+    }
+    
+    private func updateMIDIClips() {
+        let uid = Auth.auth().currentUser?.uid ?? "0"
+        db.collection("users").document(uid).collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date))
                 }
-
+                self.tableView.reloadData()
             }
         }
     }
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    
+    private func setUpTable() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(cellNib, forCellReuseIdentifier: "clipCell")
+        tableView.register(midiNib, forCellReuseIdentifier: "midiCell")
+        tableView.estimatedRowHeight = 140
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+        updateAudioClips()
+        tableView.reloadData()
+    }
+    
+    private func updateAudioClips() {
+        songs = retrieveAudioClips()
+    }
+    
+    private func checkAuth(){
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil {
                 print("user is logged in")
@@ -84,23 +92,41 @@ class ClipLibraryViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        self.goback.isEnabled = false
     }
-
-    @IBAction func toggleSlider() {
-        print("click")
-        UIView.animate(withDuration: 0.75) {
-            if self.toggle {
-                self.leadingConstraint.constant = 0
-                self.goback.isEnabled = true
-            } else {
-                self.leadingConstraint.constant = -180
-                self.goback.isEnabled = false
-            }
+    
+    private func retrieveAudioClips() -> [NSManagedObject] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName:"Song")
+        var fetchedResults:[NSManagedObject]? = nil
+        
+        do {
+            try fetchedResults = context.fetch(request) as? [NSManagedObject]
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
         }
-
-        toggle = !toggle
+        return(fetchedResults)!
     }
+    
+//    func updateSlider() {
+//        if (player != nil) {
+//            let playingPositionSlider = AKSlider(property: "Position",
+//                                                 value: player!.playhead,
+//                                                 range: 0 ... player!.duration,
+//                                                 format: "%0.2f s") { _ in }
+//            playbackControllerView.addSubview(playingPositionSlider)
+//            _ = AKPlaygroundLoop(every: 1 / 60.0) {
+//                if self.player!.duration > 0 {
+//                    playingPositionSlider.value = self.player!.playhead
+//                }
+//
+//            }
+//        }
+//    }
 
     @IBAction func logOut() {
         try! Auth.auth().signOut()
@@ -113,6 +139,67 @@ class ClipLibraryViewController: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
 
-    @IBAction func unwindtoClip(segue: UIStoryboardSegue) {
+    @IBAction func unwindtoClip(segue: UIStoryboardSegue) {}
+    
+    @IBAction func switchTable(_ sender: Any) {
+        let segmentControl = sender as! UISegmentedControl
+        let index = segmentControl.selectedSegmentIndex
+        print(index)
+        if index == 1 {
+            tableViewBool = false
+            updateMIDIClips()
+            tableView.reloadData()
+        }
+        else {
+            tableViewBool = true
+            updateAudioClips()
+            tableView.reloadData()
+        }
+    }
+}
+
+extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        if tableViewBool {
+            return songs.count
+        } else {
+            return clips.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        if tableViewBool {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "clipCell", for: indexPath as IndexPath) as! ClipTableViewCell
+            
+            let curr_clip = songs[row]
+            
+            if let clip_name = curr_clip.value(forKey:"name") {
+                cell.clipName?.text = String(describing:clip_name)
+            }
+            if let clip_url = curr_clip.value(forKey:"url") {
+                cell.url = clip_url as! URL
+            }
+            
+            cell.preservesSuperviewLayoutMargins = false
+            cell.separatorInset = UIEdgeInsets.zero
+            cell.layoutMargins = UIEdgeInsets.zero
+            
+            return cell
+
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "midiCell", for: indexPath as IndexPath) as! MIDIClipViewCell
+            let row = indexPath.row
+            cell.populate(clips[row])
+            cell.preservesSuperviewLayoutMargins = false
+            cell.separatorInset = UIEdgeInsets.zero
+            cell.layoutMargins = UIEdgeInsets.zero
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

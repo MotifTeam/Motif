@@ -32,9 +32,6 @@
                                 <state key="normal" title="Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="toggleSlider" destination="poe-dL-vXC" eventType="touchUpInside" id="hNX-k8-vbw"/>
-                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PUN-ue-h7L">
                                 <rect key="frame" x="8" y="116" width="398" height="620"/>
@@ -50,26 +47,10 @@
                                             <action selector="switchTable:" destination="poe-dL-vXC" eventType="valueChanged" id="CF3-Ds-NTi"/>
                                         </connections>
                                     </segmentedControl>
-                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hk-Tf-7AU">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pzg-92-Wk0">
                                         <rect key="frame" x="0.0" y="32" width="398" height="588"/>
-                                        <subviews>
-                                            <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hY0-zP-XhV" userLabel="MIDITableViewContainer">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="588"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <connections>
-                                                    <segue destination="Q05-W2-6RX" kind="embed" identifier="midiTable" id="xJ8-43-iAm"/>
-                                                </connections>
-                                            </containerView>
-                                            <containerView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="400" verticalCompressionResistancePriority="700" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-o8-cOM" userLabel="AudioTableViewContainer">
-                                                <rect key="frame" x="0.0" y="0.0" width="398" height="588"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <connections>
-                                                    <segue destination="FxL-It-dNq" kind="embed" id="elt-Ca-LuD"/>
-                                                </connections>
-                                            </containerView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZT-M5-qMc">
@@ -143,9 +124,7 @@
                         <viewLayoutGuide key="safeArea" id="2N6-wU-6JH"/>
                     </view>
                     <connections>
-                        <outlet property="audioTableContainer" destination="FpC-o8-cOM" id="wRM-l1-kpy"/>
-                        <outlet property="leadingConstraint" destination="pEo-pW-WEl" id="K5N-U9-Jah"/>
-                        <outlet property="midiTableContainer" destination="hY0-zP-XhV" id="67e-L5-7Rl"/>
+                        <outlet property="tableView" destination="Pzg-92-Wk0" id="12i-PC-ggP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kvh-Jh-Kc8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -158,7 +137,7 @@
                 <viewControllerPlaceholder storyboardName="Setting" id="nRI-Oa-SH3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUM-fU-aJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="291" y="15"/>
+            <point key="canvasLocation" x="183" y="95"/>
         </scene>
         <!--Follow-->
         <scene sceneID="1XW-XL-k0o">
@@ -166,7 +145,7 @@
                 <viewControllerPlaceholder storyboardName="Follow" id="I7c-1p-tKH" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rol-fu-78x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-658" y="540"/>
+            <point key="canvasLocation" x="-1141" y="95"/>
         </scene>
         <!--RecView-->
         <scene sceneID="8K6-eN-AO5">
@@ -175,97 +154,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ha8-av-FvQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="42" y="-351"/>
-        </scene>
-        <!--Audio Clip Controller-->
-        <scene sceneID="w0x-2C-g2A">
-            <objects>
-                <viewController id="FxL-It-dNq" userLabel="Audio Clip Controller" customClass="AudioClipViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gCf-nY-RWV">
-                        <rect key="frame" x="0.0" y="0.0" width="398" height="588"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PbF-UM-qlS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="WYh-9N-yoK"/>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="PbF-UM-qlS" id="UnJ-eF-buB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nk0-2k-aie" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1086.9565217391305" y="388.85869565217394"/>
-        </scene>
-        <!--Clip View Controller-->
-        <scene sceneID="bH7-L0-Pg3">
-            <objects>
-                <viewController id="Q05-W2-6RX" customClass="MIDIClipViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="g4B-IV-1tu">
-                        <rect key="frame" x="0.0" y="0.0" width="398" height="588"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DnM-bi-cSv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="MIDIClipCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="midiCell" rowHeight="70" id="qyr-Fc-y9X" customClass="MIDIClipViewCell" customModule="Motif" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qyr-Fc-y9X" id="ftN-0g-9Co">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="69.666666666666671"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Sg-u4-q61">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="69.666666666666671"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eZ-tU-qZ8">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="69.666666666666671"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="rowTapped:" destination="qyr-Fc-y9X" eventType="touchUpInside" id="7y8-QO-TTU"/>
-                                                    </connections>
-                                                </button>
-                                                <slider opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="apP-py-MLZ">
-                                                    <rect key="frame" x="0.0" y="19" width="414" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </slider>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axX-hZ-tgp">
-                                                    <rect key="frame" x="11" y="29" width="119" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.2274509804" green="0.2274509804" blue="0.2274509804" alpha="0.50425406679999996" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="previewImageView" destination="4Sg-u4-q61" id="2ZS-7C-TnU"/>
-                                            <outlet property="time" destination="axX-hZ-tgp" id="jm6-Sh-8jX"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="eNv-yt-gVp"/>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="DnM-bi-cSv" id="2Ow-7z-Kaa"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J3n-JI-Il2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-200.00000000000003" y="388.85869565217394"/>
         </scene>
     </scenes>
 </document>
