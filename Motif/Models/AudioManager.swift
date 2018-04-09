@@ -23,6 +23,7 @@ class AudioManager{
     private var recorder: AKNodeRecorder!
     private var player: AKAudioPlayer!
     private var moogLadder: AKMoogLadder!
+    private var tape: AKAudioFile!
     
     var midiPlayer: AVMIDIPlayer?
     var midiPlayers: [Int:AVMIDIPlayer] = [:]
@@ -44,9 +45,9 @@ class AudioManager{
         micBooster = AKBooster(micMixer)
         tracker = AKFrequencyTracker(microphone)
         silence = AKBooster(tracker, gain: 0)
-        
         do {
-             recorder = try AKNodeRecorder(node: micMixer)
+            tape = try AKAudioFile()
+            recorder = try AKNodeRecorder(node: micMixer, file: tape)
         } catch {
             print("Couldn't start recorder")
         }
@@ -76,9 +77,36 @@ class AudioManager{
         }
     }
     
-    func stopRecording() -> AKAudioFile? {
+    func stopRecording() {
         recorder.stop()
-        return recorder.audioFile
+    }
+    
+    func resetRecording() {
+        try! recorder.reset()
+    }
+    
+    func saveSong(fileName: String) -> (Bool, URL) {
+        
+        var result = true
+        recorder.stop()
+
+        tape = recorder.audioFile
+        var url = tape.directoryPath
+        
+        tape.exportAsynchronously(name: "Motif-\(fileName)",
+                                  baseDir: .documents,
+                                  exportFormat: .m4a) {file, exportError in
+            if let error = exportError {
+                print("Export Failed \(error)")
+                result = false
+            } else {
+                print("Export succeeded")
+                url = (file?.directoryPath)!
+                
+            }
+        }
+                                    
+        return (result, url)
     }
     
     func getMic() -> AKMicrophone {
@@ -114,7 +142,7 @@ class AudioManager{
     }
     
     func getCurrentAudio() -> URL {
-        return player.audioFile.url
+        return tape.directoryPath
     }
     
     func playAudioData() {

@@ -60,22 +60,15 @@ class MicViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
-            if let songName = textField?.text, let track = self.trackInProgress {
-                track.exportAsynchronously(name: "Motif-\(songName).m4a", // changed ext
-                    baseDir: .documents,
-                    exportFormat: .m4a) {file, exportError in // changed ext
-                        if let error = exportError {
-                            print("Export Failed \(error)")
-                        } else {
-                            self.saveSong(name: "Motif-\(songName).m4a", location: (file?.directoryPath)!) // changed ext
-                            print("Export succeeded")
-                        }
+            if let songName = textField?.text {
+                let result = AudioManager.sharedInstance.saveSong(fileName: songName)
+                if result.0 {
+                    self.saveSong(name: "Motif-\(songName).m4a", location: result.1) // changed ext
                 }
-                
             } else {
                 print("Failed")
             }
-            
+            AudioManager.sharedInstance.resetRecording()
             self.resetUI()
         }))
         
@@ -92,8 +85,6 @@ class MicViewController: UIViewController {
     var AudioManagerInstance = AudioManager.sharedInstance
     
     var plot: AKNodeOutputPlot!
-    
-    var trackInProgress: AKAudioFile?
     
     var isRecording = false
     var musicTimer: Timer!
@@ -197,7 +188,7 @@ class MicViewController: UIViewController {
         plot.pause()
         
         // Keep file in memory for additional processing
-        trackInProgress = AudioManagerInstance.stopRecording()
+        AudioManagerInstance.stopRecording()
         
         setUpPostRecordingUI()
     }
