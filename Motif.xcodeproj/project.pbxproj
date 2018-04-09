@@ -31,6 +31,7 @@
 		279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA1B203E5B8E00D72BD6 /* Login.storyboard */; };
 		279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */; };
 		27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */; };
+		27B86CCF207C061500832AB8 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B86CCE207C061500832AB8 /* Helper.swift */; };
 		27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E663BF20634A70008F592D /* AIPianoViewController.swift */; };
 		27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FF435720506CCD006BBE64 /* Recording.storyboard */; };
 		27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435920506D2B006BBE64 /* MicViewController.swift */; };
@@ -78,6 +79,7 @@
 		279CCA1B203E5B8E00D72BD6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSplashViewController.swift; sourceTree = "<group>"; };
 		27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
+		27B86CCE207C061500832AB8 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		27E663BF20634A70008F592D /* AIPianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPianoViewController.swift; sourceTree = "<group>"; };
 		27FF435720506CCD006BBE64 /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
 		27FF435920506D2B006BBE64 /* MicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 		279CCA19203E5AF800D72BD6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				27B86CCE207C061500832AB8 /* Helper.swift */,
 				9FCFDABD20747C7800126965 /* midi-json */,
 				27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */,
 				27FF435D20507345006BBE64 /* CircleBackgroundView.swift */,
@@ -442,6 +445,7 @@
 				2721C8C12077D66A00F8CAF1 /* ClipTableViewCell.swift in Sources */,
 				27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */,
 				2721C8C62077DD0900F8CAF1 /* MIDIClipViewController.swift in Sources */,
+				27B86CCF207C061500832AB8 /* Helper.swift in Sources */,
 				279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */,
 				9FCFDAD220747C7800126965 /* midio.c in Sources */,
 			);

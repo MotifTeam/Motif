@@ -61,6 +61,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="clipName" destination="bcg-lZ-fqa" id="1g2-M8-nRi"/>
+                <outlet property="timeLabel" destination="E06-VT-LnF" id="phs-ng-Lsa"/>
             </connections>
             <point key="canvasLocation" x="34" y="67"/>
         </tableViewCell>

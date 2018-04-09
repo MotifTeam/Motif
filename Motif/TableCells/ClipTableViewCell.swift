@@ -13,6 +13,18 @@ import AVFoundation
 
 class ClipTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var clipName: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    
+    var url: URL!
+    var clipLibaryViewController: ClipLibraryViewController!
+    var playingPositionSlider: AKSlider?
+    var akFile: AKAudioFile!
+    var player: AVAudioPlayer!
+    
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -20,17 +32,7 @@ class ClipTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    @IBOutlet weak var clipName: UILabel!
-    var url: URL!
-    
-    var clipLibaryViewController: ClipLibraryViewController!
-    var playingPositionSlider: AKSlider?
-    
-    var akFile: AKAudioFile!
-    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    var player: AVAudioPlayer!
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
