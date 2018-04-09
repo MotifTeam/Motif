@@ -12,13 +12,19 @@ import CoreData
 class AudioClipViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    let cellNib = UINib(nibName: "ClipTableViewCell", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 140
+        setUpTable()
+    }
+    
+    private func setUpTable() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(cellNib, forCellReuseIdentifier: "clipCell")
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.reloadData()
     }
     
@@ -59,7 +65,11 @@ extension AudioClipViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath as IndexPath) as! ClipTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "clipCell", for: indexPath as IndexPath) as! ClipTableViewCell
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         let row = indexPath.row
         
@@ -73,9 +83,13 @@ extension AudioClipViewController: UITableViewDataSource, UITableViewDelegate {
             cell.url = clip_url as! URL
         }
         
-        //cell.textLabel?.text = teams[row]
-        
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+    
 }
 

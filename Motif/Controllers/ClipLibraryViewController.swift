@@ -87,24 +87,6 @@ class ClipLibraryViewController: UIViewController {
         self.goback.isEnabled = false
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clip_names.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath as IndexPath) as! ClipTableViewCell
-
-        let row = indexPath.row
-        cell.clipName?.text = clip_names[row]
-        cell.clipLibaryViewController = self
-        return cell
-    }
-
     @IBAction func toggleSlider() {
         print("click")
         UIView.animate(withDuration: 0.75) {
