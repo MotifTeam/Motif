@@ -184,7 +184,6 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
             }
             if let clip_url = curr_clip.value(forKey:"url") {
                 cell.url = clip_url as! URL
-                print("cell URL: \(cell.url)")
             }
             
             if let clip_time = curr_clip.value(forKey:"duration") {

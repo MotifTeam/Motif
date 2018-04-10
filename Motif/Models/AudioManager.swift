@@ -46,9 +46,9 @@ class AudioManager{
         tracker = AKFrequencyTracker(microphone)
         silence = AKBooster(tracker, gain: 0)
         micBooster.gain = 0
+        
         do {
-            tape = try AKAudioFile()
-            recorder = try AKNodeRecorder(node: micMixer, file: tape)
+            recorder = try AKNodeRecorder(node: micMixer)
         } catch {
             print("Couldn't start recorder")
         }
@@ -68,6 +68,8 @@ class AudioManager{
         } catch {
             print(error)
         }
+        
+        resetRecording()
     }
     
     func startRecording() {
@@ -88,8 +90,6 @@ class AudioManager{
     
     func saveSong(fileName: String, completionHandler: @escaping (Bool, URL, Double) -> Void) {
         
-        recorder.stop()
-
         tape = recorder.audioFile
         
         tape.exportAsynchronously(name: "Motif-\(fileName)",
