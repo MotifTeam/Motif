@@ -22,6 +22,7 @@ class ClipLibraryViewController: UIViewController {
     @IBOutlet weak var slideOutConstraint: NSLayoutConstraint!
     @IBOutlet weak var slideOutView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var profileImage: UIImageView!
     
     weak var player: AKAudioPlayer?
     var db: Firestore!
@@ -40,6 +41,12 @@ class ClipLibraryViewController: UIViewController {
         setUpTable()
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureHandler(_:)))
         self.slideOutView.addGestureRecognizer(gestureRecognizer)
+        
+        profileImage.contentMode = .scaleAspectFit
+        profileImage.layer.cornerRadius = self.profileImage.frame.width/2
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderWidth = 2
+        profileImage.layer.masksToBounds = true
     }
     
     private func setupDB() {
@@ -151,18 +158,15 @@ class ClipLibraryViewController: UIViewController {
     }
     
     @IBAction func openSideView(_ sender: Any) {
-        slideOutConstraint.constant = 0
-//        UIView.animate(withDuration: 0.3) {
-//            self.backgroundButtonView.alpha = 1
-//            self.view.layoutIfNeeded()
-//        }
+        UIView.animate(withDuration: 0.5) {
+            self.slideOutConstraint.constant = 0
+            self.view.layoutIfNeeded()
+
+        }
     }
     @IBAction func closeSideView(_ sender: Any) {
-        slideOutConstraint.constant = -180
-//        UIView.animate(withDuration: 0.3) {
-//            self.backgroundButtonView.alpha = 0
-//            //self.view.layoutIfNeeded()
-//        }
+        slideOutConstraint.constant = -220
+
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
