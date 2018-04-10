@@ -45,6 +45,7 @@ class AudioManager{
         micBooster = AKBooster(micMixer)
         tracker = AKFrequencyTracker(microphone)
         silence = AKBooster(tracker, gain: 0)
+        micBooster.gain = 0
         do {
             tape = try AKAudioFile()
             recorder = try AKNodeRecorder(node: micMixer, file: tape)
@@ -85,7 +86,7 @@ class AudioManager{
         try! recorder.reset()
     }
     
-    func saveSong(fileName: String, completionHandler: @escaping (Bool, URL) -> Void) {
+    func saveSong(fileName: String, completionHandler: @escaping (Bool, URL, Double) -> Void) {
         
         recorder.stop()
 
@@ -96,10 +97,10 @@ class AudioManager{
                                   exportFormat: .m4a) {file, exportError in
             if let error = exportError {
                 print("Export Failed \(error)")
-                completionHandler(false,  self.tape.url)
+                completionHandler(false,  self.tape.url, -1)
             } else {
                 print("Export succeeded")
-                completionHandler(true, file!.url)
+                completionHandler(true, file!.url, file!.duration)
             }
         }
                                     
@@ -131,7 +132,6 @@ class AudioManager{
         do {
             let akFile = try AKAudioFile(forReading: fileURL)
             try player.replace(file: akFile)
-            player.play()
         } catch {
             print(error)
         }

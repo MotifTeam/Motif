@@ -187,12 +187,9 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
                 print("cell URL: \(cell.url)")
             }
             
-            let audioAsset = AVURLAsset.init(url: cell.url, options: nil)
-            let duration = audioAsset.duration
-            let durationInSeconds = CMTimeGetSeconds(duration)
-            
-            cell.timeLabel.text = "\(durationInSeconds)"
-            
+            if let clip_time = curr_clip.value(forKey:"duration") {
+                cell.timeLabel.text = "\(clip_time)"
+            }
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero
             cell.layoutMargins = UIEdgeInsets.zero

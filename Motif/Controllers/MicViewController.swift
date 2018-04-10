@@ -61,9 +61,11 @@ class MicViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             if let songName = textField?.text {
-                AudioManager.sharedInstance.saveSong(fileName: songName) { result, url in
+                AudioManager.sharedInstance.saveSong(fileName: songName.replace(target: " ", withString: "_")) { result, url, duration in
                     if result {
-                         self.saveSong(name: "Motif-\(songName)", location: url) // changed ext
+                        print(duration)
+                        
+                        self.saveSong(name: "Motif-\(songName)", location: url, duration: duration) // changed ext
                     } else {
                         print("failed")
                     }
@@ -118,7 +120,7 @@ class MicViewController: UIViewController {
         setupPlot()
     }
     
-    func saveSong(name: String, location: URL) {
+    func saveSong(name: String, location: URL, duration: Double) {
             
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -127,7 +129,8 @@ class MicViewController: UIViewController {
                                                        into: context)
         song.setValue(name, forKey: "name")
         song.setValue(location, forKey: "url")
-        
+        song.setValue(duration, forKey: "duration")
+
         
         do {
             try context.save()
