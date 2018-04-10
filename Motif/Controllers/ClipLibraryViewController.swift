@@ -19,6 +19,8 @@ let cellImageCache = NSCache<NSData, UIImage>()
 class ClipLibraryViewController: UIViewController {
 
     
+    @IBOutlet weak var slideOutConstraint: NSLayoutConstraint!
+    @IBOutlet weak var slideOutView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     weak var player: AKAudioPlayer?
@@ -26,6 +28,7 @@ class ClipLibraryViewController: UIViewController {
     var tableViewBool = true
     var songs = [NSManagedObject]()
     var clips: [MIDIClip] = []
+    var initialTouchPoint: CGPoint = CGPoint(x: 0, y: 0)
     
     let cellNib = UINib(nibName: "ClipTableViewCell", bundle: nil)
     let midiNib = UINib(nibName: "MIDIClipViewCell", bundle: nil)
@@ -35,6 +38,8 @@ class ClipLibraryViewController: UIViewController {
         super.viewDidLoad()
         checkAuth()
         setUpTable()
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureHandler(_:)))
+        self.slideOutView.addGestureRecognizer(gestureRecognizer)
     }
     
     private func setupDB() {
@@ -94,6 +99,10 @@ class ClipLibraryViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent // .default
+    }
+    
     private func retrieveAudioClips() -> [NSManagedObject] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -111,22 +120,6 @@ class ClipLibraryViewController: UIViewController {
         }
         return(fetchedResults)!
     }
-    
-//    func updateSlider() {
-//        if (player != nil) {
-//            let playingPositionSlider = AKSlider(property: "Position",
-//                                                 value: player!.playhead,
-//                                                 range: 0 ... player!.duration,
-//                                                 format: "%0.2f s") { _ in }
-//            playbackControllerView.addSubview(playingPositionSlider)
-//            _ = AKPlaygroundLoop(every: 1 / 60.0) {
-//                if self.player!.duration > 0 {
-//                    playingPositionSlider.value = self.player!.playhead
-//                }
-//
-//            }
-//        }
-//    }
 
     @IBAction func logOut() {
         try! Auth.auth().signOut()
@@ -155,6 +148,45 @@ class ClipLibraryViewController: UIViewController {
             updateAudioClips()
             tableView.reloadData()
         }
+    }
+    
+    @IBAction func openSideView(_ sender: Any) {
+        slideOutConstraint.constant = 0
+//        UIView.animate(withDuration: 0.3) {
+//            self.backgroundButtonView.alpha = 1
+//            self.view.layoutIfNeeded()
+//        }
+    }
+    @IBAction func closeSideView(_ sender: Any) {
+        slideOutConstraint.constant = -180
+//        UIView.animate(withDuration: 0.3) {
+//            self.backgroundButtonView.alpha = 0
+//            //self.view.layoutIfNeeded()
+//        }
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func gestureHandler(_ sender: UIPanGestureRecognizer) {
+        let viewTranslation = sender.translation(in: self.slideOutView)
+        let label = sender.view!
+        if sender.state == .began {
+            initialTouchPoint = CGPoint(x: label.center.x + label.frame.width/2, y: label.center.y)
+        }
+        if viewTranslation.x < 0 {
+            label.center = CGPoint(x: label.center.x + viewTranslation.x, y: label.center.y)
+        }
+        if sender.state == .ended {
+            if abs(label.center.x) + initialTouchPoint.x > 100 {
+                self.closeSideView(sender)
+            } else {
+                UIView.animate(withDuration: 0.3, animations: {
+                    label.center = self.initialTouchPoint
+                })
+            }
+        }
+        sender.setTranslation(CGPoint.zero, in: self.slideOutView)
     }
 }
 

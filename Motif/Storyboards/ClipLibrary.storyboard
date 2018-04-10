@@ -32,6 +32,9 @@
                                 <state key="normal" title="Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="openSideView:" destination="poe-dL-vXC" eventType="touchUpInside" id="dYY-9M-f4S"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PUN-ue-h7L">
                                 <rect key="frame" x="12" y="116" width="390" height="620"/>
@@ -53,6 +56,13 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Clips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4e-bb-x6G">
+                                <rect key="frame" x="164" y="37" width="86.333333333333314" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZT-M5-qMc">
                                 <rect key="frame" x="-180" y="0.0" width="180" height="736"/>
                                 <subviews>
@@ -98,13 +108,6 @@
                                     <constraint firstItem="OPv-lW-eMZ" firstAttribute="centerX" secondItem="8ZT-M5-qMc" secondAttribute="centerX" id="wFu-p9-GAg"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Clips" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4e-bb-x6G">
-                                <rect key="frame" x="164" y="37" width="86.333333333333314" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -113,17 +116,18 @@
                             <constraint firstItem="bHx-Rz-jaz" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="8" id="Pfa-17-gBs"/>
                             <constraint firstItem="2N6-wU-6JH" firstAttribute="trailing" secondItem="MiX-1R-tDj" secondAttribute="trailing" constant="8" id="SU0-i7-HmJ"/>
                             <constraint firstItem="MiX-1R-tDj" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="8" id="ZVw-x7-kcS"/>
+                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="8" id="aVQ-ya-r6m"/>
                             <constraint firstAttribute="bottom" secondItem="PUN-ue-h7L" secondAttribute="bottom" id="aWh-Tb-Kbe"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="l6R-ds-kpW"/>
-                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="12" id="l92-Nm-prI"/>
                             <constraint firstItem="PUN-ue-h7L" firstAttribute="top" secondItem="2N6-wU-6JH" secondAttribute="top" constant="96" id="lR2-ik-apu"/>
-                            <constraint firstItem="8ZT-M5-qMc" firstAttribute="top" secondItem="h61-Jv-333" secondAttribute="top" id="omx-Yf-Qy4"/>
                             <constraint firstItem="8ZT-M5-qMc" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="-180" id="pEo-pW-WEl"/>
-                            <constraint firstItem="bHx-Rz-jaz" firstAttribute="leading" secondItem="8ZT-M5-qMc" secondAttribute="trailing" constant="8" id="pXu-hf-cse"/>
+                            <constraint firstItem="PUN-ue-h7L" firstAttribute="leading" secondItem="2N6-wU-6JH" secondAttribute="leading" constant="12" id="xQc-QD-7eC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2N6-wU-6JH"/>
                     </view>
                     <connections>
+                        <outlet property="slideOutConstraint" destination="pEo-pW-WEl" id="SM8-gT-hjm"/>
+                        <outlet property="slideOutView" destination="8ZT-M5-qMc" id="4o8-dN-V1U"/>
                         <outlet property="tableView" destination="Pzg-92-Wk0" id="12i-PC-ggP"/>
                     </connections>
                 </viewController>
