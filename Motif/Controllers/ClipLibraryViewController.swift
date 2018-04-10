@@ -187,7 +187,7 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
             }
             
             if let clip_time = curr_clip.value(forKey:"duration") {
-                cell.timeLabel.text = "\(clip_time)"
+                cell.duration = clip_time as! Double
             }
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero

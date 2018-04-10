@@ -29,12 +29,6 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E06-VT-LnF">
-                        <rect key="frame" x="268" y="11" width="36" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMe-9M-Qca">
                         <rect key="frame" x="16" y="45" width="35" height="40"/>
                         <constraints>
@@ -47,31 +41,21 @@
                             <action selector="playerAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QH3-6P-D5e"/>
                         </connections>
                     </button>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WJm-qj-qaf">
-                        <rect key="frame" x="72" y="64" width="232" height="2"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </progressView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="E06-VT-LnF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="HJX-cw-5tF"/>
                     <constraint firstItem="BMe-9M-Qca" firstAttribute="top" secondItem="bcg-lZ-fqa" secondAttribute="bottom" constant="13.5" id="Syf-da-fQ7"/>
                     <constraint firstItem="bcg-lZ-fqa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="aFm-0m-bJd"/>
-                    <constraint firstItem="WJm-qj-qaf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="eY1-lH-Y9R"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="WJm-qj-qaf" secondAttribute="bottom" constant="19" id="j50-7p-oOc"/>
                     <constraint firstItem="bcg-lZ-fqa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="q6g-sr-jyG"/>
                     <constraint firstItem="BMe-9M-Qca" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="sDP-lg-HZz"/>
                     <constraint firstItem="BMe-9M-Qca" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="wpl-g9-jg8"/>
-                    <constraint firstItem="E06-VT-LnF" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="zZc-b7-Siu"/>
-                    <constraint firstItem="WJm-qj-qaf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="56" id="zb6-z6-dmN"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="0.5" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="clipName" destination="bcg-lZ-fqa" id="1g2-M8-nRi"/>
+                <outlet property="contentView" destination="H2p-sc-9uM" id="QMS-ul-QcM"/>
                 <outlet property="playButton" destination="BMe-9M-Qca" id="wdz-PW-cn2"/>
-                <outlet property="progressView" destination="WJm-qj-qaf" id="huK-Ok-lH6"/>
-                <outlet property="timeLabel" destination="E06-VT-LnF" id="phs-ng-Lsa"/>
             </connections>
             <point key="canvasLocation" x="34" y="80"/>
         </tableViewCell>

@@ -64,7 +64,9 @@ class MicViewController: UIViewController {
                 AudioManager.sharedInstance.saveSong(fileName: songName.replace(target: " ", withString: "_")) { result, url, duration in
                     if result {
                         print(duration)
-                        self.saveSong(name: "Motif-\(songName)", location: url, duration: duration) // changed ext
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            self.saveSong(name: "Motif-\(songName)", location: url, duration: duration) // changed ext
+                        })
                     } else {
                         print("failed")
                     }
@@ -76,10 +78,9 @@ class MicViewController: UIViewController {
             } else {
                 print("Failed")
             }
+            self.resetUI()
+
             
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.resetUI()
-            })
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in

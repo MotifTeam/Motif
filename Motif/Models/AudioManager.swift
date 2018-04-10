@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 import AudioKit
-
+import AudioKitUI
 
 class AudioManager{
     
@@ -23,7 +23,7 @@ class AudioManager{
     private var recorder: AKNodeRecorder!
     private var player: AKAudioPlayer!
     private var moogLadder: AKMoogLadder!
-    private var tape: AKAudioFile!
+    private var tape: AKAudioFile?
     
     var midiPlayer: AVMIDIPlayer?
     var midiPlayers: [Int:AVMIDIPlayer] = [:]
@@ -91,16 +91,17 @@ class AudioManager{
     func saveSong(fileName: String, completionHandler: @escaping (Bool, URL, Double) -> Void) {
         
         tape = recorder.audioFile
-        
-        tape.exportAsynchronously(name: "Motif-\(fileName)",
-                                  baseDir: .documents,
-                                  exportFormat: .m4a) {file, exportError in
-            if let error = exportError {
-                print("Export Failed \(error)")
-                completionHandler(false,  self.tape.url, -1)
-            } else {
-                print("Export succeeded")
-                completionHandler(true, file!.url, file!.duration)
+        if let tape = tape {
+            tape.exportAsynchronously(name: "Motif-\(fileName)",
+                                      baseDir: .documents,
+                                      exportFormat: .m4a) {file, exportError in
+                if let error = exportError {
+                    print("Export Failed \(error)")
+                    completionHandler(false,  tape.url, -1)
+                } else {
+                    print("Export succeeded")
+                    completionHandler(true, file!.url, file!.duration)
+                }
             }
         }
                                     
@@ -138,11 +139,19 @@ class AudioManager{
     }
     
     func getCurrentAudio() -> URL {
-        return tape.directoryPath
+        if let tape = tape {
+            return tape.url
+        } else {
+            return URL(fileURLWithPath: "")
+        }
     }
     
     func playAudioData() {
         player.play()
+    }
+    
+    func playerValue() -> Double {
+        return player.playhead
     }
     
     func pauseAudioData() {
