@@ -184,6 +184,7 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
             }
             if let clip_url = curr_clip.value(forKey:"url") {
                 cell.url = clip_url as! URL
+                print("cell URL: \(cell.url)")
             }
             
             let audioAsset = AVURLAsset.init(url: cell.url, options: nil)

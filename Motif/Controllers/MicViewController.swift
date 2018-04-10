@@ -61,10 +61,14 @@ class MicViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             if let songName = textField?.text {
-                let result = AudioManager.sharedInstance.saveSong(fileName: songName)
-                if result.0 {
-                    self.saveSong(name: "Motif-\(songName).m4a", location: result.1) // changed ext
+                AudioManager.sharedInstance.saveSong(fileName: songName) { result, url in
+                    if result {
+                         self.saveSong(name: "Motif-\(songName)", location: url) // changed ext
+                    } else {
+                        print("failed")
+                    }
                 }
+
             } else {
                 print("Failed")
             }
@@ -200,7 +204,7 @@ class MicViewController: UIViewController {
         plot.shouldFill = true
         plot.shouldMirror = true
         plot.color = .blue
-        plot.gain = 6
+        plot.gain = 3
         plot.pause()
         inputWave.addSubview(plot)
     }

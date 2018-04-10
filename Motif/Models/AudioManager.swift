@@ -85,28 +85,24 @@ class AudioManager{
         try! recorder.reset()
     }
     
-    func saveSong(fileName: String) -> (Bool, URL) {
+    func saveSong(fileName: String, completionHandler: @escaping (Bool, URL) -> Void) {
         
-        var result = true
         recorder.stop()
 
         tape = recorder.audioFile
-        var url = tape.directoryPath
         
         tape.exportAsynchronously(name: "Motif-\(fileName)",
                                   baseDir: .documents,
                                   exportFormat: .m4a) {file, exportError in
             if let error = exportError {
                 print("Export Failed \(error)")
-                result = false
+                completionHandler(false,  self.tape.url)
             } else {
                 print("Export succeeded")
-                url = (file?.directoryPath)!
-                
+                completionHandler(true, file!.url)
             }
         }
                                     
-        return (result, url)
     }
     
     func getMic() -> AKMicrophone {
