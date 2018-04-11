@@ -138,6 +138,27 @@ class ClipLibraryViewController: UIViewController {
         }
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @IBAction func goRecord() {
+        let mode = UserDefaults.standard.bool(forKey: "recording")
+        
+        if mode {
+            guard let vc = UIStoryboard(name: "Recording",
+                                        bundle: nil)
+                .instantiateViewController(withIdentifier: "micView") as? MicViewController else {
+                    return
+            }
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            guard let vc = UIStoryboard(name: "Recording",
+                                        bundle: nil)
+                .instantiateViewController(withIdentifier: "pianoView") as? PianoViewController else {
+                    return
+            }
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
 
     @IBAction func unwindtoClip(segue: UIStoryboardSegue) {}
     

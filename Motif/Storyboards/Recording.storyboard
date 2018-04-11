@@ -14,7 +14,7 @@
         <!--Piano View Controller-->
         <scene sceneID="uav-Mb-ClF">
             <objects>
-                <viewController id="if8-Dl-EGZ" customClass="PianoViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pianoView" id="if8-Dl-EGZ" customClass="PianoViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uwu-dn-6pV" customClass="RadialGradientView" customModule="Motif" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -295,7 +295,7 @@
         <!--Mic View Controller-->
         <scene sceneID="pnm-2Y-Ysw">
             <objects>
-                <viewController storyboardIdentifier="RecView" id="6b0-4y-vvJ" customClass="MicViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="micView" id="6b0-4y-vvJ" customClass="MicViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DZH-hc-x1S" customClass="RadialGradientView" customModule="Motif" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,7 +424,7 @@
         <image name="trash" width="104" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IBU-Bn-vXv"/>
+        <segue reference="W3s-16-Yco"/>
         <segue reference="TGy-ud-HQ1"/>
         <segue reference="VAt-0q-X7B"/>
     </inferredMetricsTieBreakers>
