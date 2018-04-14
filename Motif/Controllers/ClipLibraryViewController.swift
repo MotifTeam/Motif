@@ -25,7 +25,7 @@ class ClipLibraryViewController: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     
     weak var player: AKAudioPlayer?
-    var db: Firestore!
+    var db: Firestore?
     var tableViewBool = true
     var songs = [NSManagedObject]()
     var clips: [MIDIClip] = []
@@ -39,6 +39,7 @@ class ClipLibraryViewController: UIViewController {
         super.viewDidLoad()
         checkAuth()
         setUpTable()
+        setupDB()
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureHandler(_:)))
         self.slideOutView.addGestureRecognizer(gestureRecognizer)
         
@@ -58,17 +59,21 @@ class ClipLibraryViewController: UIViewController {
     
     private func updateMIDIClips() {
         let uid = Auth.auth().currentUser?.uid ?? "0"
-        db.collection("users").document(uid).collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date))
+    
+        if let db = db {
+            db.collection("users").document("HXChpMTogmc2vISX4pjcqkHObKd2").collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date))
+                    }
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
             }
         }
+       
     }
     
     private func setUpTable() {
