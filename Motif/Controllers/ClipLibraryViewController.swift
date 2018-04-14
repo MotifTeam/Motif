@@ -61,7 +61,7 @@ class ClipLibraryViewController: UIViewController {
         let uid = Auth.auth().currentUser?.uid ?? "0"
     
         if let db = db {
-            db.collection("users").document("HXChpMTogmc2vISX4pjcqkHObKd2").collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
+            db.collection("users").document(uid).collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
