@@ -31,13 +31,15 @@ class AudioManager{
     private var midiPlayer: AKAudioPlayer!
     private var moogLadder: AKMoogLadder!
     private var tape: AKAudioFile?
-    private var oscillator: AKOscillator!
     private var oscMixer: AKMixer!
-    
-    private var currentAmplitude = 0.1
-    private var currentRampTime = 0.2
-    
+    private var pianoMixer: AKMixer!
+
     var midiPlayers: [Int:AVMIDIPlayer] = [:]
+    var oscillator: AKOscillator!
+    var currentAmplitude = 0.1
+    var currentRampTime = 0.2
+    
+    var pianoNode: AKFlute!
     
     init() {
         AudioKit.disconnectAllInputs()
@@ -58,11 +60,11 @@ class AudioManager{
         silence = AKBooster(tracker, gain: 0)
         micBooster.gain = 0
         
-        oscillator = AKOscillator(waveform: AKTable(.sawtooth))
-        oscMixer = AKMixer(oscillator)
+        pianoNode = AKFlute()
+        pianoMixer = AKMixer(pianoNode)
         
         do {
-            midiRecorder = try AKNodeRecorder(node: oscMixer)
+            midiRecorder = try AKNodeRecorder(node: pianoMixer)
             recorder = try AKNodeRecorder(node: micMixer)
         } catch {
             print("Couldn't start recorder")
@@ -92,8 +94,11 @@ class AudioManager{
     }
     
     func recordPiano() {
-        let mixer = AKMixer(midiPlayer)
+        let booster = AKBooster(pianoMixer)
+        let mixer = AKMixer(midiPlayer, booster)
         AudioKit.output = mixer
+
+        
         do {
             try midiRecorder.record()
         } catch {
@@ -119,6 +124,7 @@ class AudioManager{
     }
     
     func resetRecording() {
+        try! midiRecorder.reset()
         try! recorder.reset()
     }
     
