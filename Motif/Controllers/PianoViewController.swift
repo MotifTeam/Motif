@@ -10,8 +10,10 @@ import UIKit
 import PianoView
 import MusicTheorySwift
 import AudioKit
+import AudioKitUI
 
-class PianoViewController: UIViewController {
+class PianoViewController: UIViewController, AKKeyboardDelegate {
+
     
     @IBOutlet var backgroundView: RadialGradientView!
     @IBOutlet weak var pianoView: PianoView!
@@ -66,6 +68,15 @@ class PianoViewController: UIViewController {
             
         }
     }
+    
+    func noteOn(note: MIDINoteNumber) {
+        <#code#>
+    }
+    
+    func noteOff(note: MIDINoteNumber) {
+        <#code#>
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)

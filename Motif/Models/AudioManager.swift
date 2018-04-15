@@ -13,6 +13,11 @@ import AudioKitUI
 
 class AudioManager{
     
+    enum RecordingType {
+        case piano
+        case microphone
+    }
+    
     static let sharedInstance = AudioManager()
     private var microphone: AKMicrophone!
     private var tracker: AKFrequencyTracker!
@@ -21,11 +26,17 @@ class AudioManager{
     private var mainMixer: AKMixer!
     private var micBooster: AKBooster!
     private var recorder: AKNodeRecorder!
+    private var midiRecorder: AKNodeRecorder!
     private var player: AKAudioPlayer!
+    private var midiPlayer: AKAudioPlayer!
     private var moogLadder: AKMoogLadder!
     private var tape: AKAudioFile?
+    private var oscillator: AKOscillator!
+    private var oscMixer: AKMixer!
     
-    var midiPlayer: AVMIDIPlayer?
+    private var currentAmplitude = 0.1
+    private var currentRampTime = 0.2
+    
     var midiPlayers: [Int:AVMIDIPlayer] = [:]
     
     init() {
@@ -47,7 +58,11 @@ class AudioManager{
         silence = AKBooster(tracker, gain: 0)
         micBooster.gain = 0
         
+        oscillator = AKOscillator(waveform: AKTable(.sawtooth))
+        oscMixer = AKMixer(oscillator)
+        
         do {
+            midiRecorder = try AKNodeRecorder(node: oscMixer)
             recorder = try AKNodeRecorder(node: micMixer)
         } catch {
             print("Couldn't start recorder")
@@ -55,6 +70,10 @@ class AudioManager{
         
         if let file = recorder.audioFile {
             player = try? AKAudioPlayer(file: file)
+        }
+        
+        if let file = midiRecorder.audioFile {
+            midiPlayer = try? AKAudioPlayer(file: file)
         }
         
         moogLadder = AKMoogLadder(player)
@@ -72,6 +91,21 @@ class AudioManager{
         resetRecording()
     }
     
+    func recordPiano() {
+        let mixer = AKMixer(midiPlayer)
+        AudioKit.output = mixer
+        do {
+            try midiRecorder.record()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func stopPiano() {
+        midiRecorder.stop()
+        AudioKit.output = mainMixer
+    }
+    
     func startRecording() {
         do {
             try recorder.record()
@@ -79,7 +113,7 @@ class AudioManager{
             print(error)
         }
     }
-    
+
     func stopRecording() {
         recorder.stop()
     }
