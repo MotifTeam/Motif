@@ -39,7 +39,7 @@ class AudioManager{
     var currentAmplitude = 0.1
     var currentRampTime = 0.2
     
-    var pianoNode: AKFlute!
+    var pianoNode: AKRhodesPiano!
     
     init() {
         AudioKit.disconnectAllInputs()
@@ -60,7 +60,7 @@ class AudioManager{
         silence = AKBooster(tracker, gain: 0)
         micBooster.gain = 0
         
-        pianoNode = AKFlute()
+        pianoNode = AKRhodesPiano()
         pianoMixer = AKMixer(pianoNode)
         
         do {
@@ -128,9 +128,15 @@ class AudioManager{
         try! recorder.reset()
     }
     
-    func saveSong(fileName: String, completionHandler: @escaping (Bool, URL, Double) -> Void) {
+    func saveSong(fileName: String, mode: RecordingType, completionHandler: @escaping (Bool, URL, Double) -> Void) {
         
-        tape = recorder.audioFile
+        
+        if mode == .microphone {
+            tape = recorder.audioFile
+        } else {
+            tape = midiRecorder.audioFile
+        }
+        
         if let tape = tape {
             tape.exportAsynchronously(name: "Motif-\(fileName)",
                                       baseDir: .documents,

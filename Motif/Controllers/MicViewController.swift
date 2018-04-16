@@ -61,7 +61,7 @@ class MicViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             if let songName = textField?.text {
-                AudioManager.sharedInstance.saveSong(fileName: songName.replace(target: " ", withString: "_")) { result, url, duration in
+                AudioManager.sharedInstance.saveSong(fileName: songName.replace(target: " ", withString: "_"), mode: .microphone) { result, url, duration in
                     if result {
                         print(duration)
                         DispatchQueue.main.async(execute: { () -> Void in

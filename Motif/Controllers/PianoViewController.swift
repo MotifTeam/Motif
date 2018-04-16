@@ -32,6 +32,7 @@ class PianoViewController: UIViewController, AKKeyboardDelegate {
         pianoView.delegate = self
 
         pianoView.keyOnColor = .blue
+        pianoView.firstOctave = 1
         // Do any additional setup after loading the view.
     }
 
@@ -121,15 +122,6 @@ class PianoViewController: UIViewController, AKKeyboardDelegate {
         
         AudioManager.sharedInstance.pianoNode.trigger(frequency: note.midiNoteToFrequency())
         
-//        if AudioManager.sharedInstance.oscillator.amplitude == 0 {
-//            AudioManager.sharedInstance.oscillator.rampTime = 0
-//        }
-//        AudioManager.sharedInstance.oscillator.frequency = note.midiNoteToFrequency()
-//
-//        // Still use rampTime for volume
-//        AudioManager.sharedInstance.oscillator.rampTime = AudioManager.sharedInstance.currentRampTime
-//        AudioManager.sharedInstance.oscillator.amplitude = AudioManager.sharedInstance.currentAmplitude
-//        AudioManager.sharedInstance.oscillator.play()
     }
     
     func noteOff(note: MIDINoteNumber) {
