@@ -10,18 +10,29 @@ import UIKit
 import PianoView
 import MusicTheorySwift
 import AudioKit
+import AudioKitUI
 
-class PianoViewController: UIViewController {
+class PianoViewController: UIViewController, AKKeyboardDelegate {
+
     
     @IBOutlet var backgroundView: RadialGradientView!
-    @IBOutlet weak var pianoView: PianoView!
+    @IBOutlet weak var pianoView: AKKeyboardView!
+    @IBOutlet weak var circleButtonView: CircleBackgroundView!
+    @IBOutlet weak var timerLabel: UILabel!
+    var musicTimer: Timer!
+    var isRecording = false
+    var time: Double = 0
+    var startTime: Double = 0
+    var endTime: Double = 0
     
 //    var midi = AudioKit.midi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(midi.inputNames)
+        pianoView.delegate = self
 
+        pianoView.keyOnColor = .blue
+        pianoView.firstOctave = 1
         // Do any additional setup after loading the view.
     }
 
@@ -35,51 +46,85 @@ class PianoViewController: UIViewController {
         return .lightContent // .default
     }
     
-    func updateKeys(x: CGFloat, enabled: Bool) {
+    @IBAction func recording() {
+        isRecording = !isRecording
         
-        if enabled {
-            let keyWidth = Int(pianoView.frame.width) / (pianoView.keyCount - 7)
-            let keyChoice = Int(Int(x)/keyWidth)
-            
-            let types: [NoteType] = [.c, .d, .e, .f, .g, .a, .b]
-            
-            var notes = types.map({
-                Note(type: $0, octave: 0)
-            })
-            notes.append(contentsOf: types.map({
-                Note(type: $0, octave: 1)
-                
-            }))
-            
-            let selectedNote = notes[keyChoice]
-            
-            pianoView?.selectNote(note: selectedNote)
-            
+        if isRecording {
+            start()
         } else {
-            let keyWidth = Int(pianoView.frame.width) / pianoView.keyCount
-            let keyChoice = Int(Int(x)/keyWidth)
-            var notes = NoteType.all.map({ Note(type: $0, octave: 0) })
-            notes.append(contentsOf: NoteType.all.map({ Note(type: $0, octave: 1) }))
-            let selectedNote = notes[keyChoice]
-            
-            pianoView?.selectNote(note: selectedNote)
-            
+            stop()
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        pianoView?.deselectAll()
-        for item in touches {
-            if item.location(in: pianoView).x > 0 && item.location(in: pianoView).y > 0 {
-                let x = item.location(in: pianoView).x
-                let enabled = item.location(in: pianoView).y > pianoView.frame.height/2
-                updateKeys(x: x, enabled: enabled)
-            }
-        }
-//        let notes = NoteType.all.map({ Note(type: $0, octave: 0) })
-//        let randomNote = notes[Int(arc4random_uniform(UInt32(notes.count)))]
-        //pianoView?.deselectAll()
-//        pianoView?.selectNote(note: randomNote)
+    @objc func updateTimer() {
+        
+        // Calculate total time since timer started in seconds
+        time = Date().timeIntervalSinceReferenceDate - startTime
+        
+        // Calculate minutes
+        let minutes = UInt8(time / 60.0)
+        time -= (TimeInterval(minutes) * 60)
+        
+        // Calculate seconds
+        let seconds = UInt8(time)
+        time -= TimeInterval(seconds)
+        
+        
+        // Format time vars with leading zero
+        let strMinutes = String(format: "%01d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        
+        timerLabel.text = "\(strMinutes):\(strSeconds)"
+    }
+    
+    func start() {
+        timerLabel.text = "0:00"
+        
+        startTime = Date().timeIntervalSinceReferenceDate
+        musicTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
+        AudioManager.sharedInstance.recordPiano()
+        setUpRecordingUI()
+    }
+    
+    func stop() {
+        // Stop Timing
+        musicTimer.invalidate()
+        
+        AudioManager.sharedInstance.stopPiano()
+        
+        setUpPostRecordingUI()
+    }
+    
+    func setUpPostRecordingUI() {
+        UIView.animate(withDuration: 0.25, animations: {
+            let color1 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.7)
+            let color2 = UIColor(red: 0.00, green: 0.27, blue: 0.77, alpha: 0.0)
+            self.backgroundView.colors = [color1, color2]
+            self.circleButtonView.backgroundColor = UIColor(red: 0.33, green: 0.64, blue: 0.95, alpha: 1.0)
+            self.circleButtonView.layer.cornerRadius = self.circleButtonView.bounds.size.width / 2
+            self.circleButtonView.transform = CGAffineTransform.identity
+        })
+    }
+    
+    func setUpRecordingUI() {
+        UIView.animate(withDuration: 0.25, animations: {
+            let color1 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.7)
+            let color2 = UIColor(red: 1, green: 0, blue: 0, alpha: 0.0)
+            self.backgroundView.colors = [color1, color2]
+            self.circleButtonView.backgroundColor = .red
+            self.circleButtonView.layer.cornerRadius = 10
+            self.circleButtonView.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+        })
+    }
+    
+    func noteOn(note: MIDINoteNumber) {
+        
+        AudioManager.sharedInstance.pianoNode.trigger(frequency: note.midiNoteToFrequency())
+        
+    }
+    
+    func noteOff(note: MIDINoteNumber) {
+        AudioManager.sharedInstance.pianoNode.trigger(frequency: note.midiNoteToFrequency(), amplitude: 0)
     }
 }

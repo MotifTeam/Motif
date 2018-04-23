@@ -60,21 +60,27 @@ class MicViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
-            if let songName = textField?.text, let track = self.trackInProgress {
-                track.exportAsynchronously(name: "Motif-\(songName).m4a", // changed ext
-                    baseDir: .documents,
-                    exportFormat: .m4a) {file, exportError in // changed ext
-                        if let error = exportError {
-                            print("Export Failed \(error)")
-                        } else {
-                            self.saveSong(name: "Motif-\(songName).m4a", location: (file?.directoryPath)!) // changed ext
-                            print("Export succeeded")
-                        }
+            if let songName = textField?.text {
+                AudioManager.sharedInstance.saveSong(fileName: songName.replace(target: " ", withString: "_"), mode: .microphone) { result, url, duration in
+                    if result {
+                        print(duration)
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            self.saveSong(name: "Motif-\(songName)", location: url, duration: duration) // changed ext
+                        })
+                    } else {
+                        print("failed")
+                    }
+                    
+                    AudioManager.sharedInstance.resetRecording()
+
                 }
-                
+
             } else {
                 print("Failed")
             }
+            self.resetUI()
+
+            
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -90,8 +96,6 @@ class MicViewController: UIViewController {
     var AudioManagerInstance = AudioManager.sharedInstance
     
     var plot: AKNodeOutputPlot!
-    
-    var trackInProgress: AKAudioFile?
     
     var isRecording = false
     var musicTimer: Timer!
@@ -121,7 +125,7 @@ class MicViewController: UIViewController {
         setupPlot()
     }
     
-    func saveSong(name: String, location: URL) {
+    func saveSong(name: String, location: URL, duration: Double) {
             
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -130,7 +134,8 @@ class MicViewController: UIViewController {
                                                        into: context)
         song.setValue(name, forKey: "name")
         song.setValue(location, forKey: "url")
-        
+        song.setValue(duration, forKey: "duration")
+
         
         do {
             try context.save()
@@ -195,7 +200,7 @@ class MicViewController: UIViewController {
         plot.pause()
         
         // Keep file in memory for additional processing
-        trackInProgress = AudioManagerInstance.stopRecording()
+        AudioManagerInstance.stopRecording()
         
         setUpPostRecordingUI()
     }
@@ -207,7 +212,7 @@ class MicViewController: UIViewController {
         plot.shouldFill = true
         plot.shouldMirror = true
         plot.color = .blue
-        plot.gain = 6
+        plot.gain = 3
         plot.pause()
         inputWave.addSubview(plot)
     }

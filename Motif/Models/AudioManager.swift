@@ -9,9 +9,14 @@
 import Foundation
 import AVFoundation
 import AudioKit
-
+import AudioKitUI
 
 class AudioManager{
+    
+    enum RecordingType {
+        case piano
+        case microphone
+    }
     
     static let sharedInstance = AudioManager()
     private var microphone: AKMicrophone!
@@ -21,11 +26,20 @@ class AudioManager{
     private var mainMixer: AKMixer!
     private var micBooster: AKBooster!
     private var recorder: AKNodeRecorder!
+    private var midiRecorder: AKNodeRecorder!
     private var player: AKAudioPlayer!
+    private var midiPlayer: AKAudioPlayer!
     private var moogLadder: AKMoogLadder!
-    
-    var midiPlayer: AVMIDIPlayer?
+    private var tape: AKAudioFile?
+    private var oscMixer: AKMixer!
+    private var pianoMixer: AKMixer!
+
     var midiPlayers: [Int:AVMIDIPlayer] = [:]
+    var oscillator: AKOscillator!
+    var currentAmplitude = 0.1
+    var currentRampTime = 0.2
+    
+    var pianoNode: AKRhodesPiano!
     
     init() {
         AudioKit.disconnectAllInputs()
@@ -44,15 +58,24 @@ class AudioManager{
         micBooster = AKBooster(micMixer)
         tracker = AKFrequencyTracker(microphone)
         silence = AKBooster(tracker, gain: 0)
+        micBooster.gain = 0
+        
+        pianoNode = AKRhodesPiano()
+        pianoMixer = AKMixer(pianoNode)
         
         do {
-             recorder = try AKNodeRecorder(node: micMixer)
+            midiRecorder = try AKNodeRecorder(node: pianoMixer)
+            recorder = try AKNodeRecorder(node: micMixer)
         } catch {
             print("Couldn't start recorder")
         }
         
         if let file = recorder.audioFile {
             player = try? AKAudioPlayer(file: file)
+        }
+        
+        if let file = midiRecorder.audioFile {
+            midiPlayer = try? AKAudioPlayer(file: file)
         }
         
         moogLadder = AKMoogLadder(player)
@@ -66,6 +89,26 @@ class AudioManager{
         } catch {
             print(error)
         }
+        
+        resetRecording()
+    }
+    
+    func recordPiano() {
+        let booster = AKBooster(pianoMixer)
+        let mixer = AKMixer(midiPlayer, booster)
+        AudioKit.output = mixer
+
+        
+        do {
+            try midiRecorder.record()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func stopPiano() {
+        midiRecorder.stop()
+        AudioKit.output = mainMixer
     }
     
     func startRecording() {
@@ -75,10 +118,39 @@ class AudioManager{
             print(error)
         }
     }
-    
-    func stopRecording() -> AKAudioFile? {
+
+    func stopRecording() {
         recorder.stop()
-        return recorder.audioFile
+    }
+    
+    func resetRecording() {
+        try! midiRecorder.reset()
+        try! recorder.reset()
+    }
+    
+    func saveSong(fileName: String, mode: RecordingType, completionHandler: @escaping (Bool, URL, Double) -> Void) {
+        
+        
+        if mode == .microphone {
+            tape = recorder.audioFile
+        } else {
+            tape = midiRecorder.audioFile
+        }
+        
+        if let tape = tape {
+            tape.exportAsynchronously(name: "Motif-\(fileName)",
+                                      baseDir: .documents,
+                                      exportFormat: .m4a) {file, exportError in
+                if let error = exportError {
+                    print("Export Failed \(error)")
+                    completionHandler(false,  tape.url, -1)
+                } else {
+                    print("Export succeeded")
+                    completionHandler(true, file!.url, file!.duration)
+                }
+            }
+        }
+                                    
     }
     
     func getMic() -> AKMicrophone {
@@ -101,7 +173,34 @@ class AudioManager{
                 print("Error creating midiplayer: \(error.localizedDescription)")
             }
         }
-        
-        
+    }
+    
+    func replaceAudioData(fileURL: URL) {
+        do {
+            let akFile = try AKAudioFile(forReading: fileURL)
+            try player.replace(file: akFile)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func getCurrentAudio() -> URL {
+        if let tape = tape {
+            return tape.url
+        } else {
+            return URL(fileURLWithPath: "")
+        }
+    }
+    
+    func playAudioData() {
+        player.play()
+    }
+    
+    func playerValue() -> Double {
+        return player.playhead
+    }
+    
+    func pauseAudioData() {
+        player.pause()
     }
 }

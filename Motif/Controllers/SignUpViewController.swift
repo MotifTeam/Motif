@@ -72,9 +72,9 @@ class SignUpViewController: UIViewController {
                     if success {
                         self.registerButton.stopAnimation(animationStyle: .expand,
                                                        completion: {
-                                                        guard let vc = UIStoryboard(name: "Recording",
+                                                        guard let vc = UIStoryboard(name: "ClipLibrary",
                                                                                     bundle: nil)
-                                                            .instantiateViewController(withIdentifier: "landingBoard") as? TempViewController else {
+                                                            .instantiateViewController(withIdentifier: "ClipLibrary") as? ClipLibraryViewController else {
                                                                 return
                                                         }
                                                         self.present(vc, animated: true, completion: nil)

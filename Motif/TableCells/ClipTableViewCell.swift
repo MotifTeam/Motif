@@ -12,25 +12,53 @@ import AudioKitUI
 import AVFoundation
 
 class ClipTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var clipName: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    
+    var url: URL!
+    var playing = false
+    var playingPositionSlider: AKSlider!
+    var playTimer: Timer!
+    
+    var fileName: String! {
+        didSet {
+            clipName.text! = fileName
+                .replace(target: "Motif-", withString: "")
+                .replace(target: ".m4a", withString: "")
+        }
+    }
+    var duration: Double! {
+        didSet {
+            playingPositionSlider.range = 0 ... duration
+        }
+    }
+
+    
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let margins = layoutMarginsGuide
+        let playMargins = playButton.layoutMarginsGuide
+        playingPositionSlider =
+            AKSlider(property: "",
+                     value: 0,
+                     range: 0 ... 1,
+                     format: "%.02fs")
+        playingPositionSlider.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(playingPositionSlider)
+
+        playingPositionSlider.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        playingPositionSlider.leadingAnchor.constraint(equalTo: playMargins.trailingAnchor, constant: 32).isActive = true
+        playingPositionSlider.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -8).isActive = true
+        playingPositionSlider.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -8).isActive = true
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    @IBOutlet weak var clipName: UILabel!
-    var url: URL!
-    
-    var clipLibaryViewController: ClipLibraryViewController!
-    var playingPositionSlider: AKSlider?
-    
-    var akFile: AKAudioFile!
-    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    var player: AVAudioPlayer!
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -39,24 +67,39 @@ class ClipTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    
-    @IBAction func playClip(_ sender: Any) {
-        print("Play button was pressed")
-        print(documentsDirectory.appendingPathComponent(clipName.text as! String))
-        let song = documentsDirectory.appendingPathComponent(clipName.text as! String)
-
-        
-        do {
-            let akFile = try AKAudioFile(forReading: url)
-            print("File created")
-            
-            let player = try AKAudioPlayer(file: akFile)
-            AudioKit.output = player
-            try AudioKit.start()
-            player.play()
-            
-        } catch let error as NSError {
-            print("There's an error: \(error)")
+    @IBAction func playerAction() {
+        if playing {
+            UIView.animate(withDuration: 0.3) {
+                self.playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+                self.playing = !self.playing
+            }
+            pauseClip()
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+                self.playing = !self.playing
+            }
+            playClip()
         }
+    }
+    
+    func playClip() {
+        print("Play button was pressed")
+        if AudioManager.sharedInstance.getCurrentAudio() != url {
+            AudioManager.sharedInstance
+                .replaceAudioData(fileURL: self.url)
+        }
+        AudioManager.sharedInstance.playAudioData()
+        playTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+    }
+    
+    func pauseClip() {
+        playTimer.invalidate()
+        AudioManager.sharedInstance.pauseAudioData()
+    }
+    
+    @objc func updateSlider() {
+        playingPositionSlider.value = AudioManager.sharedInstance.playerValue()
+        
     }
 }

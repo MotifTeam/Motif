@@ -14,53 +14,11 @@
         <!--Piano View Controller-->
         <scene sceneID="uav-Mb-ClF">
             <objects>
-                <viewController id="if8-Dl-EGZ" customClass="PianoViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pianoView" id="if8-Dl-EGZ" customClass="PianoViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uwu-dn-6pV" customClass="RadialGradientView" customModule="Motif" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qCg-wT-qIV" customClass="PianoView" customModule="PianoView">
-                                <rect key="frame" x="0.0" y="470" width="375" height="165"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="gfK-C7-TEl"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startOctave">
-                                        <integer key="value" value="0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="keyCount">
-                                        <integer key="value" value="17"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="drawGradient" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="drawNoteOctave" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="drawNoteText" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="whiteKeyBackgroundColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="blackKeyBackgroundColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="whiteKeyBorderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="whiteKeySelectedColor">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="blackKeySelectedColor">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="whiteKeyHighlightedColor">
-                                        <color key="value" red="1" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="blackKeyHighlightedColor">
-                                        <color key="value" red="1" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="blackKeyBorderWidth">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFF-SR-0kX">
                                 <rect key="frame" x="112.5" y="113" width="150" height="86"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
@@ -102,31 +60,65 @@
                                     <segue destination="8ct-UD-92u" kind="show" id="bFZ-5E-HDQ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Q9-bf-gtd" customClass="AKKeyboardView" customModule="AudioKitUI">
+                                <rect key="frame" x="0.0" y="516" width="375" height="131"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="131" id="WTy-Ne-3mn"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNQ-nx-hZk" customClass="CircleBackgroundView" customModule="Motif" customModuleProvider="target">
+                                <rect key="frame" x="151.5" y="307.5" width="72" height="72"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khR-ll-1eU">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
+                                        <connections>
+                                            <action selector="recording" destination="if8-Dl-EGZ" eventType="touchUpInside" id="MUu-u2-WaB"/>
+                                            <action selector="startRecording" destination="6b0-4y-vvJ" eventType="touchUpInside" id="mis-5Q-dxb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.64313725489999995" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="khR-ll-1eU" secondAttribute="bottom" id="6JL-gW-8gP"/>
+                                    <constraint firstAttribute="trailing" secondItem="khR-ll-1eU" secondAttribute="trailing" id="KwC-Dg-PV7"/>
+                                    <constraint firstItem="khR-ll-1eU" firstAttribute="top" secondItem="UNQ-nx-hZk" secondAttribute="top" id="Q6A-Mb-oz3"/>
+                                    <constraint firstAttribute="height" constant="72" id="YWY-PB-1mL"/>
+                                    <constraint firstItem="khR-ll-1eU" firstAttribute="leading" secondItem="UNQ-nx-hZk" secondAttribute="leading" id="jkU-1t-9bR"/>
+                                    <constraint firstAttribute="width" constant="72" id="uKq-db-A8K"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="ukl-y0-2al"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="72" id="ztK-jQ-rXD"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WhS-1Z-SpK" firstAttribute="centerX" secondItem="iNy-Ul-HxL" secondAttribute="centerX" id="6i9-ds-dPu"/>
+                            <constraint firstItem="0Q9-bf-gtd" firstAttribute="leading" secondItem="iNy-Ul-HxL" secondAttribute="leading" id="DRJ-4e-gdA"/>
                             <constraint firstItem="dFF-SR-0kX" firstAttribute="centerX" secondItem="iNy-Ul-HxL" secondAttribute="centerX" id="Dsf-C0-603"/>
                             <constraint firstItem="iNy-Ul-HxL" firstAttribute="trailing" secondItem="TiT-PT-lah" secondAttribute="trailing" constant="8" id="H3L-4e-gNq"/>
-                            <constraint firstItem="iNy-Ul-HxL" firstAttribute="bottom" secondItem="qCg-wT-qIV" secondAttribute="bottom" constant="32" id="OQp-xf-L1s"/>
+                            <constraint firstItem="iNy-Ul-HxL" firstAttribute="bottom" secondItem="0Q9-bf-gtd" secondAttribute="bottom" constant="20" id="IvD-eg-evO"/>
+                            <constraint firstItem="UNQ-nx-hZk" firstAttribute="centerY" secondItem="iNy-Ul-HxL" secondAttribute="centerY" id="JE8-6V-gTh"/>
+                            <constraint firstItem="iNy-Ul-HxL" firstAttribute="trailing" secondItem="0Q9-bf-gtd" secondAttribute="trailing" id="P9N-Zb-rs3"/>
                             <constraint firstItem="WhS-1Z-SpK" firstAttribute="top" secondItem="iNy-Ul-HxL" secondAttribute="top" constant="48" id="ekw-S6-uLo"/>
                             <constraint firstItem="TiT-PT-lah" firstAttribute="top" secondItem="iNy-Ul-HxL" secondAttribute="top" constant="8" id="erk-yS-dgx"/>
-                            <constraint firstItem="qCg-wT-qIV" firstAttribute="leading" secondItem="iNy-Ul-HxL" secondAttribute="leading" id="qZO-5B-BeE"/>
-                            <constraint firstItem="qCg-wT-qIV" firstAttribute="trailing" secondItem="iNy-Ul-HxL" secondAttribute="trailing" id="rFd-rH-cgt"/>
                             <constraint firstItem="dFF-SR-0kX" firstAttribute="top" secondItem="iNy-Ul-HxL" secondAttribute="top" constant="93" id="vvM-U0-PFg"/>
+                            <constraint firstItem="khR-ll-1eU" firstAttribute="centerX" secondItem="iNy-Ul-HxL" secondAttribute="centerX" id="zX8-ox-TAk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iNy-Ul-HxL"/>
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="uwu-dn-6pV" id="sRQ-cQ-KO7"/>
-                        <outlet property="pianoView" destination="qCg-wT-qIV" id="wDF-Co-WDn"/>
+                        <outlet property="circleButtonView" destination="UNQ-nx-hZk" id="b0o-Kp-ajv"/>
+                        <outlet property="pianoView" destination="0Q9-bf-gtd" id="XaH-aL-YnL"/>
+                        <outlet property="timerLabel" destination="dFF-SR-0kX" id="URO-lv-ke6"/>
                         <segue destination="Srz-X5-HBu" kind="unwind" identifier="unwindPiano" unwindAction="unwindToTempWithSegue:" id="O7y-Mc-l8f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hh1-3f-TEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Srz-X5-HBu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="233"/>
+            <point key="canvasLocation" x="1932" y="232.53373313343329"/>
         </scene>
         <!--Piano View Controller-->
         <scene sceneID="m5b-MS-EFP">
@@ -295,7 +287,7 @@
         <!--Mic View Controller-->
         <scene sceneID="pnm-2Y-Ysw">
             <objects>
-                <viewController storyboardIdentifier="RecView" id="6b0-4y-vvJ" customClass="MicViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="micView" id="6b0-4y-vvJ" customClass="MicViewController" customModule="Motif" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DZH-hc-x1S" customClass="RadialGradientView" customModule="Motif" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,7 +416,7 @@
         <image name="trash" width="104" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IBU-Bn-vXv"/>
+        <segue reference="W3s-16-Yco"/>
         <segue reference="TGy-ud-HQ1"/>
         <segue reference="VAt-0q-X7B"/>
     </inferredMetricsTieBreakers>

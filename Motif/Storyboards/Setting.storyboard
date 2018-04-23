@@ -43,6 +43,9 @@
                                                         <segment title="Mic"/>
                                                         <segment title="Piano"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="switchModes:" destination="4hB-oj-99y" eventType="valueChanged" id="nh9-qk-UsN"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -90,6 +93,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="modeControl" destination="EXW-YT-2pV" id="7lS-Xu-ExL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mOl-pF-Ikj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

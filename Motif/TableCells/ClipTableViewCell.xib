@@ -13,55 +13,54 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="clipCell" rowHeight="70" id="KGk-i7-Jjw" customClass="ClipTableViewCell" customModule="Motif" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="clipCell" rowHeight="96" id="KGk-i7-Jjw" customClass="ClipTableViewCell" customModule="Motif" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="95.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcg-lZ-fqa">
-                        <rect key="frame" x="16" y="11" width="180" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcg-lZ-fqa">
+                        <rect key="frame" x="16" y="11" width="185" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="180" id="Pm7-6A-Qmr"/>
+                            <constraint firstAttribute="width" constant="185" id="D43-dl-vl0"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gld-1g-0ti">
-                        <rect key="frame" x="266" y="20" width="30" height="30"/>
-                        <state key="normal" title="Play">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMe-9M-Qca">
+                        <rect key="frame" x="16" y="45" width="35" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="cEV-Qq-kPx"/>
+                            <constraint firstAttribute="height" constant="40" id="mlE-gB-GKp"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="play"/>
                         <connections>
-                            <action selector="playClip:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TCd-YT-KEF"/>
+                            <action selector="playerAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QH3-6P-D5e"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E06-VT-LnF">
-                        <rect key="frame" x="16" y="38" width="36" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="E06-VT-LnF" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="Yqz-VM-zvW"/>
+                    <constraint firstItem="BMe-9M-Qca" firstAttribute="top" secondItem="bcg-lZ-fqa" secondAttribute="bottom" constant="13.5" id="Syf-da-fQ7"/>
                     <constraint firstItem="bcg-lZ-fqa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="aFm-0m-bJd"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Gld-1g-0ti" secondAttribute="trailing" constant="8" id="j0K-d2-vv2"/>
                     <constraint firstItem="bcg-lZ-fqa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="q6g-sr-jyG"/>
-                    <constraint firstItem="E06-VT-LnF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="qVg-i1-NQV"/>
+                    <constraint firstItem="BMe-9M-Qca" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="sDP-lg-HZz"/>
+                    <constraint firstItem="BMe-9M-Qca" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="wpl-g9-jg8"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="0.5" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstItem="Gld-1g-0ti" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="P5L-Ja-hPr"/>
-            </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="clipName" destination="bcg-lZ-fqa" id="1g2-M8-nRi"/>
+                <outlet property="contentView" destination="H2p-sc-9uM" id="QMS-ul-QcM"/>
+                <outlet property="playButton" destination="BMe-9M-Qca" id="wdz-PW-cn2"/>
             </connections>
-            <point key="canvasLocation" x="34" y="67"/>
+            <point key="canvasLocation" x="34" y="80"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="play" width="224" height="256"/>
+    </resources>
 </document>

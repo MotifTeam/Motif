@@ -18,7 +18,6 @@
 		2721C8BE2077CF9000F8CAF1 /* MIDIClipViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2721C8BC2077CF9000F8CAF1 /* MIDIClipViewCell.xib */; };
 		2721C8C12077D66A00F8CAF1 /* ClipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8BF2077D66A00F8CAF1 /* ClipTableViewCell.swift */; };
 		2721C8C22077D66A00F8CAF1 /* ClipTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2721C8C02077D66A00F8CAF1 /* ClipTableViewCell.xib */; };
-		2721C8C42077DCA800F8CAF1 /* AudioClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8C32077DCA800F8CAF1 /* AudioClipViewController.swift */; };
 		2721C8C62077DD0900F8CAF1 /* MIDIClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8C52077DD0900F8CAF1 /* MIDIClipViewController.swift */; };
 		2760A8372073F87200A701BA /* ClipLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2760A8362073F87200A701BA /* ClipLibraryViewController.swift */; };
 		2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2760A8382073F8A700A701BA /* ClipLibrary.storyboard */; };
@@ -32,6 +31,8 @@
 		279CCA1C203E5B8E00D72BD6 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 279CCA1B203E5B8E00D72BD6 /* Login.storyboard */; };
 		279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */; };
 		27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */; };
+		27B86CCF207C061500832AB8 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B86CCE207C061500832AB8 /* Helper.swift */; };
+		27B86CD1207C111100832AB8 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B86CD0207C111100832AB8 /* PlayButton.swift */; };
 		27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E663BF20634A70008F592D /* AIPianoViewController.swift */; };
 		27FF435820506CCD006BBE64 /* Recording.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FF435720506CCD006BBE64 /* Recording.storyboard */; };
 		27FF435A20506D2B006BBE64 /* MicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435920506D2B006BBE64 /* MicViewController.swift */; };
@@ -64,7 +65,6 @@
 		2721C8BC2077CF9000F8CAF1 /* MIDIClipViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MIDIClipViewCell.xib; sourceTree = "<group>"; };
 		2721C8BF2077D66A00F8CAF1 /* ClipTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipTableViewCell.swift; sourceTree = "<group>"; };
 		2721C8C02077D66A00F8CAF1 /* ClipTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClipTableViewCell.xib; sourceTree = "<group>"; };
-		2721C8C32077DCA800F8CAF1 /* AudioClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioClipViewController.swift; sourceTree = "<group>"; };
 		2721C8C52077DD0900F8CAF1 /* MIDIClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIClipViewController.swift; sourceTree = "<group>"; };
 		2760A8362073F87200A701BA /* ClipLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClipLibraryViewController.swift; sourceTree = "<group>"; };
 		2760A8382073F8A700A701BA /* ClipLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClipLibrary.storyboard; sourceTree = "<group>"; };
@@ -80,6 +80,8 @@
 		279CCA1B203E5B8E00D72BD6 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		279CCA1D203E5DEE00D72BD6 /* LoginSplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSplashViewController.swift; sourceTree = "<group>"; };
 		27AE836B2060CE2C00EEB6B9 /* PianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoViewController.swift; sourceTree = "<group>"; };
+		27B86CCE207C061500832AB8 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		27B86CD0207C111100832AB8 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		27E663BF20634A70008F592D /* AIPianoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIPianoViewController.swift; sourceTree = "<group>"; };
 		27FF435720506CCD006BBE64 /* Recording.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recording.storyboard; sourceTree = "<group>"; };
 		27FF435920506D2B006BBE64 /* MicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicViewController.swift; sourceTree = "<group>"; };
@@ -195,9 +197,11 @@
 		279CCA19203E5AF800D72BD6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				27B86CCE207C061500832AB8 /* Helper.swift */,
 				9FCFDABD20747C7800126965 /* midi-json */,
 				27FF435B20506ED2006BBE64 /* RadialGradientLayer.swift */,
 				27FF435D20507345006BBE64 /* CircleBackgroundView.swift */,
+				27B86CD0207C111100832AB8 /* PlayButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -216,7 +220,6 @@
 				27043A2C20615B2D0076FB53 /* TempViewController.swift */,
 				27990BF52037B375005F9A86 /* ViewController.swift */,
 				2716C88C20756046003AEBB0 /* SettingsController.swift */,
-				2721C8C32077DCA800F8CAF1 /* AudioClipViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,7 +279,6 @@
 				27990BED2037B375005F9A86 /* Frameworks */,
 				27990BEE2037B375005F9A86 /* Resources */,
 				E897CB55A45EC36FF8CEABB1 /* [CP] Embed Pods Frameworks */,
-				E436183A7CF86E703AAD4086 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -361,21 +363,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E436183A7CF86E703AAD4086 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Motif/Pods-Motif-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E897CB55A45EC36FF8CEABB1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,9 +415,9 @@
 				2716C88D20756046003AEBB0 /* SettingsController.swift in Sources */,
 				27990BF62037B375005F9A86 /* ViewController.swift in Sources */,
 				27E663C020634A70008F592D /* AIPianoViewController.swift in Sources */,
-				2721C8C42077DCA800F8CAF1 /* AudioClipViewController.swift in Sources */,
 				2721C8BD2077CF9000F8CAF1 /* MIDIClipViewCell.swift in Sources */,
 				27990BF42037B375005F9A86 /* AppDelegate.swift in Sources */,
+				27B86CD1207C111100832AB8 /* PlayButton.swift in Sources */,
 				2760A84320745A5000A701BA /* Song.xcdatamodeld in Sources */,
 				27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */,
 				9FCFDACE20747C7800126965 /* midi-json.c in Sources */,
@@ -446,6 +433,7 @@
 				2721C8C12077D66A00F8CAF1 /* ClipTableViewCell.swift in Sources */,
 				27AE836C2060CE2C00EEB6B9 /* PianoViewController.swift in Sources */,
 				2721C8C62077DD0900F8CAF1 /* MIDIClipViewController.swift in Sources */,
+				27B86CCF207C061500832AB8 /* Helper.swift in Sources */,
 				279CCA1E203E5DEE00D72BD6 /* LoginSplashViewController.swift in Sources */,
 				9FCFDAD220747C7800126965 /* midio.c in Sources */,
 			);
@@ -594,7 +582,7 @@
 				DEVELOPMENT_TEAM = ZJWRB6PG2B;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
 				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Helpers/midi-json/midi-json.h";
@@ -612,7 +600,7 @@
 				DEVELOPMENT_TEAM = ZJWRB6PG2B;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
 				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Helpers/midi-json/midi-json.h";
