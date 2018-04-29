@@ -11,7 +11,7 @@ import PianoView
 import MusicTheorySwift
 import AudioKit
 import AudioKitUI
-
+import CoreData
 class PianoViewController: UIViewController, AKKeyboardDelegate {
 
     
@@ -56,6 +56,74 @@ class PianoViewController: UIViewController, AKKeyboardDelegate {
         }
     }
     
+    @IBAction func keepRecording() {
+        let alert = UIAlertController(title: "Keep Recording", message: "Label recording", preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "My Song Name"
+        }
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "tag1, tag2,..."
+        }
+        
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0]
+            if let songName = textField?.text {
+                AudioManager.sharedInstance.saveSong(fileName: songName.replace(target: " ", withString: "_"), mode: .microphone) { result, url, duration in
+                    if result {
+                        print(duration)
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            self.saveSong(name: "Motif-\(songName)", location: url, duration: duration) // changed ext
+                        })
+                    } else {
+                        print("failed")
+                    }
+                    
+                    AudioManager.sharedInstance.resetRecording()
+                    
+                }
+                
+            } else {
+                print("Failed")
+            }
+            //self.resetUI()
+            
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            
+            print("Cancelled")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func saveSong(name: String, location: URL, duration: Double) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let song = NSEntityDescription.insertNewObject(forEntityName: "Song",
+                                                       into: context)
+        song.setValue(name, forKey: "name")
+        song.setValue(location, forKey: "url")
+        song.setValue(duration, forKey: "duration")
+        
+        
+        do {
+            try context.save()
+        } catch {
+            // If an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+        
+    }
+    
     @objc func updateTimer() {
         
         // Calculate total time since timer started in seconds
@@ -83,7 +151,7 @@ class PianoViewController: UIViewController, AKKeyboardDelegate {
         startTime = Date().timeIntervalSinceReferenceDate
         musicTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
-        AudioManager.sharedInstance.recordPiano()
+        AudioManager.sharedInstance.recordPiano(time: startTime)
         setUpRecordingUI()
     }
     
@@ -119,12 +187,11 @@ class PianoViewController: UIViewController, AKKeyboardDelegate {
     }
     
     func noteOn(note: MIDINoteNumber) {
-        
-        AudioManager.sharedInstance.pianoNode.trigger(frequency: note.midiNoteToFrequency())
+        AudioManager.sharedInstance.playNote(note: note, time: Date().timeIntervalSinceReferenceDate)
         
     }
     
     func noteOff(note: MIDINoteNumber) {
-        AudioManager.sharedInstance.pianoNode.trigger(frequency: note.midiNoteToFrequency(), amplitude: 0)
+        AudioManager.sharedInstance.stopNote(note: note, time: Date().timeIntervalSinceReferenceDate)
     }
 }

@@ -67,14 +67,11 @@ PODS:
     - gRPC-RxLibrary (= 1.10.0)
   - GTMSessionFetcher/Core (1.1.15)
   - leveldb-library (1.20)
-  - MusicTheorySwift (0.1)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - PianoView (0.0.1):
-    - MusicTheorySwift
   - Protobuf (3.5.0)
   - TransitionButton (0.4.0)
 
@@ -83,7 +80,6 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
-  - PianoView
   - TransitionButton
 
 SPEC REPOS:
@@ -103,9 +99,7 @@ SPEC REPOS:
     - gRPC-RxLibrary
     - GTMSessionFetcher
     - leveldb-library
-    - MusicTheorySwift
     - nanopb
-    - PianoView
     - Protobuf
     - TransitionButton
 
@@ -125,12 +119,10 @@ SPEC CHECKSUMS:
   gRPC-RxLibrary: a41a4652d220f230ba1c0491a94ce2ee04c6180a
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  MusicTheorySwift: 9e7f1bf66904190f82b34b9d36e09e296dde438b
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  PianoView: f234ac44b5cdd043a0e140cbbf84a95e4660865b
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   TransitionButton: d271030914c84a00b54b4d983446944d2875e7ba
 
-PODFILE CHECKSUM: 5e0b5650f3a20eba53dc9c4d00fafff05d6d4ff9
+PODFILE CHECKSUM: 059794ede0211532aeb7bf0a0d0c234b8979cc73
 
 COCOAPODS: 1.5.0

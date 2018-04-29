@@ -11,7 +11,6 @@ target 'Motif' do
   pod 'Firebase/Firestore'
   pod 'TransitionButton'
   pod 'AudioKit'
-  pod 'PianoView'
 end
 
 post_install do |installer|

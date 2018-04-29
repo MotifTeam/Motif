@@ -33,12 +33,17 @@ class AudioManager{
     private var tape: AKAudioFile?
     private var oscMixer: AKMixer!
     private var pianoMixer: AKMixer!
+    private var tempTime: Double!
+    private var startTime: Double!
+
+    private var sequencer: AKSequencer!
 
     var midiPlayers: [Int:AVMIDIPlayer] = [:]
     var oscillator: AKOscillator!
     var currentAmplitude = 0.1
     var currentRampTime = 0.2
     
+    var tempTrack: AKMusicTrack!
     var pianoNode: AKRhodesPiano!
     
     init() {
@@ -61,6 +66,7 @@ class AudioManager{
         micBooster.gain = 0
         
         pianoNode = AKRhodesPiano()
+        sequencer = AKSequencer()
         pianoMixer = AKMixer(pianoNode)
         
         do {
@@ -93,12 +99,12 @@ class AudioManager{
         resetRecording()
     }
     
-    func recordPiano() {
+    func recordPiano(time: Double) {
         let booster = AKBooster(pianoMixer)
         let mixer = AKMixer(midiPlayer, booster)
         AudioKit.output = mixer
-
-        
+        startTime = time
+        sequencer.newTrack()
         do {
             try midiRecorder.record()
         } catch {
@@ -128,28 +134,55 @@ class AudioManager{
         try! recorder.reset()
     }
     
+//    func getURLwithMIDIFileData() -> URL? {
+//        guard let seq = seq,
+//            let data = seq.genData() else { return nil }
+//        let fileName = "ExportedMIDI.mid"
+//        do {
+//            let tempPath = URL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
+//            try data.write(to: tempPath as URL)
+//            return tempPath
+//        } catch {
+//            print("couldn't write to URL")
+//        }
+//        return nil
+//    }
+    
     func saveSong(fileName: String, mode: RecordingType, completionHandler: @escaping (Bool, URL, Double) -> Void) {
         
         
         if mode == .microphone {
             tape = recorder.audioFile
-        } else {
-            tape = midiRecorder.audioFile
-        }
-        
-        if let tape = tape {
-            tape.exportAsynchronously(name: "Motif-\(fileName)",
-                                      baseDir: .documents,
-                                      exportFormat: .m4a) {file, exportError in
-                if let error = exportError {
-                    print("Export Failed \(error)")
-                    completionHandler(false,  tape.url, -1)
-                } else {
-                    print("Export succeeded")
-                    completionHandler(true, file!.url, file!.duration)
+            if let tape = tape {
+                tape.exportAsynchronously(name: "Motif-\(fileName)",
+                    baseDir: .documents,
+                    exportFormat: .m4a) {file, exportError in
+                        if let error = exportError {
+                            print("Export Failed \(error)")
+                            completionHandler(false,  tape.url, -1)
+                        } else {
+                            print("Export succeeded")
+                            completionHandler(true, file!.url, file!.duration)
+                        }
                 }
             }
+        } else {
+            tape = midiRecorder.audioFile
+            let data = sequencer.genData()
+            let fileName = "Motif-\(fileName).mid"
+            
+            do {
+                print(AKAudioFile.BaseDirectory.documents)
+                let filePath = URL(fileURLWithPath: "\(AKAudioFile.BaseDirectory.documents)")
+                    .appendingPathComponent(fileName)
+                try data?.write(to: filePath)
+                completionHandler(true, filePath, tape!.duration)
+            } catch {
+                completionHandler(false, URL(fileURLWithPath: ""), -1)
+            }
         }
+        
+        
                                     
     }
     
@@ -182,6 +215,22 @@ class AudioManager{
         } catch {
             print(error)
         }
+    }
+    
+    func playNote(note: MIDINoteNumber, time: Double) {
+        tempTime  = time
+        pianoNode.trigger(frequency: note.midiNoteToFrequency())
+
+    }
+    
+    func stopNote(note: MIDINoteNumber, time: Double) {
+        pianoNode.trigger(frequency: note.midiNoteToFrequency(), amplitude: 0)
+        sequencer.tracks[0].add(noteNumber: note,
+                                velocity: 127,
+                                position: AKDuration(seconds: time-startTime),
+                                duration: AKDuration(seconds: time-tempTime))
+        
+        
     }
     
     func getCurrentAudio() -> URL {
