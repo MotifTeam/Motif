@@ -31,11 +31,32 @@
                         <rect key="frame" x="16" y="11" width="36" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRO-Lg-gTO">
+                        <rect key="frame" x="16" y="55" width="35" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Oaq-9r-VOm"/>
+                            <constraint firstAttribute="width" constant="35" id="zVu-mE-ral"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="play"/>
+                        <connections>
+                            <action selector="playerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1RA-IT-JD6"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSD-lJ-ed2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <connections>
+                            <action selector="playerAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="K3t-fU-QfK"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="TRO-Lg-gTO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="DWk-fO-3Hp"/>
+                    <constraint firstItem="TRO-Lg-gTO" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="LQ4-ql-bHK"/>
                     <constraint firstItem="Xfa-Nq-m91" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Tvt-PE-BN7"/>
                     <constraint firstItem="Xfa-Nq-m91" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="m0d-Zt-QcR"/>
                     <constraint firstItem="Xfa-Nq-m91" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ppB-00-WF7"/>
@@ -44,10 +65,14 @@
             <color key="backgroundColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="0.5" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="playButton" destination="TRO-Lg-gTO" id="UL2-gx-3Tn"/>
                 <outlet property="previewImageView" destination="Xfa-Nq-m91" id="iQE-bd-7a5"/>
                 <outlet property="time" destination="5Lb-Fj-mI3" id="6JO-tM-hdM"/>
             </connections>
             <point key="canvasLocation" x="34" y="85"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="play" width="224" height="256"/>
+    </resources>
 </document>

@@ -34,9 +34,9 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
     var clipsCollection: CollectionReference!
     
     func addClip(from data: Data, creator: String) {
-        let clip = MIDIClip(midiData: data, creator: creator, timestamp: Date())
-        self.sessionClips.append(clip)
         let newClipRef = self.clipsCollection.document()
+        let clip = MIDIClip(midiData: data, creator: creator, timestamp: Date(), documentRef: newClipRef)
+        self.sessionClips.append(clip)
         newClipRef.setData([
             "creator": clip.creator,
             "midiData": clip.midiData,
@@ -79,8 +79,6 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         //view = webView
         webView.frame = placeholderView.frame
         placeholderView.addSubview(webView)
-        placeholderView.addSubview(aiImageView)
-        placeholderView.addSubview(userImageView)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,7 +93,7 @@ class AIPianoViewController: UIViewController, WKUIDelegate, WKScriptMessageHand
         Firestore.firestore().settings = settings
         db = Firestore.firestore()
         let uid = Auth.auth().currentUser?.uid ?? "0"
-        clipsCollection = db.collection("users").document(uid).collection("clips")
+        clipsCollection = db.collection("users").document(uid).collection("midi_clips")
         
         let myURL = URL(string: "https://experiments.withgoogle.com/ai/ai-duet/view/")
         let myRequest = URLRequest(url: myURL!)

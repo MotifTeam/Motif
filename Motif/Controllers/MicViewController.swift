@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorage
 import AudioKit
 import AudioKitUI
 import CoreData
@@ -70,19 +71,19 @@ class MicViewController: UIViewController {
                     if result {
                         print(duration)
                         //let localFile = URL(string: url)!
-                        DispatchQueue.main.async(execute: { () -> Void in
+                        DispatchQueue.main.async {
                             // Cloud upload
-                            let clipPath = Auth.auth().currentUser!.uid + songName
-                            let clipRef = self.storage.reference(withPath: clipPath)
+                            let uid = Auth.auth().currentUser!.uid
+                            let clipRef = self.storage.reference().child(uid).child(songName)
                             clipRef.putFile(from: url, metadata: nil) { metadata, error in
                                 if let error = error {
                                     // Uh-oh, an error occurred!
                                     print("Error uploading: \(error)")
                                     return
                                 }
-                                self.uploadSuccess(clipRef, storagePath: clipPath, songName: "Motif-\(songName)", duration: duration)
+                                self.uploadSuccess(clipRef, storagePath: clipRef.fullPath, songName: "Motif-\(songName)", duration: duration)
                             }
-                        })
+                        }
                     } else {
                         print("failed")
                     }
@@ -130,6 +131,9 @@ class MicViewController: UIViewController {
     var startTime: Double = 0
     var endTime: Double = 0
     
+    var db: Firestore!
+    var audioClipsCollection: CollectionReference!
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent // .default
     }
@@ -139,6 +143,11 @@ class MicViewController: UIViewController {
         
         trashButton.isHidden = true
         checkButton.isHidden = true
+        
+        db = Firestore.firestore()
+        let uid = Auth.auth().currentUser?.uid ?? "0"
+        audioClipsCollection = db.collection("users").document(uid).collection("audio_clips")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,7 +172,7 @@ class MicViewController: UIViewController {
         song.setValue(location, forKey: "url")
         song.setValue(duration, forKey: "duration")
         song.setValue(storagePath, forKey: "storageRef")
-
+        
         
         do {
             try context.save()
@@ -172,6 +181,17 @@ class MicViewController: UIViewController {
             let nserror = error as NSError
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
+        }
+        let newClipRef = audioClipsCollection.document(name)
+        newClipRef.setData([
+            "name": name,
+            "duration": duration,
+            "storageRef": storagePath]) {err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
         }
         
     }

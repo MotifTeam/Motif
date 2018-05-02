@@ -10,7 +10,7 @@ import TransitionButton
 import UIKit
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var loginButton: TransitionButton!
     @IBOutlet weak var emailField: UITextField!
@@ -42,6 +42,21 @@ class LoginViewController: UIViewController {
         loginButton.layer.masksToBounds = true
         loginButton.layer.borderColor = UIColor.white.cgColor
         loginButton.layer.borderWidth = 2
+        emailField.delegate = self
+        passwordField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        if scoreText == emailField {
+            passwordField.becomeFirstResponder()
+            return false
+        }
+        self.view.endEditing(true)
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     @IBAction func loginAction(_ sender: TransitionButton) {

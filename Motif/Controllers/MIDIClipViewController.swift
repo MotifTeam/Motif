@@ -9,7 +9,7 @@
 import UIKit
 import AudioKit
 import Firebase
-
+/*
 class MIDIClipViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -40,7 +40,7 @@ class MIDIClipViewController: UIViewController {
             } else {
                 for document in querySnapshot!.documents {
                     print("\(document.documentID) => \(document.data())")
-                    self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date))
+                    self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date, documentRef: document.reference))
                 }
                 self.tableView.reloadData()
             }
@@ -63,7 +63,24 @@ extension MIDIClipViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (rowAction: UITableViewRowAction, indexPath: IndexPath) -> Void in
+            let row = indexPath.row
+            let clipToDelete = self.clips[row]
+            clipToDelete.documentRef.delete () { (err: Error?) in
+                
+            }
+            print("deleted row \(row)")
+            self.clips.remove(at: row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            self.tableView.reloadData()
+        }
+        return [deleteAction]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return clips.count
     }
-}
+}*/

@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Firebase
+
+let imageGenSemaphore = DispatchSemaphore(value: 1)
 
 struct MIDIClip: Equatable {
     let midiData: Data
     let creator: String
     let timestamp: Date
+    let documentRef: DocumentReference
     
     func createMIDIPreviewImage(size: CGSize, color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
@@ -72,14 +76,14 @@ struct MIDIClip: Equatable {
             let noteHeight = size.height / (CGFloat(maxNote)-CGFloat(minNote)+1)
             color.setFill()
             for note in notesPlayed {
-                
                 let x = (CGFloat(note.startTime)/CGFloat(endTime!)) * size.width
                 let y = (CGFloat(maxNote)-CGFloat(note.noteNumber)) * CGFloat(noteHeight)
                 
                 let width = size.width * CGFloat(note.endTime - note.startTime) / CGFloat(endTime!)
                 let noteRect = CGRect(x:x, y:y, width:width, height:noteHeight)
                 UIRectFill(noteRect)
-                
+                UIColor.white.setStroke()
+                UIRectFrame(noteRect)
             }
         }
         

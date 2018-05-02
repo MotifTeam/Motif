@@ -13,7 +13,6 @@
 		2716C88720753F88003AEBB0 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88620753F88003AEBB0 /* Setting.storyboard */; };
 		2716C88920753FBA003AEBB0 /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88820753FBA003AEBB0 /* Follow.storyboard */; };
 		2716C88D20756046003AEBB0 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2716C88C20756046003AEBB0 /* SettingsController.swift */; };
-		2716C88F2075D035003AEBB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2716C88E2075D035003AEBB0 /* GoogleService-Info.plist */; };
 		2721C8BD2077CF9000F8CAF1 /* MIDIClipViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8BB2077CF9000F8CAF1 /* MIDIClipViewCell.swift */; };
 		2721C8BE2077CF9000F8CAF1 /* MIDIClipViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2721C8BC2077CF9000F8CAF1 /* MIDIClipViewCell.xib */; };
 		2721C8C12077D66A00F8CAF1 /* ClipTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2721C8BF2077D66A00F8CAF1 /* ClipTableViewCell.swift */; };
@@ -40,6 +39,7 @@
 		27FF435E20507345006BBE64 /* CircleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FF435D20507345006BBE64 /* CircleBackgroundView.swift */; };
 		966BD7A64EB3E622A4A51341 /* Pods_Motif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */; };
 		9F72F6C72075A20400EA01E3 /* MIDIClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F72F6C62075A20400EA01E3 /* MIDIClip.swift */; };
+		9F8E489C2099B2D500635F29 /* gs_soundfont.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 2716C8902075D03C003AEBB0 /* gs_soundfont.sf2 */; };
 		9FCFDACA20747C7800126965 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDABE20747C7800126965 /* version.h */; };
 		9FCFDACB20747C7800126965 /* midio.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDABF20747C7800126965 /* midio.h */; };
 		9FCFDACC20747C7800126965 /* midifile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDAC020747C7800126965 /* midifile.h */; };
@@ -50,6 +50,7 @@
 		9FCFDAD220747C7800126965 /* midio.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCFDAC720747C7800126965 /* midio.c */; };
 		9FCFDAD320747C7800126965 /* midi-json.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FCFDAC820747C7800126965 /* midi-json.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9FCFDAD420747C7800126965 /* getopt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9FCFDAC920747C7800126965 /* getopt.c */; };
+		9FF7CB1B2099540A005A580F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FF7CB1A2099540A005A580F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +60,6 @@
 		2716C88620753F88003AEBB0 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		2716C88820753FBA003AEBB0 /* Follow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Follow.storyboard; sourceTree = "<group>"; };
 		2716C88C20756046003AEBB0 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		2716C88E2075D035003AEBB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2716C8902075D03C003AEBB0 /* gs_soundfont.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gs_soundfont.sf2; sourceTree = SOURCE_ROOT; };
 		2721C8BB2077CF9000F8CAF1 /* MIDIClipViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIClipViewCell.swift; sourceTree = "<group>"; };
 		2721C8BC2077CF9000F8CAF1 /* MIDIClipViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MIDIClipViewCell.xib; sourceTree = "<group>"; };
@@ -98,6 +98,7 @@
 		9FCFDAC720747C7800126965 /* midio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = midio.c; sourceTree = "<group>"; };
 		9FCFDAC820747C7800126965 /* midi-json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "midi-json.h"; path = "Motif/Helpers/midi-json/midi-json.h"; sourceTree = SOURCE_ROOT; };
 		9FCFDAC920747C7800126965 /* getopt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = getopt.c; sourceTree = "<group>"; };
+		9FF7CB1A2099540A005A580F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3FA1322D4342215EDDBE135 /* Pods_Motif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Motif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67EC7DA0AE94572F45FAB42 /* Pods-Motif.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.debug.xcconfig"; sourceTree = "<group>"; };
 		EE813AC389D9D4A4A0E14D95 /* Pods-Motif.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Motif.release.xcconfig"; path = "Pods/Target Support Files/Pods-Motif/Pods-Motif.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,8 +175,8 @@
 				279CCA18203E5AF100D72BD6 /* Storyboards */,
 				27990BF32037B375005F9A86 /* AppDelegate.swift */,
 				27990BFA2037B375005F9A86 /* Assets.xcassets */,
+				9FF7CB1A2099540A005A580F /* GoogleService-Info.plist */,
 				27990BFC2037B375005F9A86 /* LaunchScreen.storyboard */,
-				2716C88E2075D035003AEBB0 /* GoogleService-Info.plist */,
 				27990BFF2037B375005F9A86 /* Info.plist */,
 			);
 			path = Motif;
@@ -335,9 +336,10 @@
 				2760A8392073F8A700A701BA /* ClipLibrary.storyboard in Resources */,
 				27990BFB2037B375005F9A86 /* Assets.xcassets in Resources */,
 				27990BF92037B375005F9A86 /* Main.storyboard in Resources */,
-				2716C88F2075D035003AEBB0 /* GoogleService-Info.plist in Resources */,
+				9F8E489C2099B2D500635F29 /* gs_soundfont.sf2 in Resources */,
 				2721C8BE2077CF9000F8CAF1 /* MIDIClipViewCell.xib in Resources */,
 				2721C8C22077D66A00F8CAF1 /* ClipTableViewCell.xib in Resources */,
+				9FF7CB1B2099540A005A580F /* GoogleService-Info.plist in Resources */,
 				2716C88720753F88003AEBB0 /* Setting.storyboard in Resources */,
 				2716C88920753FBA003AEBB0 /* Follow.storyboard in Resources */,
 			);
@@ -591,11 +593,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S6GL8QZ9YR;
+				DEVELOPMENT_TEAM = B7BR378UWH;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif1;
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Helpers/midi-json/midi-json.h";
 				SWIFT_VERSION = 4.0;
@@ -609,11 +611,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S6GL8QZ9YR;
+				DEVELOPMENT_TEAM = B7BR378UWH;
 				INFOPLIST_FILE = Motif/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
-				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif1;
+				PRODUCT_BUNDLE_IDENTIFIER = cs.utexas.edu.Motif2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Motif/Helpers/midi-json/midi-json.h";
 				SWIFT_VERSION = 4.0;

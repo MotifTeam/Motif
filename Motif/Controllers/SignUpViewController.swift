@@ -10,7 +10,7 @@ import TransitionButton
 import UIKit
 import Firebase
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var registerButton: TransitionButton!
@@ -34,6 +34,25 @@ class SignUpViewController: UIViewController {
         return layer
     }()
     
+    func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
+        switch scoreText {
+        case nameField:
+            emailField.becomeFirstResponder()
+            return false
+        case emailField:
+            passwordField.becomeFirstResponder()
+            return false
+        default:
+            self.view.endEditing(true)
+            return true
+        }
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gradientLayer.frame = view.frame
@@ -43,6 +62,9 @@ class SignUpViewController: UIViewController {
         registerButton.layer.borderColor = UIColor.white.cgColor
         registerButton.layer.borderWidth = 2
         nameField.layer.cornerRadius = 0
+        nameField.delegate = self
+        passwordField.delegate = self
+        emailField.delegate = self
        
     }
     @IBAction func registerAction(_ sender: TransitionButton) {

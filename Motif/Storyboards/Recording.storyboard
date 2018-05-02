@@ -91,9 +91,9 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-jc-11z">
-                                <rect key="frame" x="29" y="141" width="46" height="30"/>
+                                <rect key="frame" x="35" y="141" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="keepRecording" destination="if8-Dl-EGZ" eventType="touchUpInside" id="Fd7-yb-azV"/>
                                 </connections>
@@ -137,24 +137,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Daj-CX-tHK">
-                                <rect key="frame" x="0.0" y="0.0" width="376" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPX-E3-UiF">
-                                <rect key="frame" x="112.5" y="104" width="150" height="86"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="72"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9t0-eY-NdJ">
-                                <rect key="frame" x="106.5" y="59" width="162" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yav-HS-0dD">
-                                <rect key="frame" x="8" y="198" width="38" height="30"/>
-                                <state key="normal" title="Piano"/>
+                                <rect key="frame" x="8" y="28" width="52" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="‹ Piano"/>
                                 <connections>
                                     <segue destination="if8-Dl-EGZ" kind="show" id="LhE-TI-3I6"/>
                                 </connections>
@@ -162,16 +151,15 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="rPX-E3-UiF" firstAttribute="centerX" secondItem="9t0-eY-NdJ" secondAttribute="centerX" id="2Pj-xl-ZSg"/>
                             <constraint firstItem="Daj-CX-tHK" firstAttribute="top" secondItem="Wkr-HO-5nu" secondAttribute="top" id="3QI-Fh-iLH"/>
                             <constraint firstItem="Yav-HS-0dD" firstAttribute="leading" secondItem="adH-TL-0qE" secondAttribute="leading" constant="8" id="45P-b9-ziH"/>
+                            <constraint firstItem="Daj-CX-tHK" firstAttribute="trailing" secondItem="adH-TL-0qE" secondAttribute="trailing" id="5Fv-cI-hyF"/>
+                            <constraint firstItem="Daj-CX-tHK" firstAttribute="bottom" secondItem="adH-TL-0qE" secondAttribute="bottom" id="6Q6-vW-9va"/>
                             <constraint firstItem="Daj-CX-tHK" firstAttribute="bottom" secondItem="adH-TL-0qE" secondAttribute="bottom" id="9iB-dR-Qhu"/>
+                            <constraint firstItem="Daj-CX-tHK" firstAttribute="top" secondItem="Wkr-HO-5nu" secondAttribute="top" id="LGK-3s-4ij"/>
                             <constraint firstItem="Daj-CX-tHK" firstAttribute="leading" secondItem="Wkr-HO-5nu" secondAttribute="leading" id="Nzv-e9-XL8"/>
-                            <constraint firstItem="adH-TL-0qE" firstAttribute="bottom" secondItem="rPX-E3-UiF" secondAttribute="bottom" constant="477" id="cf6-OT-0I8"/>
-                            <constraint firstItem="Yav-HS-0dD" firstAttribute="top" secondItem="rPX-E3-UiF" secondAttribute="bottom" constant="8" id="kxI-FU-KYG"/>
-                            <constraint firstItem="rPX-E3-UiF" firstAttribute="centerX" secondItem="Daj-CX-tHK" secondAttribute="centerX" id="mvK-zo-bHq"/>
-                            <constraint firstItem="rPX-E3-UiF" firstAttribute="centerX" secondItem="Wkr-HO-5nu" secondAttribute="centerX" id="nFB-gj-wbf"/>
-                            <constraint firstItem="rPX-E3-UiF" firstAttribute="top" secondItem="9t0-eY-NdJ" secondAttribute="bottom" constant="16" id="vAk-Ah-O28"/>
+                            <constraint firstItem="Yav-HS-0dD" firstAttribute="top" secondItem="adH-TL-0qE" secondAttribute="top" constant="8" id="Sud-yv-1S2"/>
+                            <constraint firstItem="Daj-CX-tHK" firstAttribute="leading" secondItem="adH-TL-0qE" secondAttribute="leading" id="azU-Tb-jJv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="adH-TL-0qE"/>
                     </view>
@@ -426,6 +414,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="W3s-16-Yco"/>
         <segue reference="TGy-ud-HQ1"/>
-        <segue reference="VAt-0q-X7B"/>
+        <segue reference="LhE-TI-3I6"/>
     </inferredMetricsTieBreakers>
 </document>

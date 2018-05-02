@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import PianoView
-import MusicTheorySwift
+//import PianoView
+//import MusicTheorySwift
 import AudioKit
 import AudioKitUI
 import CoreData

@@ -11,10 +11,11 @@ import AudioKit
 import AVFoundation
 import AudioKitUI
 import Firebase
+import FirebaseStorage
 import CoreData
 
 let soundFontURL = Bundle.main.url(forResource: "gs_soundfont", withExtension: "sf2")!
-let cellImageCache = NSCache<NSData, UIImage>()
+let cellImageCache = NSCache<NSString, UIImage>()
 
 class ClipLibraryViewController: UIViewController {
 
@@ -23,6 +24,8 @@ class ClipLibraryViewController: UIViewController {
     @IBOutlet weak var slideOutView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImage: UIImageView!
+    
+    private let refreshControl = UIRefreshControl()
     
     weak var player: AKAudioPlayer?
     var db: Firestore?
@@ -34,6 +37,8 @@ class ClipLibraryViewController: UIViewController {
     let cellNib = UINib(nibName: "ClipTableViewCell", bundle: nil)
     let midiNib = UINib(nibName: "MIDIClipViewCell", bundle: nil)
     let cellSpacingHeight: CGFloat = 5
+    
+    let storageRef = Storage.storage().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +54,17 @@ class ClipLibraryViewController: UIViewController {
         profileImage.layer.borderWidth = 2
         profileImage.layer.masksToBounds = true
         
+        refreshControl.addTarget(self, action: #selector(refreshData(sender:)), for: .valueChanged)
+        
+    }
+    
+    @objc func refreshData(sender: Any) {
+        if tableViewBool {
+            updateAudioClips()
+        } else {
+            updateMIDIClips()
+        }
+        tableView.reloadData()
         
     }
     
@@ -57,20 +73,33 @@ class ClipLibraryViewController: UIViewController {
         Firestore.firestore().settings = settings
         db = Firestore.firestore()
         updateMIDIClips()
+        let uid = Auth.auth().currentUser?.uid ?? "0"
+        db!.collection("users").document(uid).collection("midi_clips").addSnapshotListener { querySnapshot, error in
+            var newClips: [MIDIClip] = []
+            for document in querySnapshot!.documents {
+                print("\(document.documentID) => \(document.data())")
+                newClips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date, documentRef: document.reference))
+            }
+            self.clips = newClips
+            self.tableView.reloadData()
+        }
     }
     
     private func updateMIDIClips() {
         let uid = Auth.auth().currentUser?.uid ?? "0"
     
-        if let db = db { db.collection("users").document("HXChpMTogmc2vISX4pjcqkHObKd2").collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
+        if let db = db { db.collection("users").document(uid).collection("midi_clips").order(by: "time").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                    self.clips = []
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
-                        self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date))
+                        self.clips.append(MIDIClip(midiData: document["midiData"] as! Data, creator: document["creator"] as! String, timestamp: document["time"] as! Date, documentRef: document.reference))
                     }
-                    self.tableView.reloadData()
                 }
             }
         }
@@ -85,12 +114,97 @@ class ClipLibraryViewController: UIViewController {
         tableView.estimatedRowHeight = 140
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
+        tableView.refreshControl = refreshControl
         updateAudioClips()
         tableView.reloadData()
     }
     
     private func updateAudioClips() {
         songs = retrieveAudioClips()
+        var clipsInLocalStorage = Dictionary<String, NSManagedObject>()
+        for clip in songs {
+            clipsInLocalStorage[(clip.value(forKey: "name") as! String)] = clip
+        }
+        print(clipsInLocalStorage)
+        let dispatchGroup = DispatchGroup()
+        let uid = Auth.auth().currentUser?.uid ?? "0"
+        
+        if let db = db { db.collection("users").document(uid).collection("audio_clips").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                if self.refreshControl.isRefreshing {
+                    self.refreshControl.endRefreshing()
+                }
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    let clip_name = document["name"] as! String
+                    
+                    if (clipsInLocalStorage[clip_name] == nil) {
+                        clipsInLocalStorage[clip_name] = nil
+                        //self.refreshControl.beginRefreshing()
+                        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+                        let documentsDirectory = paths[0]
+                        let fileRootPath = "file:\(documentsDirectory)/"
+                        let filePath = fileRootPath + String(describing: clip_name)
+                        if let clip_path = document["storageRef"] {
+                            let storagePath = clip_path as! String
+                            let fileURL = URL(string: filePath)
+                            dispatchGroup.enter()
+                            self.storageRef.child(clip_path as! String).write(toFile: fileURL!, completion: { (url, error) in
+                                dispatchGroup.leave()
+                                
+                                if let error = error {
+                                    print("Error downloading:\(error)")
+                                    //self.statusTextView.text = "Download Failed"
+                                    return
+                                }
+                                print("Download success")
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                let context = appDelegate.persistentContainer.viewContext
+                                
+                                let song = NSEntityDescription.insertNewObject(forEntityName: "Song",
+                                                                               into: context)
+                                song.setValue(clip_name, forKey: "name")
+                                song.setValue(fileURL, forKey: "url")
+                                song.setValue(document["duration"], forKey: "duration")
+                                song.setValue(storagePath, forKey: "storageRef")
+                                do {
+                                    try context.save()
+                                } catch {
+                                    let nserror = error as NSError
+                                    NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                                    abort()
+                                }
+                                self.songs = self.retrieveAudioClips()
+                                self.tableView.reloadData()
+                            })
+                        }
+                    }
+                    
+                }
+               
+            }
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            do {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                try context.save()
+                self.songs = self.retrieveAudioClips()
+                self.tableView.reloadData()
+                
+            } catch {
+                // If an error occurs
+                let nserror = error as NSError
+                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+                abort()
+            }
+        }
+        
+        
     }
     
     private func checkAuth(){
@@ -238,8 +352,6 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.section
         
-        let storageRef = Storage.storage().reference()
-        
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         let fileRootPath = "file:\(documentsDirectory)/"
@@ -263,7 +375,7 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
             print(fileURL)
             if let clip_time = curr_clip.value(forKey:"duration") {
                 cell.duration = clip_time as! Double
-            }
+            }/*
             if !FileManager.default.fileExists(atPath: filePath) {
                 if let clip_path = curr_clip.value(forKey:"storageRef") {
                     cell.storagePath = clip_path as! String
@@ -277,7 +389,7 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
                     })
                 }
             }
-            
+            */
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero
             cell.layoutMargins = UIEdgeInsets.zero
@@ -286,7 +398,7 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
 
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "midiCell", for: indexPath as IndexPath) as! MIDIClipViewCell
-            let row = indexPath.row
+            print(row)
             cell.populate(clips[row])
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero
@@ -299,6 +411,36 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let row = indexPath.row
+            if tableViewBool {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let song = songs[row]
+                let deletedSongName = song.value(forKey: "name") as! String
+                let uid = Auth.auth().currentUser?.uid ?? "0"
+                db!.collection("users").document(uid).collection("audio_clips").document(deletedSongName).delete()
+                let storagePath = song.value(forKey: "storageRef") as! String
+                storageRef.child(storagePath).delete()
+                context.delete(song)
+                songs.remove(at: row)
+                
+                tableView.reloadData()
+            } else {
+                clips[row].documentRef.delete()
+                clips.remove(at: row)
+                tableView.beginUpdates()
+                let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                tableView.deleteSections(indexSet, with: .fade)
+                tableView.endUpdates()
+                tableView.reloadData()
+                
+            }
+        }
+        
+    }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellSpacingHeight
     }
@@ -309,5 +451,6 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
         headerView.backgroundColor = UIColor.clear
         return headerView
     }
+    
 
 }

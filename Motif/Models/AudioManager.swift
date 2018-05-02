@@ -97,6 +97,8 @@ class AudioManager{
         }
         
         resetRecording()
+        
+        setSessionPlayback()
     }
     
     func recordPiano(time: Double) {
@@ -149,8 +151,6 @@ class AudioManager{
 //    }
     
     func saveSong(fileName: String, mode: RecordingType, completionHandler: @escaping (Bool, URL, Double) -> Void) {
-        
-        
         if mode == .microphone {
             tape = recorder.audioFile
             if let tape = tape {
@@ -190,22 +190,38 @@ class AudioManager{
         return microphone
     }
     
-    func playMIDIData(data: Data) {
+    func setSessionPlayback() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord,
+                                         with: AVAudioSessionCategoryOptions.mixWithOthers)
+            try audioSession.setActive(true)
+        } catch {
+            print("couldn't set category \(error)")
+        }
+    }
+    
+    
+    func playMIDIData(data: Data, completion: @escaping ()->Void) {
         if let player = midiPlayers[data.hashValue] {
             player.currentPosition = 0
-            player.play(nil)
+            player.prepareToPlay()
+            player.play(completion)
             
         } else {
             do {
                 let player = try AVMIDIPlayer(data: data, soundBankURL: soundFontURL)
                 player.prepareToPlay()
                 midiPlayers[data.hashValue] = player
-                player.play(nil)
+                player.play(completion)
+                
+                
                 
             } catch {
                 print("Error creating midiplayer: \(error.localizedDescription)")
             }
         }
+        
     }
     
     func replaceAudioData(fileURL: URL) {
