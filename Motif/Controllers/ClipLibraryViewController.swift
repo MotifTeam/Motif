@@ -48,6 +48,8 @@ class ClipLibraryViewController: UIViewController {
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 2
         profileImage.layer.masksToBounds = true
+        
+        
     }
     
     private func setupDB() {
@@ -60,8 +62,7 @@ class ClipLibraryViewController: UIViewController {
     private func updateMIDIClips() {
         let uid = Auth.auth().currentUser?.uid ?? "0"
     
-        if let db = db {
-            db.collection("users").document("HXChpMTogmc2vISX4pjcqkHObKd2").collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
+        if let db = db { db.collection("users").document("HXChpMTogmc2vISX4pjcqkHObKd2").collection("clips").order(by: "time").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -236,21 +237,47 @@ extension ClipLibraryViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.section
+        
+        let storageRef = Storage.storage().reference()
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        let fileRootPath = "file:\(documentsDirectory)/"
+        
         if tableViewBool {
             let cell = tableView.dequeueReusableCell(withIdentifier: "clipCell", for: indexPath as IndexPath) as! ClipTableViewCell
+            
+            var filePath = ""
             
             let curr_clip = songs[row]
             
             if let clip_name = curr_clip.value(forKey:"name") {
                 cell.fileName = String(describing:clip_name)
-            }
-            if let clip_url = curr_clip.value(forKey:"url") {
-                cell.url = clip_url as! URL
+                filePath = fileRootPath + String(describing: clip_name)
             }
             
+            let fileURL = URL(string: filePath)
+            cell.url = fileURL
+            
+            print("Cell URL")
+            print(fileURL)
             if let clip_time = curr_clip.value(forKey:"duration") {
                 cell.duration = clip_time as! Double
             }
+            if !FileManager.default.fileExists(atPath: filePath) {
+                if let clip_path = curr_clip.value(forKey:"storageRef") {
+                    cell.storagePath = clip_path as! String
+                    storageRef.child(clip_path as! String).write(toFile: fileURL!, completion: { (url, error) in
+                        if let error = error {
+                            print("Error downloading:\(error)")
+                            //self.statusTextView.text = "Download Failed"
+                            return
+                        }
+                        print("Download success")
+                    })
+                }
+            }
+            
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero
             cell.layoutMargins = UIEdgeInsets.zero

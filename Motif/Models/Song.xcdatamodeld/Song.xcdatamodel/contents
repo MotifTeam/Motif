@@ -3,9 +3,10 @@
     <entity name="Song" representedClassName="Song" syncable="YES" codeGenerationType="class">
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storageRef" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Song" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Song" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>

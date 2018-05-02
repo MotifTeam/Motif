@@ -10,6 +10,7 @@ import UIKit
 import AudioKit
 import AudioKitUI
 import AVFoundation
+import Firebase
 
 class ClipTableViewCell: UITableViewCell {
 
@@ -17,6 +18,7 @@ class ClipTableViewCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     
     var url: URL!
+    var storagePath: String!
     var playing = false
     var playingPositionSlider: AKSlider!
     var playTimer: Timer!

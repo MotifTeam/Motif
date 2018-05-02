@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import AudioKit
 import AudioKitUI
 import CoreData
@@ -19,6 +20,8 @@ class MicViewController: UIViewController {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var trashButton: UIButton!
     @IBOutlet weak var inputWave: EZAudioPlot!
+    
+    lazy var storage = Storage.storage()
     
     
     @IBAction func startRecording() {
@@ -61,11 +64,24 @@ class MicViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             if let songName = textField?.text {
+                
+                
                 AudioManager.sharedInstance.saveSong(fileName: songName.replace(target: " ", withString: "_"), mode: .microphone) { result, url, duration in
                     if result {
                         print(duration)
+                        //let localFile = URL(string: url)!
                         DispatchQueue.main.async(execute: { () -> Void in
-                            self.saveSong(name: "Motif-\(songName)", location: url, duration: duration) // changed ext
+                            // Cloud upload
+                            let clipPath = Auth.auth().currentUser!.uid + songName
+                            let clipRef = self.storage.reference(withPath: clipPath)
+                            clipRef.putFile(from: url, metadata: nil) { metadata, error in
+                                if let error = error {
+                                    // Uh-oh, an error occurred!
+                                    print("Error uploading: \(error)")
+                                    return
+                                }
+                                self.uploadSuccess(clipRef, storagePath: clipPath, songName: "Motif-\(songName)", duration: duration)
+                            }
                         })
                     } else {
                         print("failed")
@@ -74,12 +90,10 @@ class MicViewController: UIViewController {
                     AudioManager.sharedInstance.resetRecording()
 
                 }
-
             } else {
                 print("Failed")
             }
             self.resetUI()
-
             
         }))
         
@@ -91,7 +105,20 @@ class MicViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
+    func uploadSuccess(_ storageRef: StorageReference, storagePath: String, songName: String, duration: Double) {
+        print("Upload Succeeded!")
+        storageRef.downloadURL { (url, error) in
+            if let error = error {
+                print("Error getting download URL: \(error)")
+                return
+            }
+            print("Absolute url")
+            print(url?.absoluteString ?? "")
+            self.saveSong(name: songName, location: url!, duration: duration, storagePath: storagePath)
+            //UserDefaults.standard.set(storagePath, forKey: "storagePath")
+            //UserDefaults.standard.synchronize()
+        }
+    }
     
     var AudioManagerInstance = AudioManager.sharedInstance
     
@@ -125,7 +152,7 @@ class MicViewController: UIViewController {
         setupPlot()
     }
     
-    func saveSong(name: String, location: URL, duration: Double) {
+    func saveSong(name: String, location: URL, duration: Double, storagePath: String) {
             
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -135,6 +162,7 @@ class MicViewController: UIViewController {
         song.setValue(name, forKey: "name")
         song.setValue(location, forKey: "url")
         song.setValue(duration, forKey: "duration")
+        song.setValue(storagePath, forKey: "storageRef")
 
         
         do {
